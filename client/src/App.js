@@ -1,10 +1,23 @@
-import './App.css';
-
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import UserRoutes from "./routes/user/userRoutes";
+import AdminRoutes from "./routes/admin/AdminRoutes";
+import OwnerRoutes from "./routes/owner/ownerRoutes";
 function App() {
   return (
-    <div>
-        <h1>React app</h1>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/*" element={<UserRoutes />} />
+        </Routes>
+        <Routes>
+          <Route path="/admin/*" element={<AdminRoutes />} />
+        </Routes>
+        <Routes>
+          <Route path="/owner/*" element={<OwnerRoutes />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
