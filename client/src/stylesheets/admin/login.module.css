@@ -1,0 +1,21 @@
+.parent_div {
+    @apply min-h-screen py-24 overflow-hidden flex items-center justify-center;
+  }
+  
+  .sub_div {
+    @apply w-1/3 flex flex-col border lg:flex-row bg-white rounded-xl mx-auto shadow-lg overflow-hidden;
+  }
+  
+  .form_div {
+    @apply w-full py-16 px-12;
+  }
+  
+  .form_heading {
+    @apply text-3xl mb-4 font-semibold text-center;
+  }
+  .text_field {
+    @apply border border-gray-400 py-1 px-2 w-full;
+  }
+  .form_btn {
+    @apply w-full bg-cyan-800 py-3 text-center text-white;
+  }

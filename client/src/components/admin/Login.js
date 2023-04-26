@@ -1,31 +1,30 @@
 import React from "react";
-import "../../stylesheets/admin/Login.css";
+import styles from '../../stylesheets/admin/login.module.css'
 
 function Login() {
   return (
     <>
-      <div className="parent-div">
-        <div className="sub-div">
-          <div className="form-div ">
-            <h2 className="form-heading">Admin Login</h2>
+      <div className={styles.parent_div}>
+        <div className={styles.sub_div}>
+          <div className={styles.form_div}>
+            <h2 className={styles.form_heading}>Admin Login</h2>
 
             <form>
               <div className="mt-5">
                 <input
                   type="email"
                   placeholder="Email"
-                  className="text-field"
+                  className={styles.text_field}
                 />
               </div>
               <div className="mt-5">
                 <input
                   type="password"
                   placeholder="Password"
-                  className="text-field"
-                />
+                  className={styles.text_field}                />
               </div>
               <div className="mt-5">
-                <button className="form-btn">Sign Up</button>
+                <button className={styles.form_btn}>Sign Up</button>
               </div>
             </form>
           </div>

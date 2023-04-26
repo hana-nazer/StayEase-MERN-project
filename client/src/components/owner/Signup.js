@@ -1,46 +1,47 @@
 import React from "react";
-import "../../stylesheets/owner/signup.css";
+import styles from '../../stylesheets/owner/auth.module.css'
 
 function Signup() {
   return (
     <>
-      <div className="parent-div">
-        <div className="sub-div">
-          <div className="form-div ">
-            <h2 className="form-heading">Owner Signup</h2>
+      <div className={styles.parent_div}>
+        <div className={styles.sub_div}>
+          <div className={styles.form_div}>
+            <h2 className={styles.form_heading}>Owner Signup</h2>
 
             <form>
               <div className="mt-5">
-                <input type="text" placeholder="Name" className="text-field" />
+                <input type="text"  placeholder="Name" className={styles.text_field} />
               </div>
 
               <div className="mt-5">
                 <input
                   type="email"
                   placeholder="Email"
-                  className="text-field"
+                  className={styles.text_field}
+                
                 />
               </div>
               <div className="mt-5">
-                <input type="text" placeholder="Phone" className="text-field" />
+                <input type="text" placeholder="Phone" className={styles.text_field}/>
               </div>
 
               <div className="mt-5">
                 <input
                   type="password"
                   placeholder="Password"
-                  className="text-field"
+                  className={styles.text_field}
                 />
               </div>
               <div className="mt-5">
                 <input
                   type="password"
                   placeholder="Confirm Password"
-                  className="text-field"
+                  className={styles.text_field}
                 />
               </div>
               <div className="mt-5">
-                <button className="form-btn">Sign Up</button>
+                <button className={styles.form_btn}>Sign Up</button>
               </div>
             </form>
           </div>
