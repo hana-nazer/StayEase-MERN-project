@@ -6,30 +6,35 @@
     @apply container mx-auto;
   }
   .subdiv {
-    @apply w-1/2 flex flex-col lg:flex-row bg-white rounded-xl mx-auto shadow-lg overflow-hidden;
+    @apply flex flex-col w-1/2 mx-auto overflow-hidden bg-white shadow-lg lg:flex-row rounded-xl;
   }
   .imagediv {
-    @apply w-full lg:w-6/12 flex flex-col items-center justify-center p-12 bg-no-repeat bg-center bg-cover;
+    @apply relative flex flex-col items-center justify-center w-full p-12 bg-center bg-no-repeat bg-cover lg:w-6/12;
   }
+  
+  .imagediv > div:first-child {
+    @apply absolute top-0 left-0 z-10 p-1;
+  }
+  
   .heading1 {
-    @apply text-white text-2xl font-semibold;
+    @apply text-2xl font-semibold text-white;
   }
   .subheading {
-    @apply text-white font-medium;
+    @apply font-medium text-white;
   }
   .signinbtn {
-    @apply bg-slate-200 bg-opacity-50 mt-5 text-white font-semibold text-center rounded-xl p-2;
+    @apply p-2 mt-5 font-semibold text-center text-white bg-opacity-50 bg-slate-200 rounded-xl;
   }
   .form {
-    @apply w-full lg:w-96 py-16 px-12;
+    @apply w-full px-12 py-16 lg:w-96;
   }
   
   .formheading {
-    @apply text-3xl mb-4 font-semibold;
+    @apply mb-4 text-3xl font-semibold;
   }
   .textfield {
-    @apply border border-gray-400 py-1 px-2 w-full;
+    @apply w-full px-2 py-1 border border-gray-400;
   }
   .formbtn {
-    @apply w-full bg-cyan-800 py-3 text-center text-white;
+    @apply w-full py-3 text-center text-white bg-cyan-800;
   }

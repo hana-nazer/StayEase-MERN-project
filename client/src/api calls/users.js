@@ -1,4 +1,4 @@
-import {userApi } from "./axios";
+import { userApi } from "./axios";
 
 //register a new user
 export const RegisterUser = async (payload) => {
@@ -8,7 +8,18 @@ export const RegisterUser = async (payload) => {
     console.log(response.data);
     return response.data;
   } catch (error) {
-    console.log(error.response)
+    console.log(error.response);
+    return error.response;
+  }
+};
+
+// login
+export const LoginUser = async (payload) => {
+  try {
+    const response = await userApi.post("/login", payload);
+    return response.data;
+  } catch (error) {
+    console.log(error.response);
     return error.response;
   }
 };

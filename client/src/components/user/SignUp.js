@@ -2,17 +2,50 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../../stylesheets/user/signup.module.css";
 import { RegisterUser } from "../../api calls/users";
+import Logo from "../Logo";
 
 function SignUp() {
   const navigate = useNavigate();
+  const [nameIsValid, setNameIsvalid] = useState(false);
+  const [nameIsTouched, setNameIsTouched] = useState(false);
+
+  const [emailIsValid, setEmailIsValid] = useState(false);
+  const [emailIsTouched, setEmailIsTouched] = useState(false);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
   });
 
+  const invalidName = !nameIsValid && nameIsTouched;
+  const invalidEmail = !emailIsValid && emailIsTouched;
+
+  const nameChangeHandler = (event) => {
+    if (event.target.value.trim() === "") {
+      setNameIsvalid(false);
+    } else {
+      setNameIsvalid(true);
+    }
+  };
+
+  const emailChangeHandler = (event) => {
+    if (event.target.value.trim() === "" || event.target.value.includes("@")) {
+      setEmailIsValid(false);
+    } else {
+      setEmailIsValid(true);
+    }
+  };
+
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
+    if (event.target.name === "name") {
+      nameChangeHandler(event);
+    }
+
+    if (event.target.name === "email") {
+      emailChangeHandler(event);
+    }
   };
 
   const formSubmit = async (event) => {
@@ -44,6 +77,10 @@ function SignUp() {
               className={styles.imagediv}
               style={{ backgroundImage: `url('images/sign-cover.png')` }}
             >
+              <div >
+              <Logo/>
+                
+              </div>
               <h1 className={styles.heading1}>Welcome back</h1>
               <div>
                 <p className={styles.subheading}>
@@ -68,8 +105,13 @@ function SignUp() {
                     className={styles.textfield}
                     name="name"
                     value={formData.name}
+                    onFocus={() => setNameIsTouched(false)}
+                    onBlur={() => setNameIsTouched(true)}
                     onChange={handleChange}
                   />
+                  {invalidName && (
+                    <p className="text-red-700">Name is required</p>
+                  )}
                 </div>
                 <div className="mt-5">
                   <input
@@ -78,8 +120,13 @@ function SignUp() {
                     className={styles.textfield}
                     name="email"
                     value={formData.email}
+                    onFocus={() => setEmailIsTouched(false)}
+                    onBlur={() => setEmailIsTouched(true)}
                     onChange={handleChange}
                   />
+                  {invalidEmail && (
+                    <p className="text-red-700">Please enter a valid email</p>
+                  )}
                 </div>
                 <div className="mt-5">
                   <input

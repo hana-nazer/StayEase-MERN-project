@@ -1,5 +1,7 @@
 import React from "react";
 import styles from '../../stylesheets/owner/auth.module.css'
+import LoginForm from "../LoginForm";
+import LoginTitle from "../LoginTitle";
 
 function Login() {
   return (
@@ -7,28 +9,8 @@ function Login() {
       <div className={styles.parent_div}>
         <div className={styles.sub_div}>
           <div className={styles.form_div}>
-            <h2 className={styles.form_heading}>Owner Login</h2>
-
-            <form>
-              <div className="mt-5">
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className={styles.text_field}
-                />
-              </div>
-
-              <div className="mt-5">
-                <input
-                  type="password"
-                  placeholder="Password"
-                  className={styles.text_field}                />
-              </div>
-
-              <div className="mt-5">
-                <button className={styles.form_btn}>Login</button>
-              </div>
-            </form>
+           <LoginTitle title='Owner Login'/>
+            <LoginForm/>
           </div>
         </div>
       </div>

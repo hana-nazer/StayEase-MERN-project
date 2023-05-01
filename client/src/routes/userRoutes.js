@@ -3,7 +3,7 @@ import {Route, Routes } from "react-router-dom";
 import SignUpPage from '../pages/user/SignUpPage';
 import LoginPage from '../pages/user/LoginPage'
 import HomePage from "../pages/user/HomePage";
-
+React.lazy(()=>{})
 function UserRoutes() {
   return (
     <>
