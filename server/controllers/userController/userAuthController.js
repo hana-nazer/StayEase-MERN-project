@@ -1,5 +1,5 @@
 const User = require("../../models/userModel");
-const jwt = require('jsonwebtoken');
+const { createToken} = require('../../middlewares/tokenAuth');
 const bcrypt = require("bcryptjs");
 
 // register a new user
@@ -34,7 +34,6 @@ exports.postSignUp = async (req, res) => {
 // login user
 exports.postLogin = async (req, res) => {
   try {
-    
     // check if user exists
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
@@ -57,9 +56,11 @@ exports.postLogin = async (req, res) => {
     }
 
     // token creation
-    const token = jwt.sign({ userId: user._id }, process.env.SECRET, {
-      expiresIn: "1d",
-    });
+    const token = createToken(
+      { userId: user._id, role: "user" },
+      process.env.SECRET,
+      "1d"
+    );
     res.send({
       success: true,
       message: "user loggedin successfully",
