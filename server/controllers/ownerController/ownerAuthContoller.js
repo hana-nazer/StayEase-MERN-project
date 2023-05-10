@@ -1,5 +1,5 @@
 const Owner = require("../../models/ownerModel");
-const { createToken} = require('../../middlewares/tokenAuth');
+const { createToken } = require("../../middlewares/tokenAuth");
 
 const bcrypt = require("bcryptjs");
 
@@ -69,5 +69,28 @@ exports.ownerLogin = async (req, res) => {
       succes: false,
       message: error.message,
     });
+  }
+};
+
+// Get current owner
+exports.getOwner = async (req, res) => {
+  try {
+    // Accessing the role from the request body
+    if (req.body.role !== "owner") {
+      return res.send({
+        success: false,
+        message: "Unauthorized access",
+      });
+    }
+
+    const owner = await Owner.findById(req.body.userId).select("-password");
+    res.send({
+      success: true,
+      message: "Owner details fetched successfully",
+      data: owner,
+    });
+  } catch (error) {
+    console.log("Error occurred");
+    res.send({ success: false, message: error.message });
   }
 };

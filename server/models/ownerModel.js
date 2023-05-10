@@ -11,8 +11,8 @@ const ownerSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    phone_number: {
-      type: Number,
+    phone: {
+      type: String,
       required: true,
     },
     password: {
