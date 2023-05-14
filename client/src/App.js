@@ -1,24 +1,18 @@
-import "./App.css";
-import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UserRoutes from "./routes/userRoutes";
-import AdminRoutes from './routes/adminRoutes';
-import OwnerRoutes from './routes/ownerRoutes'
+import AdminRoutes from "./routes/adminRoutes";
+import OwnerRoutes from "./routes/ownerRoutes";
 
 function App() {
   return (
-    <>
-     <BrowserRouter>
-     <Routes>
-      <Route path="/*" element={<UserRoutes/>}/>
-     </Routes>
-     <Routes>
-      <Route path="/admin/*" element={<AdminRoutes/>}/>
-     </Routes>
-     <Routes>
-      <Route path="/owner/*" element={<OwnerRoutes/>}/>
-     </Routes>
-     </BrowserRouter>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/admin/*" element={<AdminRoutes />} />
+        <Route path="/owner/*" element={<OwnerRoutes />} />
+        <Route path="/*" element={<UserRoutes />} />
+      </Routes>
+    </Router>
   );
 }
 

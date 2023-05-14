@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
+import Navbar from "../../components/Navbar";
+import SideBar from "../../components/SideBar";
+import Footer from "../../components/Footer";
 
-function adminHome() {
+function AdminHome() {
   return (
-    <div>adminHome</div>
-  )
+    <>
+      <Navbar title="StayEase Admin" name="admin" role="admin" />
+      <SideBar role="admin"/>
+      <Footer role="admin"/>
+    </>
+  );
 }
 
-export default adminHome
+export default AdminHome;

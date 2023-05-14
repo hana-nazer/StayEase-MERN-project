@@ -8,7 +8,6 @@ function RegistrationForm() {
   const [place, setPlace] = useState("");
   const [description, setDescription] = useState("");
   const [images, setImages] = useState([]);
-  const [email, setEmail] = useState("");
   const [touched, setTouched] = useState({
     name: false,
     place: false,
@@ -35,14 +34,13 @@ function RegistrationForm() {
         place,
         description,
         images,
-        email,
       };
 
       try {
         const response = await resortData(formData);
         if (response.success) {
           console.log(response.message);
-          navigate("/home");
+          navigate("/owner/resort_home");
         } else {
           console.log(response.message);
         }
@@ -64,9 +62,7 @@ function RegistrationForm() {
     if (images.length === 0) {
       errors.images = "At least one image is required";
     }
-    if (!email.trim()) {
-      errors.email = "email is required";
-    }
+
     return errors;
   };
 
@@ -184,27 +180,7 @@ function RegistrationForm() {
                 <span className="text-sm text-red-500">{errors.images}</span>
               )}
             </div>
-            <div className="mb-4">
-              <label
-                className="block mb-2 font-bold text-gray-700"
-                htmlFor="name"
-              >
-                Email of owner:
-              </label>
-              <input
-                className="w-full px-3 py-2 border border-gray-400 rounded-lg"
-                type="text"
-                id="email"
-                name="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                onBlur={handleBlur}
-                onFocus={handleFocus}
-              />
-              {touched.name && errors.name && (
-                <span className="text-sm text-red-500">{errors.name}</span>
-              )}
-            </div>
+
             <button
               className="w-full py-3 mt-5 text-center text-white rounded-lg bg-cyan-800"
               type="submit"

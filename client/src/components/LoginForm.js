@@ -51,9 +51,7 @@ function LoginForm(props) {
             onChange={handleChange}
             onFocus={() => clearError("email")}
           />
-          {errors.email && (
-            <span className="text-red-500">{errors.email}</span>
-          )}
+          {errors.email && <span className="text-red-500">{errors.email}</span>}
         </div>
         <div className="mt-5">
           <input
