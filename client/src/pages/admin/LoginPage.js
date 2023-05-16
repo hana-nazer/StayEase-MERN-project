@@ -1,12 +1,16 @@
-import React from 'react'
-import Login from '../../components/admin/Login'
+import React from "react";
+import Login from "../../components/admin/Login";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 function LoginPage() {
   return (
-    <div>
-        <Login/>
-    </div>
-  )
+    <>
+      <Navbar role="admin" />
+      <Login />
+      <Footer />
+    </>
+  );
 }
 
-export default LoginPage
+export default LoginPage;

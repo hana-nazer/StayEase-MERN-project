@@ -32,7 +32,7 @@ function Login() {
         <div className={styles.sub_div}>
           <div className={styles.form_div}>
             <LoginTitle title="Owner Login" />
-            <LoginForm onSubmit={handleSubmit} />
+            <LoginForm onSubmit={handleSubmit} role="owner" />
           </div>
         </div>
       </div>

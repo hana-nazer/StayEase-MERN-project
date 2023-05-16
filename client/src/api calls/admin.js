@@ -10,3 +10,14 @@ export const adminLogin = async (payload) => {
       return error.response;
     }
   };
+
+
+  export const getPendingResorts = async()=>{
+    try {
+      const response = await adminApi.get('/pending')
+      return response.data
+    } catch (error) {
+      console.log(error.response);
+      return error.response
+    }
+  }

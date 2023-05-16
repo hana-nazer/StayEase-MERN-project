@@ -1,5 +1,5 @@
 .parent {
-    @apply min-h-screen py-24 overflow-hidden;
+    @apply min-h-screen py-12 overflow-hidden;
   }
   
   .content{

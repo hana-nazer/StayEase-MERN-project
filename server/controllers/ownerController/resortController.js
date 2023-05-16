@@ -9,8 +9,8 @@ exports.registerResort = async(req,res)=>{
           name: req.body.name,
           location: req.body.location,
           description: req.body.description,
-          owner: req.body.userId, // Assign the owner's ID to the resort's owner field
-          status: "pending", // Set the initial status to "pending"
+          owner: req.body.userId, 
+          status: "pending", 
         });
     
         // Save the new resort to the database

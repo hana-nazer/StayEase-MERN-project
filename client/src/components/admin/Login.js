@@ -26,7 +26,7 @@ function Login() {
         <div className={styles.sub_div}>
           <div className={styles.form_div}>
             <LoginTitle title="Admin Login" />
-            <LoginForm onSubmit={handleSubmit} />
+            <LoginForm onSubmit={handleSubmit} role="admin" />
           </div>
         </div>
       </div>

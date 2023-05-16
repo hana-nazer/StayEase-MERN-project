@@ -82,7 +82,7 @@ function RegistrationForm() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen py-24 overflow-hidden">
+    <div className="flex items-center justify-center min-h-screen py-12 overflow-hidden">
       <div className="flex flex-col w-full max-w-lg mx-auto mt-2 mb-2 overflow-hidden bg-white border shadow-lg lg:flex-row rounded-xl">
         <div className="w-full px-12 py-10">
           <h1 className="mb-2 text-2xl font-bold text-center">
@@ -182,7 +182,7 @@ function RegistrationForm() {
             </div>
 
             <button
-              className="w-full py-3 mt-5 text-center text-white rounded-lg bg-cyan-800"
+              className="w-full py-3 mt-5 text-center text-white rounded-lg bg-teal-900"
               type="submit"
             >
               Submit

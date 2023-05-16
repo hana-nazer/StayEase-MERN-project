@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 function Sidebar(props) {
   const adminLinks = [
-    { to: "/dashboard", label: "Dashboard" },
+    { to: "/admin/dashboard", label: "Dashboard" },
     { to: "/resorts", label: "Resorts" },
     { to: "/bookings", label: "Bookings" },
-    { to: "/approvals", label: "Approvals" },
+    { to: "/admin/requests", label: "Approvals" },
     { to: "/users", label: "Users" },
   ];
 

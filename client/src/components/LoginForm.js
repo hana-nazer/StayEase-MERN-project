@@ -38,6 +38,19 @@ function LoginForm(props) {
     setErrors({ ...errors, [fieldName]: "" });
   };
 
+  const getButtonColor = () => {
+    const role = props.role;
+    switch (role) {
+      case "admin":
+        return styles.adminButton;
+      case "owner":
+        return styles.ownerButton;
+      case "user":
+      default:
+        return styles.userButton;
+    }
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -68,7 +81,7 @@ function LoginForm(props) {
           )}
         </div>
         <div className="mt-5">
-          <button className={styles.formbtn}>Login</button>
+          <button className={`${styles.formbtn} ${getButtonColor()}`}>Login</button>
         </div>
       </form>
     </div>

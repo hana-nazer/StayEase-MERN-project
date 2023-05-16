@@ -1,9 +1,15 @@
 import React from 'react'
+import Footer from '../../components/Footer'
+import Navbar from '../../components/Navbar'
 import Home from '../../components/user/Home'
 
 function HomePage() {
   return (
-    <div><Home/></div>
+    <>
+    <Navbar role="user"/>
+    <Home/>
+    <Footer/>
+    </>
   )
 }
 

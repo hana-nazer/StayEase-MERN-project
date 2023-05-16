@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../../stylesheets/user/signup.module.css";
 import { RegisterUser } from "../../api calls/users";
-import Logo from "../Logo";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -80,9 +79,7 @@ function SignUp() {
               className={styles.imagediv}
               style={{ backgroundImage: `url('images/sign-cover.png')` }}
             >
-              <div>
-                <Logo />
-              </div>
+             
               <h1 className={styles.heading1}>Welcome back</h1>
               <div>
                 <p className={styles.subheading}>
