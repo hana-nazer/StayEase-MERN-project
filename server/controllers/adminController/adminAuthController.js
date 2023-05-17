@@ -52,10 +52,23 @@ exports.getPendingResorts = async (req, res) => {
     const pendingResorts = await Resort.find({ status: "pending" });
     res.send({ success: true, data: pendingResorts });
   } catch (error) {
-    res.status(500).json({ message: 'Failed to retrieve pending resorts' });
-
+    res.status(500).json({ message: "Failed to retrieve pending resorts" });
   }
 };
+
+// specific resort detail for approval
+exports.getPendingResortData = async (req, res) => {
+  try {
+    const resort = await Resort.findById(req.params.resortId); // Update the parameter name
+    if (!resort) {
+      return res.status(404).json({ message: "Resort not found" });
+    }
+    res.send({ success: true, data: resort });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to retrieve resort details" });
+  }
+};
+
 
 // review resort
 exports.reviewResort = async (req, res) => {

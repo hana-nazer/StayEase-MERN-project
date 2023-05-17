@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { getPendingResorts } from "../../api calls/admin"; // Import the getPendingResorts API function
+import { useParams, useNavigate } from "react-router-dom";
+import { getPendingResorts } from "../../api calls/admin";
 
 function Approval() {
   const [resorts, setResorts] = useState([]);
+  const { resortId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchPendingResorts();
@@ -10,15 +13,19 @@ function Approval() {
 
   const fetchPendingResorts = async () => {
     try {
-      const response = await getPendingResorts(); // Call the getPendingResorts API function
+      const response = await getPendingResorts();
       if (response.success) {
-        setResorts(response.data); // Set the fetched resorts in the state
+        setResorts(response.data);
       } else {
         console.log(response.message);
       }
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const viewResortDetails = (resortId) => {
+    navigate(`/admin/view_resort/${resortId}`);
   };
 
   return (
@@ -45,7 +52,10 @@ function Approval() {
                   {resort.location}
                 </td>
                 <td className="px-4 py-2 border border-gray-400">
-                  <button className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+                  <button
+                    className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+                    onClick={() => viewResortDetails(resort._id)}
+                  >
                     View
                   </button>
                 </td>
