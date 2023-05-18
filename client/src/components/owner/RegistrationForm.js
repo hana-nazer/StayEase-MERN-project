@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { resortData } from "../../api calls/owner";
 import { useNavigate } from "react-router-dom";
+import { uploadImg } from "../../api calls/owner";
 
 function RegistrationForm() {
   const navigate = useNavigate();
@@ -29,14 +30,14 @@ function RegistrationForm() {
     });
     if (Object.keys(errors).length === 0) {
       // Check if there are no errors
-      const formData = {
-        name,
-        place,
-        description,
-        images,
-      };
-
       try {
+        const imgUrl = await uploadImg(images[0]);
+        let formData = {
+          name,
+          place,
+          description,
+          imgUrl,
+        };
         const response = await resortData(formData);
         if (response.success) {
           console.log(response.message);
@@ -158,6 +159,7 @@ function RegistrationForm() {
                 </span>
               )}
             </div>
+
             <div className="mb-4">
               <label
                 className="block mb-2 font-bold text-gray-700"
@@ -182,7 +184,7 @@ function RegistrationForm() {
             </div>
 
             <button
-              className="w-full py-3 mt-5 text-center text-white rounded-lg bg-teal-900"
+              className="w-full py-3 mt-5 text-center text-white bg-teal-900 rounded-lg"
               type="submit"
             >
               Submit
