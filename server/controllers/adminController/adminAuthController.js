@@ -2,6 +2,7 @@ const Admin = require("../../models/adminModel");
 const { createToken } = require("../../middlewares/tokenAuth");
 const bcrypt = require("bcryptjs");
 const Resort = require("../../models/resortModel");
+const Owner = require("../../models/ownerModel");
 
 // login admin
 exports.adminLogin = async (req, res) => {
@@ -50,6 +51,7 @@ exports.adminLogin = async (req, res) => {
 exports.getPendingResorts = async (req, res) => {
   try {
     const pendingResorts = await Resort.find({ status: "pending" });
+    console.log(pendingResorts);
     res.send({ success: true, data: pendingResorts });
   } catch (error) {
     res.status(500).json({ message: "Failed to retrieve pending resorts" });
@@ -59,16 +61,17 @@ exports.getPendingResorts = async (req, res) => {
 // specific resort detail for approval
 exports.getPendingResortData = async (req, res) => {
   try {
-    const resort = await Resort.findById(req.params.resortId); // Update the parameter name
+    const resort = await Resort.findById(req.params.resortId);
     if (!resort) {
       return res.status(404).json({ message: "Resort not found" });
     }
-    res.send({ success: true, data: resort });
+    const owner = resort.owner; // Access the owner object directly
+    const ownerData = await Owner.findById(owner);
+    res.send({ success: true, data: resort, owner: ownerData });
   } catch (error) {
     res.status(500).json({ message: "Failed to retrieve resort details" });
   }
 };
-
 
 // review resort
 exports.reviewResort = async (req, res) => {

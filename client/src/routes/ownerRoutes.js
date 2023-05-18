@@ -4,6 +4,7 @@ import SignUpPage from "../pages/owner/SignUpPage";
 import LoginPage from "../pages/owner/LoginPage";
 import RegistrationPage from "../pages/owner/RegistrationPage";
 import HomePage from "../pages/owner/HomePage";
+import ResortList from "../pages/owner/ResortList";
 
 function OwnerRoutes() {
   return (
@@ -11,6 +12,7 @@ function OwnerRoutes() {
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/resort_home" element={<HomePage/>} />
+      <Route path="/resortlist" element={<ResortList/>}/>
       <Route path="/resort_register" element={<RegistrationPage />} />
     </Routes>
   );

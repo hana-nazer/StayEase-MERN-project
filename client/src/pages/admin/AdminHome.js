@@ -11,6 +11,6 @@ function AdminHome() {
       <Footer role="admin"/>
     </>
   );
-}
+} 
 
 export default AdminHome;

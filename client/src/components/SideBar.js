@@ -12,7 +12,7 @@ function Sidebar(props) {
 
   const ownerLinks = [
     { to: "/dashboard", label: "Dashboard" },
-    { to: "/resorts", label: "Resorts" },
+    { to: "/owner/resortlist", label: "Resorts" },
     { to: "/bookings", label: "Bookings" },
   ];
 
