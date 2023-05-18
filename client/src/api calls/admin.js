@@ -24,6 +24,7 @@ export const getPendingResorts = async () => {
 export const getPendingResortData = async (resortId) => {
   try {
     const response = await adminApi.get(`/view_resort/${resortId}`);
+    console.log(response.data)
     return response.data;
   } catch (error) {
     console.log(error);
