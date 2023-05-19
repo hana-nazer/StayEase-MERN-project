@@ -26,7 +26,6 @@ function RegistrationForm() {
       place: true,
       description: true,
       images: true,
-      email: true,
     });
     if (Object.keys(errors).length === 0) {
       // Check if there are no errors

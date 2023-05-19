@@ -14,6 +14,7 @@ export const RegisterOwner = async (payload) => {
   }
 };
 
+// login
 export const LoginOwner = async (payload) => {
   try {
     const response = await ownerApi.post("/login", payload);
@@ -33,6 +34,7 @@ export const GetCurrentOwner = async () => {
   }
 };
 
+// resort registration
 export const resortData = async (payload) => {
   try {
     const response = await ownerApi.post("/resort_register", payload);
@@ -42,6 +44,7 @@ export const resortData = async (payload) => {
   }
 };
 
+// upload image
 export const uploadImg = async (image) => {
   const formData = new FormData();
   formData.append("file", image);
