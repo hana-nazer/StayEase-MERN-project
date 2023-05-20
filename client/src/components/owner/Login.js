@@ -1,5 +1,6 @@
 import React,{useEffect} from "react";
-import styles from "../../stylesheets/owner/auth.module.css";
+import styles from "../../stylesheets/loginPage.module.css";
+
 import { LoginOwner } from "../../api calls/owner";
 import LoginForm from "../LoginForm";
 import LoginTitle from "../LoginTitle";
@@ -28,14 +29,23 @@ function Login() {
   })
   return (
     <>
-      <div className={styles.parent_div}>
+<div className={styles.parent_div}>
+        <div className={styles.sub_div}>
+          <div className={styles.form_div}>
+            <LoginTitle title="owner Login" />
+            <LoginForm onSubmit={handleSubmit} role="owner" />
+          </div>
+        </div>
+      </div>
+
+      {/* <div className={styles.parent_div}>
         <div className={styles.sub_div}>
           <div className={styles.form_div}>
             <LoginTitle title="Owner Login" />
             <LoginForm onSubmit={handleSubmit} role="owner" />
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

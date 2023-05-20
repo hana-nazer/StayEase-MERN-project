@@ -57,7 +57,7 @@ function Signup() {
       console.log(response); // Log the response data or handle the response as per your requirements
       if (response.success) {
         console.log(response.message);
-        navigate("/home");
+        navigate("/owner/resort_home  ");
       } else {
         console.log(response.message);
       }

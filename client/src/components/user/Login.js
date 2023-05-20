@@ -1,8 +1,6 @@
 import React from "react";
-// import styles from "../../stylesheets/login.module.css";
-// import userStyles from "../../stylesheets/user/userLogin.module.css";
+import styles from "../../stylesheets/loginPage.module.css";
 import LoginForm from "../LoginForm";
-import ImageSlide from "./ImageSlide";
 import LoginTitle from "../LoginTitle";
 import { LoginUser } from "../../api calls/users";
 
@@ -24,10 +22,14 @@ function Login() {
   };
   return (
     <>
-      <ImageSlide />
-
-      <LoginTitle title="Login to your Account" />
-      <LoginForm onSubmit={handleSubmit} />
+      <div className={styles.parent_div}>
+        <div className={styles.sub_div}>
+          <div className={styles.form_div}>
+            <LoginTitle title=" Login into your account" />
+            <LoginForm onSubmit={handleSubmit} />
+          </div>
+        </div>
+      </div>
     </>
   );
 }

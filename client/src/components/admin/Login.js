@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../stylesheets/admin/login.module.css";
+import styles from "../../stylesheets/loginPage.module.css";
 import LoginForm from "../LoginForm";
 import LoginTitle from "../LoginTitle";
 import { adminLogin } from "../../api calls/admin";
@@ -12,6 +12,7 @@ function Login() {
       if (response.success) {
         console.log(response.message);
         localStorage.setItem("admin_token", response.data);
+        // usenavigate
         window.location.href = "/admin/dashboard";
       } else {
         console.log(response.message);
