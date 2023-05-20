@@ -7,8 +7,13 @@ exports.registerResort = async (req, res) => {
       name: req.body.name,
       location: req.body.place,
       description: req.body.description,
+      address:req.body.address,
       owner: req.body.userId,
       status: "pending",
+      charge_per_night:req.body.charge,
+      no_of_guest:req.body.guest,
+      amenities:req.body.amenities,
+      // images:req.body.imgUrls
       // add image url
     });
     console.log("register resort");

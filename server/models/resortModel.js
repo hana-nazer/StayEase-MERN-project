@@ -17,26 +17,25 @@ const resortSchema = new mongoose.Schema({
     type: String,
     default: "pending",
   },
-  rooms: [
+  address: {
+    type: String,
+    required: true,
+  },
+  no_of_guest: {
+    type: Number,
+    required: true,
+  },
+  charge_per_night: {
+    type: String,
+    required: true,
+  },
+  amenities: [
     {
-      roomNumber: {
-        type: Number,
-        required: true,
-      },
-      category: {
-        type: String,
-        required: true,
-      },
-      maxGuests: {
-        type: Number,
-        required: true,
-      },
-      facilities: {
-        type: [String],
-        required: true,
-      },
+      type: String,
+      required: true,
     },
   ],
+images:[],
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Owner",

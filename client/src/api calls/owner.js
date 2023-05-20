@@ -35,27 +35,50 @@ export const GetCurrentOwner = async () => {
 };
 
 // resort registration
+// export const resortData = async (payload) => {
+//   try {
+//     console.log("resortdata");
+//     const response = await ownerApi.post("/resort_register", payload);
+//     return response.data;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+
 export const resortData = async (payload) => {
   try {
     const response = await ownerApi.post("/resort_register", payload);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
+    return { success: false, message: "An error occurred during the request" };
   }
 };
 
+
 // upload image
-export const uploadImg = async (image) => {
+export const uploadImg = async (images) => {
+  console.log(images);
   const formData = new FormData();
-  formData.append("file", image);
+  for (let i = 0; i < images.length; i++) {
+    formData.append("files", images[i]);
+  }
   formData.append("upload_preset", "project2");
-  const { data } = await axios.post(
-    `https://api.cloudinary.com/v1_1/dvbclu2mg/image/upload`,
-    formData
-  );
+  try {
+console.log("enetr");
+    const response = await axios.post(
+      `https://api.cloudinary.com/v1_1/dvbclu2mg/image/upload`,
+      formData
+    );
+console.log(response,"---------");
+    const imageUrls = response.data?.secure_url;
+    console.log(imageUrls, "urls");
 
-  let imageUrl = data?.secure_url;
-
-  console.log(imageUrl, "url");
-  return imageUrl;
+    return imageUrls;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };

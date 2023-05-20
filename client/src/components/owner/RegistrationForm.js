@@ -1,54 +1,67 @@
-import React, { useState } from "react";
+import React from "react";
 import { resortData } from "../../api calls/owner";
 import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
 import { uploadImg } from "../../api calls/owner";
 
 function RegistrationForm() {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [place, setPlace] = useState("");
-  const [description, setDescription] = useState("");
-  const [address, setAddress] = useState("");
-  const [charge, setCharge] = useState("");
-  const [guest, setGuest] = useState("");
-  const [images, setImages] = useState([]);
-  const [touched, setTouched] = useState({
-    name: false,
-    place: false,
-    description: false,
-    address: false,
-    charge: false,
-    guest: false,
-    images: false,
-  });
-  const [errors, setErrors] = useState({});
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const errors = validateForm();
-    setErrors(errors);
-    setTouched({
-      name: true,
-      place: true,
-      description: true,
-      address: true,
-      charge: true,
-      guest: true,
-      images: true,
-    });
-    if (Object.keys(errors).length === 0) {
-      // Check if there are no errors
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      place: "",
+      description: "",
+      address: "",
+      amenities: [],
+      charge: "",
+      guest: "",
+      // images: [],
+    },
+    validate: (values) => {
+      const errors = {};
+      if (!values.name.trim()) {
+        errors.name = "Name of the resort is required";
+      }
+      if (!values.place.trim()) {
+        errors.place = "Place is required";
+      }
+      if (!values.description.trim()) {
+        errors.description = "Description is required";
+      }
+      if (!values.address.trim()) {
+        errors.address = "Address is required";
+      }
+      if (values.amenities.length === 0) {
+        errors.amenities = "At least one amenity is required";
+      }
+      if (!values.charge.trim()) {
+        errors.charge = "Charge per night is required";
+      }
+      if (values.guest.length === 0) {
+        errors.guest = "Number of guests is required";
+      }
+      // if (values.images.length === 0) {
+      //   errors.images = "At least one image is required";
+      // }
+      return errors;
+    },
+    onSubmit: async (values) => {
       try {
-        const imgUrl = await uploadImg(images[0]);
+        // Perform your API call here
+        // const imgUrls = await uploadImg(values.images);
+
         let formData = {
-          name,
-          place,
-          address,
-          description,
-          charge,
-          guest,
-          imgUrl,
+          name: values.name,
+          place: values.place,
+          address: values.address,
+          description: values.description,
+          charge: values.charge,
+          guest: values.guest,
+          amenities: values.amenities,
+          // imgUrls
         };
+        // console.log();
         const response = await resortData(formData);
         if (response.success) {
           console.log(response.message);
@@ -56,54 +69,29 @@ function RegistrationForm() {
         } else {
           console.log(response.message);
         }
-      } catch (error) {}
-    }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  });
+  // const handleImageChange = (event) => {
+  //   console.log("in");
+  //   const imageFiles = Array.from(event.target.files);
+  // formik.setFieldValue("images", imageFiles);
+  // console.log("out");
+  // };
+
+  const handleAmenitiesChange = (event) => {
+    const enteredValue = event.target.value;
+    const enteredAmenities = enteredValue
+      .split(",")
+      .map((amenity) => amenity.trim());
+    formik.setFieldValue("amenities", enteredAmenities);
+    console.log(enteredAmenities, "form");
   };
 
-  const validateForm = () => {
-    const errors = {};
-    if (!name.trim()) {
-      errors.name = "Name of the resort is required";
-    }
-    if (!place.trim()) {
-      errors.place = "Place is required";
-    }
-    if (!description.trim()) {
-      errors.description = "Description is required";
-    }
-
-    if (!address.trim()) {
-      errors.address = "address is required";
-    }
-
-    if (!charge.trim()) {
-      errors.charge = "Give charge per night";
-    }
-
-    if (!guest.trim()) {
-      errors.guest = "provide no:of guests";
-    }
-
-    if (images.length === 0) {
-      errors.images = "At least one image is required";
-    }
-
-    return errors;
-  };
-
-  const handleImageChange = (event) => {
-    const imageFiles = Array.from(event.target.files);
-    setImages(imageFiles);
-  };
-
-  const handleBlur = (event) => {
-    const fieldName = event.target.name;
-    setTouched((prevTouched) => ({ ...prevTouched, [fieldName]: true }));
-  };
-
-  const handleFocus = (event) => {
-    const fieldName = event.target.name;
-    setTouched((prevTouched) => ({ ...prevTouched, [fieldName]: true }));
+  const handleFieldFocus = (field) => {
+    formik.setFieldError(field, ""); // Clear the error message
   };
 
   return (
@@ -114,7 +102,7 @@ function RegistrationForm() {
             Resort Registration
           </h1>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={formik.handleSubmit}>
             <div className="mb-4">
               <label
                 className="block mb-2 font-bold text-gray-700"
@@ -127,16 +115,17 @@ function RegistrationForm() {
                 type="text"
                 id="name"
                 name="name"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-                onBlur={handleBlur}
-                onFocus={handleFocus}
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                onFocus={() => handleFieldFocus("name")}
               />
-              {touched.name && errors.name && (
-                <span className="text-sm text-red-500">{errors.name}</span>
+              {formik.touched.name && formik.errors.name && (
+                <span className="text-sm text-red-500">
+                  {formik.errors.name}
+                </span>
               )}
             </div>
-
             <div className="mb-4">
               <label
                 className="block mb-2 font-bold text-gray-700"
@@ -148,39 +137,20 @@ function RegistrationForm() {
                 className="w-full px-3 py-2 border border-gray-400 rounded-lg"
                 id="place"
                 name="place"
-                value={place}
-                onChange={(event) => setPlace(event.target.value)}
-                onBlur={handleBlur}
-                onFocus={handleFocus}
+                value={formik.values.place}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                onFocus={() => handleFieldFocus("place")}
               >
-                <option value="">Select a place</option>
+                <option value="">Select Place</option>
                 <option value="wayanad">Wayanad</option>
                 <option value="munnar">Munnar</option>
                 <option value="cochin">Cochin</option>
               </select>
-              {touched.place && errors.place && (
-                <span className="text-sm text-red-500">{errors.place}</span>
-              )}
-            </div>
-
-            <div className="mb-4">
-              <label
-                className="block mb-2 font-bold text-gray-700"
-                htmlFor="description"
-              >
-                address:
-              </label>
-              <textarea
-                className="w-full px-3 py-2 border border-gray-400 rounded-lg"
-                id="address"
-                name="address"
-                value={address}
-                onChange={(event) => setAddress(event.target.value)}
-                onBlur={handleBlur}
-                onFocus={handleFocus}
-              ></textarea>
-              {touched.address && errors.address && (
-                <span className="text-sm text-red-500">{errors.address}</span>
+              {formik.touched.place && formik.errors.place && (
+                <span className="text-sm text-red-500">
+                  {formik.errors.place}
+                </span>
               )}
             </div>
 
@@ -195,64 +165,117 @@ function RegistrationForm() {
                 className="w-full px-3 py-2 border border-gray-400 rounded-lg"
                 id="description"
                 name="description"
-                value={description}
-                onChange={(event) => setDescription(event.target.value)}
-                onBlur={handleBlur}
-                onFocus={handleFocus}
-              ></textarea>
-              {touched.description && errors.description && (
+                value={formik.values.description}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                onFocus={() => handleFieldFocus("description")}
+              />
+              {formik.touched.description && formik.errors.description && (
                 <span className="text-sm text-red-500">
-                  {errors.description}
+                  {formik.errors.description}
                 </span>
               )}
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mb-4">
-              <div>
+            <div className="mb-4">
+              <label
+                className="block mb-2 font-bold text-gray-700"
+                htmlFor="address"
+              >
+                Address:
+              </label>
+              <textarea
+                className="w-full px-3 py-2 border border-gray-400 rounded-lg"
+                id="address"
+                name="address"
+                value={formik.values.address}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                onFocus={() => handleFieldFocus("address")}
+              />
+              {formik.touched.address && formik.errors.address && (
+                <span className="text-sm text-red-500">
+                  {formik.errors.address}
+                </span>
+              )}
+            </div>
+
+            <div className="mb-4">
+              <label
+                className="block mb-2 font-bold text-gray-700"
+                htmlFor="amenities"
+              >
+                Amenities:
+              </label>
+              <input
+                className="w-full px-3 py-2 border border-gray-400 rounded-lg"
+                type="text"
+                id="amenities"
+                name="amenities"
+                value={formik.values.amenities}
+                onChange={handleAmenitiesChange}
+                onBlur={formik.handleBlur}
+                onFocus={() => handleFieldFocus("amenities")}
+              />
+
+              {formik.touched.amenities && formik.errors.amenities && (
+                <span className="text-sm text-red-500">
+                  {formik.errors.amenities}
+                </span>
+              )}
+            </div>
+
+            <div className="flex">
+              <div className="flex-1 mb-4">
                 <label
                   className="block mb-2 font-bold text-gray-700"
                   htmlFor="charge"
                 >
-                  Charge per night:
+                  Charge per Night:
                 </label>
                 <input
                   className="w-full px-3 py-2 border border-gray-400 rounded-lg"
                   type="text"
                   id="charge"
                   name="charge"
-                  value={charge}
-                  onChange={(event) => setCharge(event.target.value)}
-                  onBlur={handleBlur}
-                  onFocus={handleFocus}
+                  value={formik.values.charge}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  onFocus={() => handleFieldFocus("charge")}
                 />
-                {touched.charge && errors.charge && (
-                  <span className="text-sm text-red-500">{errors.charge}</span>
+                {formik.touched.charge && formik.errors.charge && (
+                  <span className="text-sm text-red-500">
+                    {formik.errors.charge}
+                  </span>
                 )}
               </div>
-              <div>
+
+              <div className="flex-1 mb-4 ml-4">
                 <label
                   className="block mb-2 font-bold text-gray-700"
                   htmlFor="guest"
                 >
-                  No: of Guests:
+                  Number of Guests:
                 </label>
                 <input
                   className="w-full px-3 py-2 border border-gray-400 rounded-lg"
                   type="number"
                   id="guest"
                   name="guest"
-                  value={guest}
-                  onChange={(event) => setGuest(event.target.value)}
-                  onBlur={handleBlur}
-                  onFocus={handleFocus}
+                  value={formik.values.guest}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  onFocus={() => handleFieldFocus("guest")}
                 />
-                {touched.guest && errors.guest && (
-                  <span className="text-sm text-red-500">{errors.guest}</span>
+                {formik.touched.guest && formik.errors.guest && (
+                  <span className="text-sm text-red-500">
+                    {formik.errors.guest}
+                  </span>
                 )}
               </div>
             </div>
 
-            <div className="mb-4">
+            {/* <div className="mb-4">
               <label
                 className="block mb-2 font-bold text-gray-700"
                 htmlFor="images"
@@ -264,23 +287,25 @@ function RegistrationForm() {
                 type="file"
                 id="images"
                 name="images"
-                accept="image/*"
                 multiple
                 onChange={handleImageChange}
-                onBlur={handleBlur}
-                onFocus={handleFocus}
               />
-              {touched.images && errors.images && (
-                <span className="text-sm text-red-500">{errors.images}</span>
+              {formik.touched.images && formik.errors.images && (
+                <span className="text-sm text-red-500">
+                  {formik.errors.images}
+                </span>
               )}
-            </div>
+            </div> */}
 
-            <button
-              className="w-full py-3 mt-5 text-center text-white bg-teal-900 rounded-lg"
-              type="submit"
-            >
-              Submit
-            </button>
+            <div className="flex items-center justify-center mt-6">
+              <button
+                className="px-4 py-2 font-bold text-white bg-teal-900 rounded hover:bg-teal-700"
+                type="submit"
+                disabled={formik.isSubmitting}
+              >
+                Register
+              </button>
+            </div>
           </form>
         </div>
       </div>
