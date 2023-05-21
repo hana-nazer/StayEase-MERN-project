@@ -35,19 +35,9 @@ export const GetCurrentOwner = async () => {
 };
 
 // resort registration
-// export const resortData = async (payload) => {
-//   try {
-//     console.log("resortdata");
-//     const response = await ownerApi.post("/resort_register", payload);
-//     return response.data;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-
 export const resortData = async (payload) => {
   try {
+    console.log(resortData);
     const response = await ownerApi.post("/resort_register", payload);
     console.log(response.data);
     return response.data;
@@ -59,23 +49,51 @@ export const resortData = async (payload) => {
 
 
 // upload image
+// export const uploadImg = async (images) => {
+//   console.log(images);
+//   const formData = new FormData();
+//   console.log(formData,"formdata");
+//   for (let i = 0; i < images.length; i++) {
+//     formData.append("files", images[i]);
+//   }
+//   formData.append("upload_preset", "project2");
+//   console.log(formData,"after");
+//   try {
+// console.log("enetr");
+//     const response = await axios.post(
+//       `https://api.cloudinary.com/v1_1/dvbclu2mg/image/upload`,
+//       formData
+//     );
+// console.log(response,"---------");
+//     const imageUrls = response.data?.secure_url;
+//     console.log(imageUrls, "urls");
+
+//     return imageUrls;
+//   } catch (error) {
+//     console.error(error);
+//     throw error;
+//   }
+// };
+
+
 export const uploadImg = async (images) => {
-  console.log(images);
+  console.log(images)
+  const cloud_name = "dvbclu2mg";
+  const upload_preset = "project2";
+
   const formData = new FormData();
   for (let i = 0; i < images.length; i++) {
-    formData.append("files", images[i]);
+    formData.append("file", images[i]);
   }
-  formData.append("upload_preset", "project2");
+  formData.append("upload_preset", upload_preset);
+// console.log("apped");
   try {
-console.log("enetr");
     const response = await axios.post(
-      `https://api.cloudinary.com/v1_1/dvbclu2mg/image/upload`,
+      `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
       formData
     );
-console.log(response,"---------");
+console.log(response,"response");
     const imageUrls = response.data?.secure_url;
-    console.log(imageUrls, "urls");
-
     return imageUrls;
   } catch (error) {
     console.error(error);

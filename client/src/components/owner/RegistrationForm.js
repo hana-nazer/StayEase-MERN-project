@@ -16,7 +16,7 @@ function RegistrationForm() {
       amenities: [],
       charge: "",
       guest: "",
-      // images: [],
+      images: [],
     },
     validate: (values) => {
       const errors = {};
@@ -41,15 +41,15 @@ function RegistrationForm() {
       if (values.guest.length === 0) {
         errors.guest = "Number of guests is required";
       }
-      // if (values.images.length === 0) {
-      //   errors.images = "At least one image is required";
-      // }
+      if (values.images.length === 0) {
+        errors.images = "At least one image is required";
+      }
       return errors;
     },
     onSubmit: async (values) => {
       try {
         // Perform your API call here
-        // const imgUrls = await uploadImg(values.images);
+        const imgUrls = await uploadImg(values.images);
 
         let formData = {
           name: values.name,
@@ -59,7 +59,7 @@ function RegistrationForm() {
           charge: values.charge,
           guest: values.guest,
           amenities: values.amenities,
-          // imgUrls
+          imgUrls,
         };
         // console.log();
         const response = await resortData(formData);
@@ -74,12 +74,12 @@ function RegistrationForm() {
       }
     },
   });
-  // const handleImageChange = (event) => {
-  //   console.log("in");
-  //   const imageFiles = Array.from(event.target.files);
-  // formik.setFieldValue("images", imageFiles);
-  // console.log("out");
-  // };
+  const handleImageChange = (event) => {
+    const imageFiles = Array.from(event.target.files);
+    console.log(imageFiles);
+    formik.setFieldValue("images", imageFiles);
+    console.log(formik.values.images, "imaaaaaaage");
+  };
 
   const handleAmenitiesChange = (event) => {
     const enteredValue = event.target.value;
@@ -275,7 +275,7 @@ function RegistrationForm() {
               </div>
             </div>
 
-            {/* <div className="mb-4">
+            <div className="mb-4">
               <label
                 className="block mb-2 font-bold text-gray-700"
                 htmlFor="images"
@@ -287,7 +287,7 @@ function RegistrationForm() {
                 type="file"
                 id="images"
                 name="images"
-                multiple
+                multiple // Add this attribute to allow multiple image selection
                 onChange={handleImageChange}
               />
               {formik.touched.images && formik.errors.images && (
@@ -295,7 +295,7 @@ function RegistrationForm() {
                   {formik.errors.images}
                 </span>
               )}
-            </div> */}
+            </div>
 
             <div className="flex items-center justify-center mt-6">
               <button

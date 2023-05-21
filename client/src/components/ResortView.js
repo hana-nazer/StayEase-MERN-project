@@ -68,98 +68,67 @@ function ResortDetailedView() {
   }
 
   return (
-    <div className="w-full border border-gray-700 rounded-md ">
-      <div className="p-4">
-        <div className="grid w-full grid-cols-2 gap-4 ">
-          <div>
-            <div className="flex flex-col items-center">
-              <h1 className="text-2xl font-bold text-center">
-                {resortData.name}
-              </h1>
-              <p className="text-lg font-bold text-center">
-                Location: {resortData.location}
-              </p>
-            </div>
-          </div>
-          <div>
-            <div className="flex items-center justify-center">
-              <select
-                value={actionSelected}
-                onChange={handleActionSelect}
-                className="px-4 py-2 text-black bg-gray-200 border border-gray-300 rounded-md"
-              >
-                <option value="">Action</option>
-                <option value="approve">Approve</option>
-                <option value="reject">Reject</option>
-              </select>
-            </div>
-          </div>
+    <div className="mx-20 mb-16 rounded-md">
+      {/* heading and action */}
+      <div className="grid w-full grid-cols-2 gap-2 mt-20 mb-3">
+        <div>
+          <h1 className="text-2xl font-bold">{resortData.name}</h1>
+          <p className="text-lg font-bold ">Location: {resortData.location}</p>
         </div>
-
-        <div className="flex flex-col items-center ">
-          <div
-            className="grid grid-cols-3 border rounded-md"
-            style={{ width: "900px", height: "400px" }}
+        <div className="flex items-center justify-end mx-3 ">
+          <select
+            value={actionSelected}
+            onChange={handleActionSelect}
+            className="px-4 py-2 text-black bg-gray-200 border border-gray-300 rounded-md"
           >
-            <div className="col-span-1">
-              <div className="grid grid-rows-2">
-                <div
-                  className="bg-blue-500 p-"
-                  style={{ width: "300px", height: "200px" }}
-                >
-                  <h2>Subrow 1 - Column 1</h2>
-                </div>
-                <div
-                  className="bg-red-500 p-"
-                  style={{ width: "300px", height: "200px" }}
-                >
-                  <h2>Subrow 2 - Column 1</h2>
-                </div>
-              </div>
-            </div>
-            <div className="col-span-1">
-              <div className="grid grid-rows-2">
-                <div
-                  className="bg-green-500 "
-                  style={{ width: "300px", height: "200px" }}
-                >
-                  <h2>Subrow 1 - Column 2</h2>
-                </div>
-                <div
-                  className="bg-yellow-500 "
-                  style={{ width: "300px", height: "200px" }}
-                >
-                  <h2>Subrow 2 - Column 2</h2>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col col-span-1">
-              <div
-                className="flex-grow bg-purple-500"
-                style={{ width: "300px", height: "200px" }}
-              >
-                <h2>Column 3</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col">
-          <div className="p-4 ">
-            <h2>Description</h2>
-            <p>{resortData.description}</p>
-          </div>
-        </div>
-
-        <div className="flex flex-col">
-          <div className="p-4 ">
-            <h2>Owner Details</h2>
-            <p>Name: {ownerData.name}</p>
-            <p>Email: {ownerData.email}</p>
-            <p>Phone: {ownerData.phone}</p>
-          </div>
+            <option value="">Action</option>
+            <option value="approve">Approve</option>
+            <option value="reject">Reject</option>
+          </select>
         </div>
       </div>
+
+      {/*--------------------------------------------------------------------------  */}
+
+      <div className="grid grid-cols-4 gap-1 h-80">
+        <div className="col-span-1">
+          <div className="mb-1 bg-red-500 h-1/2">Row 1</div>
+          <div className="bg-green-500 h-1/2">Row 2</div>
+        </div>
+
+        <div className="col-span-1">
+          <div className="mb-1 bg-yellow-500 h-1/2">Row 1</div>
+          <div className="bg-blue-500 h-1/2">Row 2</div>
+        </div>
+        <div className="h-full col-span-2 bg-green-500">Column 3</div>
+      </div>
+
+      {/* ------------------------------------------------------------------------ */}
+      <div className="grid grid-cols-3 gap-3 mt-9">
+        <div className="col-span-2 ">
+          <div className="grid grid-rows-2">
+            <div className="mb-9">
+              <h2 className="mb-2 text-2xl font-bold">About this Place</h2>
+              <p>{resortData.description}</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold">About the Owner</h2>
+              <p>Name: {ownerData.name}</p>
+              <p>Email: {ownerData.email}</p>
+              <p>Phone: {ownerData.phone}</p>
+            </div>
+          </div>
+        </div>
+        <div className="px-10 pt-3 border rounded-lg shadow-xl h-3/4">
+          <h2 className="mb-2 text-2xl font-bold">Details</h2>
+          <p className="mb-1 font-semibold">charge/night:7000</p>
+          <p className="mb-1 font-semibold">No:of guests:5</p>
+          <p className="mb-1 font-semibold">amneties:wifi,pool</p>
+          <p className="font-semibold">address:kalathummarath </p>
+        </div>
+      </div>
+
+      {/* -------------------------------------------------------------------------- */}
     </div>
   );
 }

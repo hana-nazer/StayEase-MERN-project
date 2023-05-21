@@ -12,10 +12,8 @@ function Request() {
         <div className="w-1/4">
           <Sidebar role="admin" />
         </div>
-        <div className="w-3/4">
-          {/* <div className="flex h-full "> */}
-            <Approval />
-          {/* </div> */}
+        <div className="w-3/4 mb-16 mt-14">
+          <Approval />
         </div>
       </div>
       <Footer />
