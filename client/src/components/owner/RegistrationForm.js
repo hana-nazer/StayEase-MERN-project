@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { resortData } from "../../api calls/owner";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
@@ -6,6 +6,7 @@ import { uploadImg } from "../../api calls/owner";
 
 function RegistrationForm() {
   const navigate = useNavigate();
+  
 
   const formik = useFormik({
     initialValues: {
@@ -41,15 +42,15 @@ function RegistrationForm() {
       if (values.guest.length === 0) {
         errors.guest = "Number of guests is required";
       }
-      if (values.images.length === 0) {
-        errors.images = "At least one image is required";
-      }
+      // if (values.images.length === 0) {
+      //   errors.images = "At least one image is required";
+      // }
       return errors;
     },
     onSubmit: async (values) => {
       try {
         // Perform your API call here
-        const imgUrls = await uploadImg(values.images);
+        // const imgUrls = await uploadImg(values.images);
 
         let formData = {
           name: values.name,
@@ -59,13 +60,13 @@ function RegistrationForm() {
           charge: values.charge,
           guest: values.guest,
           amenities: values.amenities,
-          imgUrls,
+          // imgUrls,
         };
-        // console.log();
+        console.log("form");
         const response = await resortData(formData);
         if (response.success) {
           console.log(response.message);
-          navigate("/owner/resort_home");
+          navigate("/owner/");
         } else {
           console.log(response.message);
         }
@@ -290,11 +291,11 @@ function RegistrationForm() {
                 multiple // Add this attribute to allow multiple image selection
                 onChange={handleImageChange}
               />
-              {formik.touched.images && formik.errors.images && (
+              {/* {formik.touched.images && formik.errors.images && (
                 <span className="text-sm text-red-500">
                   {formik.errors.images}
                 </span>
-              )}
+              )} */}
             </div>
 
             <div className="flex items-center justify-center mt-6">

@@ -38,7 +38,7 @@ export const GetCurrentOwner = async () => {
 export const resortData = async (payload) => {
   try {
     console.log(resortData);
-    const response = await ownerApi.post("/resort_register", payload);
+    const response = await ownerApi.post("/register", payload);
     console.log(response.data);
     return response.data;
   } catch (error) {

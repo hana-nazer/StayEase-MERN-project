@@ -11,9 +11,9 @@ function OwnerRoutes() {
     <Routes>
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/resort_home" element={<HomePage/>} />
+      <Route path="" element={<HomePage/>} />
       <Route path="/resortlist" element={<ResortList/>}/>
-      <Route path="/resort_register" element={<RegistrationPage />} />
+      <Route path="/register" element={<RegistrationPage />} />
     </Routes>
   );
 }
