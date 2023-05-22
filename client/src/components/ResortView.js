@@ -7,6 +7,7 @@ import {
   setOwnerData,
   setResortData,
 } from "../redux/resortSlice";
+import NameAndLocation from "./resort/NameAndLocation";
 
 function ResortDetailedView() {
   const actionSelected = useSelector(
@@ -69,11 +70,11 @@ function ResortDetailedView() {
   return (
     <div className="mx-20 mb-16 rounded-md">
       <div className="grid w-full grid-cols-2 gap-2 mt-20 mb-3">
-        <div>
-          <h1 className="text-2xl font-bold">{resortData.name}</h1>
-          <p className="text-lg font-bold ">Location: {resortData.location}</p>
-        </div>
+        {/* ----------name and location----------- */}
+        <NameAndLocation />
+        {/* ----------------- */}
         <div className="flex items-center justify-end mx-3 ">
+          {/* -----------action------------- */}
           <select
             value={actionSelected}
             onChange={handleActionSelect}
@@ -83,9 +84,11 @@ function ResortDetailedView() {
             <option value="approve">Approve</option>
             <option value="reject">Reject</option>
           </select>
+          {/* ------------action------------- */}
         </div>
       </div>
       <div className="grid grid-cols-4 gap-1 h-80">
+        {/* ---------------image---------- */}
         <div className="col-span-1">
           <div className="mb-1 bg-red-500 h-1/2">Row 1</div>
           <div className="bg-green-500 h-1/2">Row 2</div>
@@ -95,23 +98,29 @@ function ResortDetailedView() {
           <div className="bg-blue-500 h-1/2">Row 2</div>
         </div>
         <div className="h-full col-span-2 bg-green-500">Column 3</div>
+        {/* -------------------------- */}
       </div>
       <div className="grid grid-cols-3 gap-3 mt-9">
         <div className="col-span-2 ">
           <div className="grid grid-rows-2">
             <div className="mb-9">
+              {/* ---------about place--------- */}
               <h2 className="mb-2 text-2xl font-bold">About this Place</h2>
               <p>{resortData.description}</p>
+              {/* ----------------------- */}
             </div>
             <div>
+              {/* -------------owner-------- */}
               <h2 className="text-2xl font-bold">About the Owner</h2>
               <p>Name: {ownerData.name}</p>
               <p>Email: {ownerData.email}</p>
               <p>Phone: {ownerData.phone}</p>
+              {/* --------------- */}
             </div>
           </div>
         </div>
         <div className="px-10 pt-3 border rounded-lg shadow-xl">
+          {/* -----------details-------------- */}
           <h2 className="mb-2 text-2xl font-bold">Details</h2>
           <p className="mb-1 font-semibold">
             charge/night:{resortData.charge_per_night}
@@ -125,6 +134,7 @@ function ResortDetailedView() {
               resortData.amenities.map((amenity) => amenity).join(", ")}
           </p>
           <p className="font-semibold ">address:{resortData.address} </p>
+          {/* ------------------------------ */}
         </div>
       </div>
     </div>
