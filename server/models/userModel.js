@@ -5,16 +5,16 @@ const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true, // The name field is required
+      required: true, 
     },
     email: {
       type: String,
-      required: true, // The email field is required
-      unique: true, // The email field must be unique
+      required: true, 
+      unique: true, 
     },
     password: {
       type: String,
-      required: true, // The password field is required
+      required: true,
     },
 
     userBlock:{
@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true, // Adds createdAt and updatedAt fields to the schema
+    timestamps: true, 
   }
 );
 

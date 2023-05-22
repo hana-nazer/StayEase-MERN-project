@@ -1,18 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "../../stylesheets/loginPage.module.css";
 import LoginForm from "../LoginForm";
 import LoginTitle from "../LoginTitle";
 import { LoginUser } from "../../api calls/users";
 
 function Login() {
+  const navigate = useNavigate();
   const handleSubmit = async (formData) => {
-    console.log(formData);
     try {
       const response = await LoginUser(formData);
       if (response.success) {
-        console.log(response.message);
         localStorage.setItem("user_token", response.data);
-        window.location.href = "/";
+        navigate("/");
       } else {
         console.log(response.message);
       }

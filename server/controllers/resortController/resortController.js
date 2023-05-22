@@ -1,4 +1,3 @@
-const Owner = require("../../models/ownerModel");
 const Resort = require("../../models/resortModel");
 
 exports.registerResort = async (req, res) => {
@@ -13,10 +12,10 @@ exports.registerResort = async (req, res) => {
       charge_per_night:req.body.charge,
       no_of_guest:req.body.guest,
       amenities:req.body.amenities,
+      owner: req.userId,
       // images:req.body.imgUrls
       // add image url
     });
-    console.log("register resort");
 
     // Save the new resort to the database
     const savedResort = await newResort.save();

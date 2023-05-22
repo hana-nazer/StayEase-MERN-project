@@ -1,10 +1,9 @@
   import React, { useEffect, useState } from "react";
-  import { useParams, useNavigate } from "react-router-dom";
+  import {  useNavigate } from "react-router-dom";
   import { getPendingResorts } from "../../api calls/admin";
 
   function Approval() {
     const [resorts, setResorts] = useState([]);
-    const { resortId } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {

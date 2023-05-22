@@ -54,9 +54,7 @@ function SignUp() {
     if (!nameError && !emailError && !passwordError) {
       try {
         const response = await RegisterUser(formData);
-        console.log(response); // Log the response data or handle the response as per your requirements
         if (response.success) {
-          console.log(response.message);
           navigate("/home");
         } else {
           console.log(response.message);
@@ -79,7 +77,6 @@ function SignUp() {
               className={styles.imagediv}
               style={{ backgroundImage: `url('images/sign-cover.png')` }}
             >
-             
               <h1 className={styles.heading1}>Welcome back</h1>
               <div>
                 <p className={styles.subheading}>

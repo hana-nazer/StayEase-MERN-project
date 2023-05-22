@@ -1,19 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "../../stylesheets/loginPage.module.css";
 import LoginForm from "../LoginForm";
 import LoginTitle from "../LoginTitle";
 import { adminLogin } from "../../api calls/admin";
 
 function Login() {
+  const navigate = useNavigate()
   const handleSubmit = async (formData) => {
-    console.log(formData);
     try {
       const response = await adminLogin(formData);
       if (response.success) {
-        console.log(response.message);
         localStorage.setItem("admin_token", response.data);
-        // usenavigate
-        window.location.href = "/admin/dashboard";
+        navigate("/admin/dashboard") 
       } else {
         console.log(response.message);
       }

@@ -37,7 +37,6 @@ function ResortDetailedView() {
 
   const handleActionSelect = (event) => {
     dispatch(setActionSelected(event.target.value));
-    // setSelectedAction(event.target.value);
     performAction(event.target.value);
   };
 
@@ -69,7 +68,6 @@ function ResortDetailedView() {
 
   return (
     <div className="mx-20 mb-16 rounded-md">
-      {/* heading and action */}
       <div className="grid w-full grid-cols-2 gap-2 mt-20 mb-3">
         <div>
           <h1 className="text-2xl font-bold">{resortData.name}</h1>
@@ -87,23 +85,17 @@ function ResortDetailedView() {
           </select>
         </div>
       </div>
-
-      {/*--------------------------------------------------------------------------  */}
-
       <div className="grid grid-cols-4 gap-1 h-80">
         <div className="col-span-1">
           <div className="mb-1 bg-red-500 h-1/2">Row 1</div>
           <div className="bg-green-500 h-1/2">Row 2</div>
         </div>
-
         <div className="col-span-1">
           <div className="mb-1 bg-yellow-500 h-1/2">Row 1</div>
           <div className="bg-blue-500 h-1/2">Row 2</div>
         </div>
         <div className="h-full col-span-2 bg-green-500">Column 3</div>
       </div>
-
-      {/* ------------------------------------------------------------------------ */}
       <div className="grid grid-cols-3 gap-3 mt-9">
         <div className="col-span-2 ">
           <div className="grid grid-rows-2">
@@ -119,16 +111,22 @@ function ResortDetailedView() {
             </div>
           </div>
         </div>
-        <div className="px-10 pt-3 border rounded-lg shadow-xl h-3/4">
+        <div className="px-10 pt-3 border rounded-lg shadow-xl">
           <h2 className="mb-2 text-2xl font-bold">Details</h2>
-          <p className="mb-1 font-semibold">charge/night:7000</p>
-          <p className="mb-1 font-semibold">No:of guests:5</p>
-          <p className="mb-1 font-semibold">amneties:wifi,pool</p>
-          <p className="font-semibold">address:kalathummarath </p>
+          <p className="mb-1 font-semibold">
+            charge/night:{resortData.charge_per_night}
+          </p>
+          <p className="mb-1 font-semibold">
+            No:of guests:{resortData.no_of_guest}
+          </p>
+          <p className="mb-1 font-semibold">
+            Amenities:{" "}
+            {resortData.amenities &&
+              resortData.amenities.map((amenity) => amenity).join(", ")}
+          </p>
+          <p className="font-semibold ">address:{resortData.address} </p>
         </div>
       </div>
-
-      {/* -------------------------------------------------------------------------- */}
     </div>
   );
 }

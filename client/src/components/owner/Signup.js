@@ -54,14 +54,14 @@ function Signup() {
 
     try {
       const response = await RegisterOwner(formData);
-      console.log(response); // Log the response data or handle the response as per your requirements
       if (response.success) {
-        console.log(response.message);
-        navigate("/owner/resort_home  ");
+        navigate("/owner/");
       } else {
         console.log(response.message);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -70,7 +70,6 @@ function Signup() {
         <div className={styles.sub_div}>
           <div className={styles.form_div}>
             <h2 className={styles.form_heading}>Owner Signup</h2>
-
             <form onSubmit={formSubmit}>
               <div className="mt-5">
                 <input
@@ -83,10 +82,9 @@ function Signup() {
                   onFocus={handleFocus}
                 />
                 {errors.name && (
-                  <div  className="text-red-500">{errors.name}</div>
+                  <div className="text-red-500">{errors.name}</div>
                 )}
               </div>
-
               <div className="mt-5">
                 <input
                   type="email"
@@ -101,7 +99,6 @@ function Signup() {
                   <div className="text-red-500">{errors.email}</div>
                 )}
               </div>
-
               <div className="mt-5">
                 <input
                   type="text"
@@ -113,10 +110,9 @@ function Signup() {
                   onFocus={handleFocus}
                 />
                 {errors.phone && (
-                  <div  className="text-red-500">{errors.phone}</div>
+                  <div className="text-red-500">{errors.phone}</div>
                 )}
               </div>
-
               <div className="mt-5">
                 <input
                   type="password"
@@ -128,11 +124,9 @@ function Signup() {
                   onFocus={() => setErrors({ ...errors, password: "" })}
                 />
                 {errors.password && (
-                  <div  className="text-red-500">{errors.password}</div>
+                  <div className="text-red-500">{errors.password}</div>
                 )}
               </div>
-              
-              
               <div className="mt-5">
                 <input
                   type="password"

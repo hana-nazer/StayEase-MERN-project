@@ -39,6 +39,7 @@ exports.adminLogin = async (req, res) => {
       message: "admin loggedin successfully",
       data: token,
     });
+    console.log(token,'admin');
   } catch (error) {
     res.send({
       succes: false,
@@ -51,7 +52,6 @@ exports.adminLogin = async (req, res) => {
 exports.getPendingResorts = async (req, res) => {
   try {
     const pendingResorts = await Resort.find({ status: "pending" });
-    console.log(pendingResorts);
     res.send({ success: true, data: pendingResorts });
   } catch (error) {
     res.status(500).json({ message: "Failed to retrieve pending resorts" });

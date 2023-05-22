@@ -81,7 +81,9 @@ function LoginForm(props) {
           )}
         </div>
         <div className="mt-5">
-          <button className={`${styles.formbtn} ${getButtonColor()}`}>Login</button>
+          <button className={`${styles.formbtn} ${getButtonColor()}`}>
+            Login
+          </button>
         </div>
       </form>
     </div>

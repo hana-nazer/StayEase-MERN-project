@@ -7,10 +7,10 @@ function AdminHome() {
   return (
     <>
       <Navbar title="StayEase Admin" name="admin" role="admin" />
-      <SideBar role="admin"/>
-      <Footer role="admin"/>
+      <SideBar role="admin" />
+      <Footer role="admin" />
     </>
   );
-} 
+}
 
 export default AdminHome;

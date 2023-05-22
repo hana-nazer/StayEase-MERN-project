@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { resortData } from "../../api calls/owner";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { uploadImg } from "../../api calls/owner";
+// import { uploadImg } from "../../api calls/owner";
 
 function RegistrationForm() {
   const navigate = useNavigate();
-  
 
   const formik = useFormik({
     initialValues: {
@@ -49,7 +48,6 @@ function RegistrationForm() {
     },
     onSubmit: async (values) => {
       try {
-        // Perform your API call here
         // const imgUrls = await uploadImg(values.images);
 
         let formData = {
@@ -65,7 +63,6 @@ function RegistrationForm() {
         console.log("form");
         const response = await resortData(formData);
         if (response.success) {
-          console.log(response.message);
           navigate("/owner/");
         } else {
           console.log(response.message);
@@ -88,7 +85,6 @@ function RegistrationForm() {
       .split(",")
       .map((amenity) => amenity.trim());
     formik.setFieldValue("amenities", enteredAmenities);
-    console.log(enteredAmenities, "form");
   };
 
   const handleFieldFocus = (field) => {

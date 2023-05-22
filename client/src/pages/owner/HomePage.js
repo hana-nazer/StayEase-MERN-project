@@ -6,9 +6,9 @@ import Footer from "../../components/Footer";
 function HomePage() {
   return (
     <div>
-    <Navbar title="StayEase Owner" role="owner" name="owner"/>
-    <Sidebar/>
-    <Footer/>
+      <Navbar title="StayEase Owner" role="owner" name="owner" />
+      <Sidebar />
+      <Footer />
     </div>
   );
 }
