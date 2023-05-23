@@ -1,6 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 function Details() {
+  const resortData = useSelector((state)=>state.verifyResort.resortData)
   return (
     <>
       <h2 className="mb-2 text-2xl font-bold">Details</h2>
