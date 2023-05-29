@@ -1,0 +1,16 @@
+.toast-message {
+  background: white;
+  color: darkblue;
+  font-size: 20px;
+  width: 34vw;
+  padding: 30px 20px;
+  border-radius: 8px;
+  text-align: center;
+
+}
+
+.Toastify__toast-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

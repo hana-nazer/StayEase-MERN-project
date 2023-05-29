@@ -54,14 +54,17 @@ function Navbar(props) {
       <Logo />
 
       <div className="flex items-center">
-        <span className="mr-2 text-white">{props.name}</span>
         {!page && (
-          <FontAwesomeIcon
-            onClick={() => logoutHandler(role)}
-            icon={faSignOutAlt}
-            className="w-5 h-5 text-white fill-current"
-            style={{ cursor: "pointer" }}
-          />
+          <>
+            <span className="mr-2 text-white">{props.role}</span>
+
+            <FontAwesomeIcon
+              onClick={() => logoutHandler(role)}
+              icon={faSignOutAlt}
+              className="w-5 h-5 text-white fill-current"
+              style={{ cursor: "pointer" }}
+            />
+          </>
         )}
       </div>
     </nav>

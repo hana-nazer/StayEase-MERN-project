@@ -1,9 +1,13 @@
 import React from "react";
-import { useSelector ,useDispatch} from "react-redux";
-import { setActionSelected } from "../../redux/resortSlice";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setActionSelected, setResortData } from "../../redux/resortSlice";
+import { resortStatus } from "../../api calls/admin";
 
 function Action() {
-  const dispatch = useDispatch
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const resortData = useSelector((state) => state.verifyResort.resortData);
   const actionSelected = useSelector(
     (state) => state.verifyResort.actionSelected
   );
@@ -13,21 +17,29 @@ function Action() {
   };
 
   const performAction = async (action) => {
-    if (action === "approve") {
+    if (action === "Approve") {
       try {
-        // Perform the API call to approve the resort
-        // Update the approval status in the backend
-        // Update the approval status in the frontend
-        console.log("Resort approved");
+        console.log("hello");
+
+        const response = await resortStatus(resortData._id, action);
+
+        if (response.success) {
+          console.log("successs", response);
+          dispatch(setResortData(response));
+          navigate("/admin/resorts");
+          console.log("Resort approved", response);
+        }
       } catch (error) {
         console.log(error);
       }
-    } else if (action === "reject") {
+    } else if (action === "Reject") {
       try {
-        // Perform the API call to reject the resort
-        // Update the approval status in the backend
-        // Update the approval status in the frontend
-        console.log("Resort rejected");
+        const response = await resortStatus(resortData._id, action);
+        if (response.success) {
+          dispatch(setResortData(response));
+          navigate("/admin/resorts");
+        }
+        console.log("Resort rejected", response);
       } catch (error) {
         console.log(error);
       }
@@ -42,8 +54,8 @@ function Action() {
         className="px-4 py-2 text-black bg-gray-200 border border-gray-300 rounded-md"
       >
         <option value="">Action</option>
-        <option value="approve">Approve</option>
-        <option value="reject">Reject</option>
+        <option value="Approve">Approve</option>
+        <option value="Reject">Reject</option>
       </select>
     </>
   );

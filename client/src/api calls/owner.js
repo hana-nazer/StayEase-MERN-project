@@ -43,11 +43,12 @@ export const resortData = async (payload) => {
 
 // image upload
 export const uploadImg = async (images) => {
-  console.log(images);
-  const cloud_name = "dvbclu2mg";
-  const upload_preset = "project2";
+  console.log(images,"owner");
+  const cloud_name = "dz8verrgd";
+  const upload_preset = "resortimg";
   const formData = new FormData();
   for (let i = 0; i < images.length; i++) {
+    console.log(images[i]);
     formData.append("file", images[i]);
   }
   formData.append("upload_preset", upload_preset);
@@ -56,6 +57,8 @@ export const uploadImg = async (images) => {
       `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
       formData
     );
+  console.log(response);
+    console.log(formData,"formData");
     const imageUrls = response.data?.secure_url;
     return imageUrls;
   } catch (error) {

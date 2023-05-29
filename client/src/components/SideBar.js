@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 function Sidebar(props) {
   const adminLinks = [
     { to: "/admin/dashboard", label: "Dashboard" },
-    { to: "/resorts", label: "Resorts" },
-    { to: "/bookings", label: "Bookings" },
+    { to: "/admin/resorts", label: "Resorts" },
+    { to: "/admin/bookings", label: "Bookings" },
     { to: "/admin/requests", label: "Approvals" },
-    { to: "/users", label: "Users" },
+    { to: "/admin/location", label: "location" },
   ];
 
   const ownerLinks = [
-    { to: "/dashboard", label: "Dashboard" },
+    { to: "/owner/dashboard", label: "Dashboard" },
     { to: "/owner/resortlist", label: "Resorts" },
-    { to: "/bookings", label: "Bookings" },
+    { to: "/owner/bookings", label: "Bookings" },
   ];
 
   const links = props.role === "admin" ? adminLinks : ownerLinks;

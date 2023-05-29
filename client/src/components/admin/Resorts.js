@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import AddResort from "./AddResort";
-import { getResorts } from "../../api calls/owner";
-
+import { resortList } from "../../api calls/admin";
 function Resorts() {
   const [resorts, setResorts] = useState([]);
   useEffect(() => {
@@ -9,7 +7,8 @@ function Resorts() {
   }, []);
   const fetchResorts = async () => {
     try {
-      const response = await getResorts();
+      const response = await resortList();
+      console.log("response", response);
       if (response.success) {
         setResorts(response.data);
       } else {
@@ -22,7 +21,6 @@ function Resorts() {
   return (
     <>
       <div className="flex justify-end w-3/4 mb-4 mx-28">
-        <AddResort />
       </div>
       {resorts.map((resort) => {
         return (
@@ -41,15 +39,7 @@ function Resorts() {
               <div className="p-4 mt-5">
                 <p className="font-bold">{resort.name}</p>
                 <p className="font-bold">{resort.location}</p>
-                <p
-                  className={`font-semibold ${
-                    resort.status === "pending"
-                      ? "text-red-500"
-                      : "text-green-500"
-                  }`}
-                >
-                  status: {resort.status}
-                </p>
+                
               </div>
             </div>
             <div className="flex justify-center p-4 mt-5">

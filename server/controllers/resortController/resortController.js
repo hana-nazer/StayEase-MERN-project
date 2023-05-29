@@ -13,8 +13,7 @@ exports.registerResort = async (req, res) => {
       no_of_guest:req.body.guest,
       amenities:req.body.amenities,
       owner: req.userId,
-      // images:req.body.imgUrls
-      // add image url
+      images:req.body.imgUrls
     });
 
     // Save the new resort to the database

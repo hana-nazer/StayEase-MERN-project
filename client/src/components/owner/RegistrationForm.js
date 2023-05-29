@@ -2,7 +2,7 @@ import React from "react";
 import { resortData } from "../../api calls/owner";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-// import { uploadImg } from "../../api calls/owner";
+import { uploadImg } from "../../api calls/owner";
 
 function RegistrationForm() {
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ function RegistrationForm() {
     },
     onSubmit: async (values) => {
       try {
-        // const imgUrls = await uploadImg(values.images);
+        const imgUrls = await uploadImg(values.images);
 
         let formData = {
           name: values.name,
@@ -58,9 +58,8 @@ function RegistrationForm() {
           charge: values.charge,
           guest: values.guest,
           amenities: values.amenities,
-          // imgUrls,
+          imgUrls,
         };
-        console.log("form");
         const response = await resortData(formData);
         if (response.success) {
           navigate("/owner/");
@@ -74,10 +73,9 @@ function RegistrationForm() {
   });
   const handleImageChange = (event) => {
     const imageFiles = Array.from(event.target.files);
-    console.log(imageFiles);
     formik.setFieldValue("images", imageFiles);
-    console.log(formik.values.images, "imaaaaaaage");
   };
+ 
 
   const handleAmenitiesChange = (event) => {
     const enteredValue = event.target.value;
@@ -88,13 +86,13 @@ function RegistrationForm() {
   };
 
   const handleFieldFocus = (field) => {
-    formik.setFieldError(field, ""); // Clear the error message
+    formik.setFieldError(field, "");
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen py-12 overflow-hidden">
-      <div className="flex flex-col w-full max-w-xl mx-auto mt-2 mb-2 overflow-hidden bg-white border shadow-lg lg:flex-row rounded-xl">
-        <div className="w-full px-12 py-10">
+      <div className="flex flex-col w-full max-w-xl mx-auto mb-2 overflow-hidden bg-white border shadow-lg mt-7 lg:flex-row rounded-xl">
+        <div className="w-full px-12 py-10 ">
           <h1 className="mb-2 text-2xl font-bold text-center">
             Resort Registration
           </h1>
@@ -284,14 +282,14 @@ function RegistrationForm() {
                 type="file"
                 id="images"
                 name="images"
-                multiple // Add this attribute to allow multiple image selection
+                multiple
                 onChange={handleImageChange}
               />
-              {/* {formik.touched.images && formik.errors.images && (
+              {formik.touched.images && formik.errors.images && (
                 <span className="text-sm text-red-500">
                   {formik.errors.images}
                 </span>
-              )} */}
+              )}
             </div>
 
             <div className="flex items-center justify-center mt-6">
