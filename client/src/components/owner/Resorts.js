@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import AddResort from "./AddResort";
 import { getResorts } from "../../api calls/owner";
+import { useNavigate } from "react-router-dom";
 
 function Resorts() {
+  const navigate = useNavigate();
   const [resorts, setResorts] = useState([]);
   useEffect(() => {
     fetchResorts();
@@ -19,6 +21,9 @@ function Resorts() {
       console.log(error);
     }
   };
+  const onView = (resortId) => {
+    navigate(`/owner/resortInfo/${resortId}`);
+  };
   return (
     <>
       <div className="flex justify-end w-3/4 mb-4 mx-28">
@@ -33,7 +38,7 @@ function Resorts() {
             <div className="grid grid-cols-2 col-span-2">
               <div className="flex justify-center p-4">
                 <img
-                  src={resort.images}
+                  src={resort.images[0]}
                   style={{ width: "250px", height: "150px" }}
                   alt="not found"
                 />
@@ -53,7 +58,10 @@ function Resorts() {
               </div>
             </div>
             <div className="flex justify-center p-4 mt-5">
-              <button className="w-2/4 h-12 font-semibold bg-gray-200 rounded-md shadow">
+              <button
+                className="w-2/4 h-12 font-semibold bg-gray-200 rounded-md shadow"
+                onClick={() => onView(resort._id)}
+              >
                 View
               </button>
             </div>

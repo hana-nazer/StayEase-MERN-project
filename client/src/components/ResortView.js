@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getPendingResortData } from "../api calls/admin";
+import { getResortData } from "../api calls/admin";
 import { setOwnerData, setResortData } from "../redux/resortSlice";
 import NameAndLocation from "./resort/NameAndLocation";
 import Details from "./resort/Details";
@@ -9,8 +9,10 @@ import About from "./resort/About";
 import OwnerData from "./resort/OwnerData";
 import Images from "./resort/Images";
 import Action from "./resort/Action";
+import Navbar from "./Navbar";
 
-function ResortDetailedView() {
+function ResortDetailedView(props) {
+  const action = props.action;
   const resortData = useSelector((state) => state.verifyResort.resortData);
   const dispatch = useDispatch();
   const { resortId } = useParams();
@@ -19,7 +21,7 @@ function ResortDetailedView() {
   }, []);
   const fetchResortDetails = async () => {
     try {
-      const response = await getPendingResortData(resortId);
+      const response = await getResortData(resortId);
       if (response.success) {
         dispatch(setResortData(response.data));
         dispatch(setOwnerData(response.owner));
@@ -35,14 +37,17 @@ function ResortDetailedView() {
   }
   return (
     <div className="mx-20 mb-16 rounded-md">
+      <Navbar />
       <div className="grid w-full grid-cols-2 gap-2 mt-20 mb-3">
         <NameAndLocation />
-        <div className="flex items-center justify-end mx-3 ">
-          <Action />
-        </div>
+        {!action && (
+          <div className="flex items-center justify-end mx-3 ">
+            <Action />
+          </div>
+        )}
       </div>
       <Images />
-      <div className="grid grid-cols-3 gap-3 mt-9">
+      <div className="grid grid-cols-3 gap-3 mt-28">
         <div className="col-span-2 ">
           <div className="grid grid-rows-2">
             <div className="mb-9">

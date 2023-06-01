@@ -1,19 +1,42 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 function Images() {
+  const resortData = useSelector((state) => state.verifyResort.resortData);
+
   return (
     <>
-     <div className="grid grid-cols-4 gap-1 h-80">
-        <div className="col-span-1">
-          <div className="mb-1 bg-red-500 h-1/2">Row 1</div>
-          <div className="bg-green-500 h-1/2">Row 2</div>
-        </div>
-        <div className="col-span-1">
-          <div className="mb-1 bg-yellow-500 h-1/2">Row 1</div>
-          <div className="bg-blue-500 h-1/2">Row 2</div>
-        </div>
-        <div className="h-full col-span-2 bg-green-500">Column 3</div>
-      </div>
+      {resortData.images && resortData.images.length > 0 ? (
+        <>
+          <div className="grid grid-cols-4 gap-1 h-80">
+            <div className="col-span-1 ">
+              <div className="mb-1">
+                <img src={resortData.images[0]} alt="Resort Image"  />
+              </div>
+
+              <div className="mb-1 ">
+                <img src={resortData.images[1]} alt="Resort Image" />
+              </div>
+            </div>
+            <div className="col-span-1">
+              <div className="mb-1 ">
+                <img src={resortData.images[2]} alt="Resort Image" />
+              </div>
+
+              <div className="mb-1 ">
+                <img src={resortData.images[3]} alt="Resort Image" />
+              </div>
+            </div>
+            <div className="h-full col-span-2 ">
+              <div className="w-full mb-1 ">
+                <img src={resortData.images[4]} alt="Resort Image" />
+              </div>
+            </div>
+          </div>
+        </>
+      ) : (
+        <span>No images available</span>
+      )}
     </>
   );
 }

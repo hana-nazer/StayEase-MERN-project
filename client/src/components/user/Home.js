@@ -1,9 +1,10 @@
 import React from "react";
+import ResortCard from "../resort/ResortCard";
 
 function Home() {
   return (
-    <div>
-      <h1>Home</h1>
+    <div className="container mx-auto mt-20">
+      <ResortCard/>
     </div>
   );
 }

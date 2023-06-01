@@ -20,3 +20,13 @@ export const LoginUser = async (payload) => {
     return error.response;
   }
 };
+
+// getResorts
+export const getResorts = async () => {
+  try {
+    const response = await userApi.get("/resorts");
+    return response.data;
+  } catch (error) {
+    return error.response;
+  }
+};

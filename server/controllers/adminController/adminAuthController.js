@@ -58,13 +58,13 @@ exports.getPendingResorts = async (req, res) => {
 };
 
 // specific resort detail for approval
-exports.getPendingResortData = async (req, res) => {
+exports.getResortData = async (req, res) => {
   try {
     const resort = await Resort.findById(req.params.resortId);
     if (!resort) {
       return res.status(404).json({ message: "Resort not found" });
     }
-    const owner = resort.owner; 
+    const owner = resort.owner;
     const ownerData = await Owner.findById(owner);
     res.send({ success: true, data: resort, owner: ownerData });
   } catch (error) {
@@ -88,12 +88,10 @@ exports.reviewResort = async (req, res) => {
     // Update the resort's status based on the provided value
     if (action === "Approve") {
       resort.status = "approved";
-      console.log("approved");
     }
 
     if (action === "Reject") {
       resort.status = "rejected";
-      console.log("resort");
     }
 
     const updatedResort = await resort.save();
@@ -115,8 +113,25 @@ exports.reviewResort = async (req, res) => {
 exports.resortList = async (req, res) => {
   try {
     const resorts = await Resort.find({ status: "approved" });
-    res.send({ success: true, data: resorts});
+    res.send({ success: true, data: resorts });
   } catch (error) {
     res.status(500).json({ message: "Failed to retrieve resorts" });
   }
 };
+
+
+//resort info of approved resort
+exports.resortData = async(req,res)=>{
+  try {
+    const resort = await Resort.findById(req.params.resortId);
+    if (!resort) {
+      return res.status(404).json({ message: "Resort not found" });
+    }
+    const owner = resort.owner;
+    const ownerData = await Owner.findById(owner);
+    res.send({ success: true, data: resort, owner: ownerData });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to retrieve resort details" });
+    
+  }
+}

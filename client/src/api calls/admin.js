@@ -21,7 +21,7 @@ export const getPendingResorts = async () => {
 };
 
 // pending resort data
-export const getPendingResortData = async (resortId) => {
+export const getResortData = async (resortId) => {
   try {
     const response = await adminApi.get(`/view_resort/${resortId}`);
     return response.data;
@@ -54,3 +54,25 @@ export const resortList = async () => {
     return error.response;
   }
 };
+
+//get resort data - approved
+export const resortInfo =async(resortId)=>{
+  try {
+    const response = await adminApi.get(`/resortData/${resortId}`)
+    return response.data
+  } catch (error) {
+    return error.response
+  }
+}
+
+
+//add location
+export const addLocation = async(payload)=>{
+  try {
+    const response = await adminApi.post('/add_location',payload)
+    console.log(payload);
+    return response.data
+  } catch (error) {
+    return error.response
+  }
+}

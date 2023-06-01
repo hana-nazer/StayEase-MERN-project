@@ -42,29 +42,56 @@ export const resortData = async (payload) => {
 };
 
 // image upload
+// export const uploadImg = async (images) => {
+//   console.log(images,"owner");
+//   const cloud_name = "dz8verrgd";
+//   const upload_preset = "resortimg";
+//   const formData = new FormData();
+//   for (let i = 0; i < images.length; i++) {
+//     console.log(images[i]);
+//     formData.append("file", images[i]);
+//   }
+//   formData.append("upload_preset", upload_preset);
+//   try {
+//     const response = await axios.post(
+//       `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
+//       formData
+//     );
+//   console.log(response);
+//     console.log(formData,"formData");
+//     const imageUrls = response.data?.secure_url;
+//     return imageUrls;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
+
+
+
+// image upload
 export const uploadImg = async (images) => {
-  console.log(images,"owner");
   const cloud_name = "dz8verrgd";
   const upload_preset = "resortimg";
-  const formData = new FormData();
-  for (let i = 0; i < images.length; i++) {
-    console.log(images[i]);
-    formData.append("file", images[i]);
-  }
-  formData.append("upload_preset", upload_preset);
-  try {
-    const response = await axios.post(
+  const uploaders = images.map((image) => {
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append("upload_preset", upload_preset);
+    return axios.post(
       `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
       formData
     );
-  console.log(response);
-    console.log(formData,"formData");
-    const imageUrls = response.data?.secure_url;
+  });
+
+  try {
+    const responses = await axios.all(uploaders);
+    const imageUrls = responses.map((response) => response.data.secure_url);
     return imageUrls;
   } catch (error) {
     throw error;
   }
 };
+
+
 
 // get resort list
 export const getResorts = async () => {

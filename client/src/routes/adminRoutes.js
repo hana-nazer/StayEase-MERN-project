@@ -6,6 +6,7 @@ import Request from "../pages/admin/Request";
 import ResortDetailedView from "../pages/admin/ResortDetailedView";
 import ResortList from "../pages/admin/ResortList";
 import Location from "../pages/admin/Location";
+import ResortInfo from "../pages/admin/ResortInfo";
 
 function AdminRoutes() {
   return (
@@ -17,6 +18,7 @@ function AdminRoutes() {
         <Route path="/view_resort/:resortId" element={<ResortDetailedView />} />
         <Route path="/resorts" element={<ResortList/>}/>
         <Route path="/location" element={<Location/>}/>
+        <Route path="/resortInfo/:resortId" element={<ResortInfo/>}/>
       </Routes>
     </>
   );
