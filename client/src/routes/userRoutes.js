@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import SignUpPage from "../pages/user/SignUpPage";
 import LoginPage from "../pages/user/LoginPage";
 import HomePage from "../pages/user/HomePage";
+import ResortDetail from "../pages/user/ResortDetail";
+import Booking from "../pages/user/Booking";
 React.lazy(() => {});
 function UserRoutes() {
   return (
@@ -11,6 +13,8 @@ function UserRoutes() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="" element={<HomePage />} />
+        <Route path="/resortInfo/:resortId" element={<ResortDetail/>}/>
+        <Route path="/booking" element={<Booking/>}/>
       </Routes>
     </>
   );

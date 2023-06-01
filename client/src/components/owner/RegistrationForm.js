@@ -41,9 +41,9 @@ function RegistrationForm() {
       if (values.guest.length === 0) {
         errors.guest = "Number of guests is required";
       }
-      // if (values.images.length === 0) {
-      //   errors.images = "At least one image is required";
-      // }
+      if (values.images.length === 0) {
+        errors.images = "At least one image is required";
+      }
       return errors;
     },
     onSubmit: async (values) => {
@@ -62,7 +62,7 @@ function RegistrationForm() {
         };
         const response = await resortData(formData);
         if (response.success) {
-          navigate("/owner/");
+          navigate("/owner/resortlist");
         } else {
           console.log(response.message);
         }

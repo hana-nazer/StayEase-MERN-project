@@ -7,7 +7,7 @@ function ResortInfo() {
   return (
     <>
      <Navbar role="owner" name="owner" />
-    <ResortView action='false' />
+    <ResortView action='false'  />
     <Footer />
     </>
    

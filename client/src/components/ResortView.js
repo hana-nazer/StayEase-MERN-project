@@ -10,9 +10,11 @@ import OwnerData from "./resort/OwnerData";
 import Images from "./resort/Images";
 import Action from "./resort/Action";
 import Navbar from "./Navbar";
+import BookNow from './resort/BookNow'
 
 function ResortDetailedView(props) {
   const action = props.action;
+ const role = props.role
   const resortData = useSelector((state) => state.verifyResort.resortData);
   const dispatch = useDispatch();
   const { resortId } = useParams();
@@ -47,7 +49,10 @@ function ResortDetailedView(props) {
         )}
       </div>
       <Images />
-      <div className="grid grid-cols-3 gap-3 mt-28">
+      {role==="user"&& <BookNow/>}
+     
+
+      <div className="grid grid-cols-3 gap-3">
         <div className="col-span-2 ">
           <div className="grid grid-rows-2">
             <div className="mb-9">
