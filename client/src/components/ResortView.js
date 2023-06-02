@@ -10,11 +10,11 @@ import OwnerData from "./resort/OwnerData";
 import Images from "./resort/Images";
 import Action from "./resort/Action";
 import Navbar from "./Navbar";
-import BookNow from './resort/BookNow'
+import BookNow from "./resort/BookNow";
 
 function ResortDetailedView(props) {
   const action = props.action;
- const role = props.role
+  const role = props.role;
   const resortData = useSelector((state) => state.verifyResort.resortData);
   const dispatch = useDispatch();
   const { resortId } = useParams();
@@ -23,7 +23,7 @@ function ResortDetailedView(props) {
   }, []);
   const fetchResortDetails = async () => {
     try {
-      const response = await getResortData(resortId);
+        const response = await getResortData(resortId);
       if (response.success) {
         dispatch(setResortData(response.data));
         dispatch(setOwnerData(response.owner));
@@ -49,8 +49,7 @@ function ResortDetailedView(props) {
         )}
       </div>
       <Images />
-      {role==="user"&& <BookNow/>}
-     
+      {role === "user" && <BookNow />}
 
       <div className="grid grid-cols-3 gap-3">
         <div className="col-span-2 ">
