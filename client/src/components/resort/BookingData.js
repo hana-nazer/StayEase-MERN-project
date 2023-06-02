@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+import moment from "moment";
+
 import { DatePicker, Space } from "antd";
 const { RangePicker } = DatePicker;
 
 function BookingData() {
-  const dates = (dates) => {
-    console.log("hello");
+  const [dates, setDates] = useState([moment(), moment()]);
+
+  const handleChange = (selectedDates) => {
+    setDates(selectedDates);
     console.log(dates[0]);
-    console.log(dates[1]);
   };
+
   return (
     <div className="container  grid grid-cols-2 mx-auto mt-16  h-[80vh] w-3/4  gap-6">
       <div className="flex items-center justify-center col-span-1 mt-4 bg-white border rounded-lg shadow-lg">
@@ -18,7 +22,10 @@ function BookingData() {
 
           <div className="mb-6">
             <Space direction="vertical" size={12}>
-              <RangePicker onChange={dates} format="DD-MM-YYYY" />
+              <RangePicker
+                onChange={handleChange}
+                format="DD-MM-YYYY"
+              />
             </Space>
           </div>
 

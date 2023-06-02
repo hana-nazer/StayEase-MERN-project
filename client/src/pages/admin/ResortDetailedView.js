@@ -7,7 +7,7 @@ function ResortDetailedView() {
   return (
     <>
       <Navbar role="admin" name="admin" />
-      <ResortView />
+      <ResortView role="admin" />
       <Footer />
     </>
   );

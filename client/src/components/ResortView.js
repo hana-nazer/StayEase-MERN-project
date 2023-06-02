@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getResortData } from "../api calls/admin";
+import { getResortData } from "../api calls/resort";
 import { setOwnerData, setResortData } from "../redux/resortSlice";
 import NameAndLocation from "./resort/NameAndLocation";
 import Details from "./resort/Details";
@@ -15,6 +15,7 @@ import BookNow from "./resort/BookNow";
 function ResortDetailedView(props) {
   const action = props.action;
   const role = props.role;
+  console.log(role);
   const resortData = useSelector((state) => state.verifyResort.resortData);
   const dispatch = useDispatch();
   const { resortId } = useParams();
@@ -23,7 +24,7 @@ function ResortDetailedView(props) {
   }, []);
   const fetchResortDetails = async () => {
     try {
-        const response = await getResortData(resortId);
+        const response = await getResortData(resortId,role);
       if (response.success) {
         dispatch(setResortData(response.data));
         dispatch(setOwnerData(response.owner));

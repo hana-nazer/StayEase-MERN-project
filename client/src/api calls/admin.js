@@ -21,14 +21,14 @@ export const getPendingResorts = async () => {
 };
 
 // pending resort data
-export const getResortData = async (resortId) => {
-  try {
-    const response = await adminApi.get(`/view_resort/${resortId}`);
-    return response.data;
-  } catch (error) {
-    return { success: false, message: "Failed to retrieve resort details" };
-  }
-};
+// export const getResortData = async (resortId) => {
+//   try {
+//     const response = await adminApi.get(`/view_resort/${resortId}`);
+//     return response.data;
+//   } catch (error) {
+//     return { success: false, message: "Failed to retrieve resort details" };
+//   }
+// };
 
 // resort status
 export const resortStatus = async (resortId, action) => {
