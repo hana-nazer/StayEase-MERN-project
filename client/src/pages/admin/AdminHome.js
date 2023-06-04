@@ -6,9 +6,9 @@ import Footer from "../../components/Footer";
 function AdminHome() {
   return (
     <>
-      <Navbar title="StayEase Admin" name="admin" role="admin" />
+      <Navbar/>
       <SideBar role="admin" />
-      <Footer role="admin" />
+      <Footer />
     </>
   );
 }

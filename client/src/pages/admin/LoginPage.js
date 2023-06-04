@@ -6,7 +6,7 @@ import Footer from "../../components/Footer";
 function LoginPage() {
   return (
     <>
-      <Navbar role="admin" page="login" />
+      <Navbar/>
       <Login />
       <Footer />
     </>

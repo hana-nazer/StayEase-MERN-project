@@ -8,6 +8,7 @@ function Sidebar(props) {
     { to: "/admin/bookings", label: "Bookings" },
     { to: "/admin/requests", label: "Approvals" },
     { to: "/admin/location", label: "location" },
+    { to: "/admin/users", label: "users" },
   ];
 
   const ownerLinks = [

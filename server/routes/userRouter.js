@@ -6,6 +6,7 @@ const userResortController = require('../controllers/userController/userResortCo
 router.post('/signup',userAuthController.postSignUp);
 router.post('/login',userAuthController.postLogin)
 router.get('/resorts',userResortController.getResorts)
+router.get('/resortInfo/:resortId',userResortController.resortData)
 
 
 module.exports = router 

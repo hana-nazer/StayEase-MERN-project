@@ -7,7 +7,7 @@ function ResortDetail() {
   return (
     <>
       <div className="container">
-        <Navbar  name="user" role="user"/>
+        <Navbar/>
         <ResortView action="false" role="user" />
         <Footer />
       </div>

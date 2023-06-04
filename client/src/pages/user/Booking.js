@@ -5,8 +5,8 @@ import BookingData from "../../components/resort/BookingData";
 
 function Booking() {
   return (
-    <div>
-      <Navbar role="user" name="user" />
+    <div> 
+      <Navbar />
       <BookingData/>
       <Footer />
     </div>

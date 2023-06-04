@@ -8,7 +8,7 @@ function Location() {
   return (
     <>
       <div className="flex flex-col h-screen">
-        <Navbar role="admin" />
+        <Navbar/>
         <div className="flex flex-grow">
           <div className="w-1/4">
             <Sidebar role="admin" />

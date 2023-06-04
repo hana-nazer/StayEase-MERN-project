@@ -1,6 +1,5 @@
 const Owner = require("../../models/ownerModel");
 const { createToken } = require("../../middlewares/tokenAuth");
-
 const bcrypt = require("bcryptjs");
 
 // Register owner
@@ -37,6 +36,7 @@ exports.ownerLogin = async (req, res) => {
   try {
     // check user exist or not
     const owner = await Owner.findOne({ email: req.body.email });
+
     if (!owner) {
       return res.send({
         success: false,
@@ -72,4 +72,16 @@ exports.ownerLogin = async (req, res) => {
   }
 };
 
-
+// get-current-owner
+exports.getCurrentOwner = async (req, res) => {
+  try {
+    const owner = await Owner.findById(req.userId).select("-password");
+    res.send({
+      success: true,
+      message: "owner data",
+      data: owner,
+    });
+  } catch (error) {
+    console.log("error");
+  }
+};

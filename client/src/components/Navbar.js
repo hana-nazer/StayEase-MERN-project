@@ -18,7 +18,7 @@ function Navbar(props) {
   } else if (role === "user") {
     navbarColorClass = "bg-cyan-800";
   } else {
-    navbarColorClass = "";
+    navbarColorClass = "bg-black";
   }
 
   const navbarStyle = {
@@ -57,7 +57,6 @@ function Navbar(props) {
         {!page && (
           <>
             <span className="mr-2 text-white">{props.role}</span>
-
             <FontAwesomeIcon
               onClick={() => logoutHandler(role)}
               icon={faSignOutAlt}

@@ -6,7 +6,7 @@ import Footer from "../../components/Footer";
 function SignUpPage() {
   return (
     <>
-      <Navbar role="user" />
+      <Navbar />
       <SignUp />
       <Footer />
     </>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../../stylesheets/loginPage.module.css";
 import LoginForm from "../LoginForm";
@@ -21,11 +21,6 @@ function Login() {
     }
   };
 
-  useEffect(() => {
-    if (localStorage.getItem("admin_token")) {
-      navigate("/admin/dashboard");
-    }
-  });
   return (
     <>
       <div className={styles.parent_div}>

@@ -6,7 +6,7 @@ import RegistrationForm from "../../components/owner/RegistrationForm";
 function RegistrationPage() {
   return (
     <div>
-      <Navbar title="StayEase Owner" name="owner" role="owner" />
+      <Navbar/>
       <RegistrationForm />
       <Footer />
     </div>

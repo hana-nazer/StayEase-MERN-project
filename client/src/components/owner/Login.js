@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import styles from "../../stylesheets/loginPage.module.css";
 
 import { LoginOwner } from "../../api calls/owner";
@@ -21,12 +20,6 @@ function Login() {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    if (localStorage.getItem("owner_token")) {
-      navigate("/owner/");
-    }
-  });
 
   return (
     <>

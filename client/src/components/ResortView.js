@@ -24,7 +24,7 @@ function ResortDetailedView(props) {
   }, []);
   const fetchResortDetails = async () => {
     try {
-        const response = await getResortData(resortId,role);
+      const response = await getResortData(resortId, role);
       if (response.success) {
         dispatch(setResortData(response.data));
         dispatch(setOwnerData(response.owner));

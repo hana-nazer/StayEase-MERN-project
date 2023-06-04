@@ -8,7 +8,7 @@ function ResortList() {
   return (
    <>
     <div className="flex flex-col h-screen">
-        <Navbar role="admin" />
+        <Navbar/>
         <div className="grid h-full grid-cols-6">
           <div className="col-span-1">
             <Sidebar role="admin" />

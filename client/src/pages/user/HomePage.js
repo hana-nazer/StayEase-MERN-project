@@ -6,7 +6,7 @@ import Home from "../../components/user/Home";
 function HomePage() {
   return (
     <>
-      <Navbar role="user" />
+      <Navbar />
       <Home />
       <Footer />
     </>

@@ -7,6 +7,7 @@ import ResortDetailedView from "../pages/admin/ResortDetailedView";
 import ResortList from "../pages/admin/ResortList";
 import Location from "../pages/admin/Location";
 import ResortInfo from "../pages/admin/ResortInfo";
+import UsersList from "../pages/admin/UsersList";
 
 function AdminRoutes() {
   return (
@@ -16,9 +17,10 @@ function AdminRoutes() {
         <Route path="/dashboard" element={<AdminHome />} />
         <Route path="/requests" element={<Request />} />
         <Route path="/view_resort/:resortId" element={<ResortDetailedView />} />
-        <Route path="/resorts" element={<ResortList/>}/>
-        <Route path="/location" element={<Location/>}/>
-        <Route path="/resortInfo/:resortId" element={<ResortInfo/>}/>
+        <Route path="/resorts" element={<ResortList />} />
+        <Route path="/location" element={<Location />} />
+        <Route path="/resortInfo/:resortId" element={<ResortInfo />} />
+        <Route path="/users" element={<UsersList />} />
       </Routes>
     </>
   );

@@ -6,7 +6,7 @@ import Footer from "../../components/Footer";
 function ResortInfo() {
   return (
     <>
-      <Navbar role="admin" name="admin" />
+      <Navbar/>
       <ResortView action='false' role="admin" />
       <Footer />
     </>
