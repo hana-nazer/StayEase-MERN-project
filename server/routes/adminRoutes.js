@@ -26,4 +26,7 @@ router.get(
 );
 router.get("/users", authMiddleware, adminAuthController.usersList);
 
+router.get('/get-current-admin',authMiddleware,adminAuthController.getCurrentAdmin)
+
+
 module.exports = router;

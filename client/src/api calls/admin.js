@@ -76,3 +76,13 @@ export const addLocation = async(payload)=>{
     return error.response
   }
 }
+
+// get admin
+export const GetCurrentAdmin = async () => {
+  try {
+    const response = await adminApi.get("/get-current-admin");
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};

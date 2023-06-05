@@ -3,10 +3,12 @@ import Login from "../../components/admin/Login";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
+
 function LoginPage() {
+
   return (
     <>
-      <Navbar/>
+      <Navbar page='true' role='admin'/>
       <Login />
       <Footer />
     </>

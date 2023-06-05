@@ -7,6 +7,7 @@ import { adminLogin } from "../../api calls/admin";
 
 function Login() {
   const navigate = useNavigate();
+
   const handleSubmit = async (formData) => {
     try {
       const response = await adminLogin(formData);

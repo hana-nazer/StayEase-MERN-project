@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
 
 import { DatePicker, Space } from "antd";
 const { RangePicker } = DatePicker;
 
 function BookingData() {
-  const [dates, setDates] = useState([moment(), moment()]);
-
+  const [dates, setDates] = useState([]);
   const handleChange = (selectedDates) => {
-    setDates(selectedDates);
-    console.log(dates[0]);
+    const startDate = moment(selectedDates[0].toDate()).format("DD-MM-YYYY");
+    const endDate = moment(selectedDates[1].toDate()).format("DD-MM-YYYY");
+    setDates([startDate, endDate]);
   };
 
   return (
@@ -22,10 +22,7 @@ function BookingData() {
 
           <div className="mb-6">
             <Space direction="vertical" size={12}>
-              <RangePicker
-                onChange={handleChange}
-                format="DD-MM-YYYY"
-              />
+              <RangePicker onChange={handleChange} format="DD-MM-YYYY" />
             </Space>
           </div>
 

@@ -3,12 +3,17 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Sidebar from "../../components/SideBar";
 import Resorts from "../../components/owner/Resorts";
+import { useSelector } from "react-redux";
+
 
 function ResortList() {
+  const currentUser = useSelector((state)=>state.getUser.getOwner)
+  const role = currentUser.role
+  const name = currentUser.name
   return (
     <>
       <div className="flex flex-col h-screen">
-        <Navbar/>
+      <Navbar role={role} name={name}/>
         <div className="grid h-full grid-cols-6">
           <div className="col-span-1">
             <Sidebar role="owner" />

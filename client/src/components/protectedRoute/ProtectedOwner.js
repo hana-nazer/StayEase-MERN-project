@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { GetCurrentOwner } from "../../api calls/owner";
+import { useDispatch, useSelector } from "react-redux";
+import { setOwner } from "../../redux/getUserSlice";
 
 function Protected({ children }) {
-  const [owner, setOwner] = useState(null);
+  const dispatch = useDispatch();
+  const owner = useSelector((state) => state.getUser.getOwner);
+
   const getCurrentOwner = async () => {
     try {
       const response = await GetCurrentOwner();
       if (response.success) {
-        setOwner(response.data);
+        dispatch(setOwner(response.data));
+      } else {
+        console.log("invalid entry");
       }
-    } catch (error) {
-      setOwner(null);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -26,7 +30,6 @@ function Protected({ children }) {
           {children}
         </>
       )}
-      {!owner&&<p>no owner</p>}
     </>
   );
 }

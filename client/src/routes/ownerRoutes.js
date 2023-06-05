@@ -6,15 +6,15 @@ import RegistrationPage from "../pages/owner/RegistrationPage";
 import HomePage from "../pages/owner/HomePage";
 import ResortList from "../pages/owner/ResortList";
 import ResortInfo from "../pages/owner/ResortInfo";
-import Protected from "../components/protectedRoute/Protected";
+import Protected from "../components/protectedRoute/ProtectedOwner";
 
 function OwnerRoutes() {
   return (
     <Routes>
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="" element={<HomePage />} />
-      <Route path="/resortlist" element={<ResortList />} />
+      <Route path="" element={<Protected><HomePage /></Protected>} />
+      <Route path="/resortlist" element={<Protected><ResortList /></Protected>} />
       <Route
         path="/register"
         element={
@@ -23,7 +23,7 @@ function OwnerRoutes() {
           </Protected>
         }
       />
-      <Route path="/resortInfo/:resortId" element={<ResortInfo />} />
+      <Route path="/resortInfo/:resortId" element={<Protected><ResortInfo /></Protected>} />
     </Routes>
   );
 }

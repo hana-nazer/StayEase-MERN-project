@@ -7,7 +7,9 @@ import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 function Navbar(props) {
   const navigate = useNavigate();
   const role = props.role;
-  const page = props.page;
+  const name = props.name;
+  const page = props.page
+  console.log(role);
 
   let navbarColorClass;
 
@@ -52,20 +54,19 @@ function Navbar(props) {
       style={navbarStyle}
     >
       <Logo />
-
-      <div className="flex items-center">
-        {!page && (
-          <>
-            <span className="mr-2 text-white">{props.role}</span>
-            <FontAwesomeIcon
-              onClick={() => logoutHandler(role)}
-              icon={faSignOutAlt}
-              className="w-5 h-5 text-white fill-current"
-              style={{ cursor: "pointer" }}
-            />
-          </>
-        )}
+      {!page &&(<>
+        <div className="flex items-center">
+        <span className="mr-2 text-white">{name}</span>
+        <FontAwesomeIcon
+          onClick={() => logoutHandler(role)}
+          icon={faSignOutAlt}
+          className="w-5 h-5 text-white fill-current"
+          style={{ cursor: "pointer" }}
+        />
       </div>
+      </>)}
+
+     
     </nav>
   );
 }

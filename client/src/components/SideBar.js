@@ -24,7 +24,7 @@ function Sidebar(props) {
 
   return (
     <div
-      className={`fixed flex flex-col items-start justify-start w-48 h-screen mx-auto mt-10 ${sidebarColorClass}`}
+      className={`fixed flex flex-col items-start justify-start w-48 h-screen mx-auto mt-8 ${sidebarColorClass}`}
     >
       {links.map((link, index) => (
         <Link

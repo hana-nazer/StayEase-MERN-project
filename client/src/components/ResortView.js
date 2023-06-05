@@ -9,13 +9,11 @@ import About from "./resort/About";
 import OwnerData from "./resort/OwnerData";
 import Images from "./resort/Images";
 import Action from "./resort/Action";
-import Navbar from "./Navbar";
 import BookNow from "./resort/BookNow";
 
 function ResortDetailedView(props) {
   const action = props.action;
   const role = props.role;
-  console.log(role);
   const resortData = useSelector((state) => state.verifyResort.resortData);
   const dispatch = useDispatch();
   const { resortId } = useParams();
@@ -39,8 +37,7 @@ function ResortDetailedView(props) {
     return <div>Loading...</div>;
   }
   return (
-    <div className="mx-20 mb-16 rounded-md">
-      <Navbar />
+    <div className="mx-20 mb-16 ">
       <div className="grid w-full grid-cols-2 gap-2 mt-20 mb-3">
         <NameAndLocation />
         {!action && (

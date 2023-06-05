@@ -80,6 +80,7 @@ exports.getCurrentOwner = async (req, res) => {
       success: true,
       message: "owner data",
       data: owner,
+      
     });
   } catch (error) {
     console.log("error");

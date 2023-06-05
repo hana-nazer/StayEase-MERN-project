@@ -5,27 +5,27 @@ const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true, 
+      required: true,
     },
     email: {
       type: String,
-      required: true, 
-      unique: true, 
+      required: true,
+      unique: true,
     },
     password: {
       type: String,
       required: true,
     },
 
-    userBlock:{
-        type:Boolean,
-        default:false
+    role: {
+      type: String, 
+      default: "user", 
     },
   },
   {
-    timestamps: true, 
+    timestamps: true,
   }
 );
 
 // Create the User model using the userSchema and export it
-module.exports = mongoose.model('users',userSchema)
+module.exports = mongoose.model("users", userSchema);

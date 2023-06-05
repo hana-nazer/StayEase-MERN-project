@@ -8,19 +8,69 @@ import ResortList from "../pages/admin/ResortList";
 import Location from "../pages/admin/Location";
 import ResortInfo from "../pages/admin/ResortInfo";
 import UsersList from "../pages/admin/UsersList";
+import ProtectedAdmin from "../components/protectedRoute/ProtectedAdmin";
 
 function AdminRoutes() {
   return (
     <>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/dashboard" element={<AdminHome />} />
-        <Route path="/requests" element={<Request />} />
-        <Route path="/view_resort/:resortId" element={<ResortDetailedView />} />
-        <Route path="/resorts" element={<ResortList />} />
-        <Route path="/location" element={<Location />} />
-        <Route path="/resortInfo/:resortId" element={<ResortInfo />} />
-        <Route path="/users" element={<UsersList />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedAdmin>
+              <AdminHome />
+            </ProtectedAdmin>
+          }
+        />
+        <Route
+          path="/requests"
+          element={
+            <ProtectedAdmin>
+              <Request />
+            </ProtectedAdmin>
+          }
+        />
+        <Route
+          path="/view_resort/:resortId"
+          element={
+            <ProtectedAdmin>
+              <ResortDetailedView />
+            </ProtectedAdmin>
+          }
+        />
+        <Route
+          path="/resorts"
+          element={
+            <ProtectedAdmin>
+              <ResortList />
+            </ProtectedAdmin>
+          }
+        />
+        <Route
+          path="/location"
+          element={
+            <ProtectedAdmin>
+              <Location />
+            </ProtectedAdmin>
+          }
+        />
+        <Route
+          path="/resortInfo/:resortId"
+          element={
+            <ProtectedAdmin>
+              <ResortInfo />
+            </ProtectedAdmin>
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            <ProtectedAdmin>
+              <UsersList />
+            </ProtectedAdmin>
+          }
+        />
       </Routes>
     </>
   );

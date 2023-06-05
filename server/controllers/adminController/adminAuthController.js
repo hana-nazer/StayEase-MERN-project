@@ -46,6 +46,20 @@ exports.adminLogin = async (req, res) => {
   }
 };
 
+exports.getCurrentAdmin = async (req, res) => {
+  try {
+    const admin = await Admin.findById(req.userId).select("-password");
+    res.send({
+      success: true,
+      message: "admin data",
+      data: admin,
+      
+    });
+  } catch (error) {
+    console.log("error");
+  }
+};
+
 exports.usersList = async(req,res)=>{
   try {
     const users = await User.find()
