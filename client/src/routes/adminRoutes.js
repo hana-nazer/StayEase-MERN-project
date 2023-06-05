@@ -9,6 +9,7 @@ import Location from "../pages/admin/Location";
 import ResortInfo from "../pages/admin/ResortInfo";
 import UsersList from "../pages/admin/UsersList";
 import ProtectedAdmin from "../components/protectedRoute/ProtectedAdmin";
+import BookingList from "../pages/admin/BookingList";
 
 function AdminRoutes() {
   return (
@@ -71,6 +72,9 @@ function AdminRoutes() {
             </ProtectedAdmin>
           }
         />
+      <Route path="/bookings" element={<ProtectedAdmin><BookingList/></ProtectedAdmin>}/>
+      {/* <Route path="/bookings" element={<BookingList/>}/> */}
+
       </Routes>
     </>
   );

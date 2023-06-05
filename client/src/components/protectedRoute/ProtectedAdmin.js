@@ -24,7 +24,6 @@ function ProtectedAdmin({children}) {
     <>
       {admin && (
         <>
-          {admin.name}
           {children}
         </>
       )}
