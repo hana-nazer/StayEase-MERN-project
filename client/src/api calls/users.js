@@ -30,3 +30,15 @@ export const getResorts = async () => {
     return error.response;
   }
 };
+
+// booking
+export const postBooking = async (payload, resortId) => {
+  try {
+    console.log("hello");
+    console.log(resortId);
+    const response = await userApi.post(`/book/${resortId}`, payload);
+    return response.data;
+  } catch (error) {
+    return error.response;
+  }
+};

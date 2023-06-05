@@ -9,7 +9,6 @@ function Navbar(props) {
   const role = props.role;
   const name = props.name;
   const page = props.page
-  console.log(role);
 
   let navbarColorClass;
 
@@ -17,10 +16,8 @@ function Navbar(props) {
     navbarColorClass = "bg-gray-700";
   } else if (role === "owner") {
     navbarColorClass = "bg-teal-900";
-  } else if (role === "user") {
+  }  else {
     navbarColorClass = "bg-cyan-800";
-  } else {
-    navbarColorClass = "bg-black";
   }
 
   const navbarStyle = {

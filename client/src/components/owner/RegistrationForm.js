@@ -1,11 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { resortData } from "../../api calls/owner";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { uploadImg } from "../../api calls/owner";
+import { getLocation } from "../../api calls/resort";
+import { useSelector, useDispatch } from "react-redux";
+import { setLocation } from "../../redux/locationSlice";
 
 function RegistrationForm() {
+  const locations = useSelector((state) => state.location.location);
+  const dispatch = useDispatch();
+
+  const currentUser = useSelector((state) => state.getUser.getOwner);
+  const role = currentUser.role;
   const navigate = useNavigate();
+
+  const fetchLocations = async () => {
+    try {
+      const response = await getLocation(role);
+      console.log(response);
+      if (response.success) {
+        dispatch(setLocation(response.data));
+      } else {
+        console.log(response.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchLocations();
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -75,7 +101,6 @@ function RegistrationForm() {
     const imageFiles = Array.from(event.target.files);
     formik.setFieldValue("images", imageFiles);
   };
- 
 
   const handleAmenitiesChange = (event) => {
     const enteredValue = event.target.value;
@@ -138,9 +163,11 @@ function RegistrationForm() {
                 onFocus={() => handleFieldFocus("place")}
               >
                 <option value="">Select Place</option>
-                <option value="wayanad">Wayanad</option>
-                <option value="munnar">Munnar</option>
-                <option value="cochin">Cochin</option>
+                {locations.map((location) => (
+                  <option key={location._id} value={location.location}>
+                    {location.location}
+                  </option>
+                ))}
               </select>
               {formik.touched.place && formik.errors.place && (
                 <span className="text-sm text-red-500">

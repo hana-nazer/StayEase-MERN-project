@@ -15,8 +15,25 @@ export const getResortData = async (resortId, role) => {
       return response.data;
     } else {
       console.log("invalid entry");
-    }
+    } 
   } catch (error) {
     return { success: false, message: "Failed to retrieve resort details" };
   }
 };
+
+export const getLocation = async(role)=>{
+  try {
+    if(role==="owner"){
+      const response = await ownerApi.get('/fetch-location');
+      return response.data;
+    }
+    if(role==="admin"){
+      const response = await adminApi.get('/fetch-location');
+      console.log("hello");
+      console.log("geLocation",response);
+      return response.data;
+    }
+  } catch (error) {
+    return error.message
+  }
+}

@@ -1,5 +1,6 @@
 const Resort = require("../../models/resortModel");
 const Owner = require("../../models/ownerModel");
+const Location = require('../../models/locationModel')
 
 // getPending resorts
 exports.getPendingResorts = async (req, res) => {
@@ -87,3 +88,14 @@ exports.resortData = async (req, res) => {
     res.status(500).json({ message: "Failed to retrieve resort details" });
   }
 };
+
+// fetch location
+exports.location=async(req,res)=>{
+  try {
+    const location = await Location.find()
+    res.send({success:true , data:location})
+  } catch (error) {
+    res.status(500).json({ message: "Failed to retrieve location" });
+    
+  }
+}

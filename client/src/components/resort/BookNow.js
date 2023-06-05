@@ -1,10 +1,11 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function BookNow() {
+function BookNow(props) {
+  const resortId = props.resortId
   const navigate = useNavigate()
   const onBook = ()=>{
-    navigate('/booking')
+    navigate(`/book/${resortId}`)
   }
   return (
    <>

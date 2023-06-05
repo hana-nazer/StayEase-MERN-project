@@ -1,5 +1,6 @@
 const Owner = require("../../models/ownerModel");
 const Resort = require("../../models/resortModel");
+const Location = require('../../models/locationModel')
 
 // register resort
 exports.registerResort = async (req, res) => {
@@ -9,7 +10,7 @@ exports.registerResort = async (req, res) => {
       location: req.body.place,
       description: req.body.description,
       address:req.body.address,
-      owner: req.body.userId,
+      // owner: req.body.userId,
       status: "pending",
       charge_per_night:req.body.charge,
       no_of_guest:req.body.guest,
@@ -59,6 +60,17 @@ exports.resortData = async(req,res)=>{
     res.send({ success: true, data: resort, owner: ownerData });
   } catch (error) {
     res.status(500).json({ message: "Failed to retrieve resort details" });
+    
+  }
+}
+
+// fetch location
+exports.location=async(req,res)=>{
+  try {
+    const location = await Location.find()
+    res.send({success:true , data:location})
+  } catch (error) {
+    res.status(500).json({ message: "Failed to retrieve location" });
     
   }
 }

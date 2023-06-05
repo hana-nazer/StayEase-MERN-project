@@ -14,7 +14,7 @@ function UserRoutes() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="" element={<HomePage />} />
         <Route path="/resortInfo/:resortId" element={<ResortDetail/>}/>
-        <Route path="/booking" element={<Booking/>}/>
+        <Route path="/book/:resortId" element={<Booking/>}/>
       </Routes>
     </>
   );

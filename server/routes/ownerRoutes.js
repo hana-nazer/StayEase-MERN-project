@@ -10,6 +10,7 @@ router.get('/get-current-owner',authMiddleware,ownerAuthController.getCurrentOwn
 router.post("/register", authMiddleware, ownerResorts.registerResort);
 router.get("/resorts", authMiddleware, ownerResorts.getResorts);
 router.get('/resortInfo/:resortId',authMiddleware,ownerResorts.resortData)
+router.get('/fetch-location',authMiddleware,ownerResorts.location)
 
 
 module.exports = router;

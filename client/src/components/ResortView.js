@@ -47,7 +47,7 @@ function ResortDetailedView(props) {
         )}
       </div>
       <Images />
-      {role === "user" && <BookNow />}
+      {role === "user" && <BookNow resortId={resortId} />}
 
       <div className="grid grid-cols-3 gap-3">
         <div className="col-span-2 ">
