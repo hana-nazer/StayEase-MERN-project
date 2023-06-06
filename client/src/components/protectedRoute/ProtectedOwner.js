@@ -26,7 +26,6 @@ function Protected({ children }) {
     <>
       {owner && (
         <>
-          {owner.name}
           {children}
         </>
       )}

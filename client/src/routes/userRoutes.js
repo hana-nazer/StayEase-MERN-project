@@ -5,6 +5,7 @@ import LoginPage from "../pages/user/LoginPage";
 import HomePage from "../pages/user/HomePage";
 import ResortDetail from "../pages/user/ResortDetail";
 import Booking from "../pages/user/Booking";
+import BookingDetails from "../pages/user/BookingDetails";
 React.lazy(() => {});
 function UserRoutes() {
   return (
@@ -15,6 +16,7 @@ function UserRoutes() {
         <Route path="" element={<HomePage />} />
         <Route path="/resortInfo/:resortId" element={<ResortDetail/>}/>
         <Route path="/book/:resortId" element={<Booking/>}/>
+        <Route path="/bookingdetails" element={<BookingDetails/>}/>
       </Routes>
     </>
   );

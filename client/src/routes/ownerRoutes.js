@@ -7,6 +7,7 @@ import HomePage from "../pages/owner/HomePage";
 import ResortList from "../pages/owner/ResortList";
 import ResortInfo from "../pages/owner/ResortInfo";
 import Protected from "../components/protectedRoute/ProtectedOwner";
+import BookingData from "../pages/owner/BookingData";
 
 function OwnerRoutes() {
   return (
@@ -24,6 +25,7 @@ function OwnerRoutes() {
         }
       />
       <Route path="/resortInfo/:resortId" element={<Protected><ResortInfo /></Protected>} />
+      <Route path="/bookings" element={<Protected><BookingData/></Protected>}/>
     </Routes>
   );
 }
