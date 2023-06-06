@@ -1,12 +1,7 @@
-    const Booking = require("../../models/BookingModel");
+const Booking = require("../../models/BookingModel");
 
-    exports.postBooking = (req, res) => {
-    try {
-        const resortId = req.params.resortId;
-        const bookingData = req.body;
-
-        console.log("resortId:", resortId);
-        console.log("bookingData:", bookingData);
-    
-    } catch (error) {}
-    };
+exports.postBooking = (req, res) => {
+  try {
+   console.log("hello");
+  } catch (error) {}
+};

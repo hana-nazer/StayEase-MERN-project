@@ -1,16 +1,16 @@
 import React from "react";
 import { useFormik } from "formik";
 import moment from "moment";
-import { useParams, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { postBooking } from "../../api calls/users";
+import {  useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setBookingData } from "../../redux/BookingSlice";
+// import { postBooking } from "../../api calls/users";
 import { DatePicker } from "antd";
 
 function BookingData() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const resortData = useSelector((state) => state.verifyResort.resortData);
-
-  const resortId = useParams();
   const formik = useFormik({
     initialValues: {
       dates: [],
@@ -20,37 +20,32 @@ function BookingData() {
     },
     onSubmit: async (values) => {
       try {
+        const { no_of_days } = values;
         let bookingData = {
           dates: values.dates,
           guests: values.guests,
           name: values.name,
           phone: values.phone,
-          resort: resortId.resortId,
+          no_of_days : no_of_days+1
         };
-        console.log(bookingData);
-        console.log(resortId);
-        const response = await postBooking(bookingData, resortId.resortId);
-        console.log(response);
+       
+        dispatch(setBookingData(bookingData));
+        navigate("/bookingdetails");
       } catch (error) {}
     },
   });
-
   const handleChange = (selectedDates) => {
+    const numberOfDays = selectedDates[1].diff(selectedDates[0], 'days');
     const startDate = moment(selectedDates[0].toDate()).format("DD-MM-YYYY");
     const endDate = moment(selectedDates[1].toDate()).format("DD-MM-YYYY");
     formik.setFieldValue("dates", [startDate, endDate]);
+    formik.setFieldValue("no_of_days", numberOfDays);
   };
-
-  const onProceed = () => {
-    navigate("/bookingdetails");
-  };
-
   return (
     <form onSubmit={formik.handleSubmit}>
       <p className="flex items-center justify-center mb-6 text-2xl font-bold">
         Book your trip
       </p>
-
       <div className="mb-6" style={{ width: "100%" }}>
         <DatePicker.RangePicker
           onChange={handleChange}
@@ -60,7 +55,6 @@ function BookingData() {
           style={{ width: "100%" }}
         />
       </div>
-
       <div className="mb-6">
         <input
           className="w-full px-4 py-3 placeholder-gray-500 border rounded-lg"
@@ -73,7 +67,6 @@ function BookingData() {
           max={resortData.no_of_guest}
         />
       </div>
-
       <div className="mb-6">
         <input
           className="w-full px-4 py-3 placeholder-gray-500 border rounded-lg"
@@ -98,7 +91,6 @@ function BookingData() {
       </div>
       <div className="text-center">
         <button
-          onClick={onProceed}
           className="w-full px-8 py-3 text-white rounded-lg bg-cyan-800"
           type="submit"
         >
@@ -108,5 +100,4 @@ function BookingData() {
     </form>
   );
 }
-
 export default BookingData;
