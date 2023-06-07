@@ -1,7 +1,7 @@
-import React ,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import moment from "moment";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setBookingData } from "../../redux/BookingSlice";
 import { disabledDateList } from "../../api calls/users";
@@ -27,55 +27,55 @@ function BookingData() {
           guests: values.guests,
           name: values.name,
           phone: values.phone,
-          no_of_days : no_of_days
+          no_of_days: no_of_days,
         };
-       
         dispatch(setBookingData(bookingData));
         navigate("/bookingdetails");
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
   const handleChange = (selectedDates) => {
-    const numberOfDays = selectedDates[1].diff(selectedDates[0], 'days')+1;
+    const numberOfDays = selectedDates[1].diff(selectedDates[0], "days") + 1;
     const startDate = moment(selectedDates[0].toDate()).format("DD-MM-YYYY");
     const dates = [];
-  for (let i = 0; i < numberOfDays; i++) {
-    const date = moment(startDate, "DD-MM-YYYY").add(i, 'days');
-    dates.push(date.format("DD-MM-YYYY"));
-  }
-    
-    formik.setFieldValue("dates",dates)
+    for (let i = 0; i < numberOfDays; i++) {
+      const date = moment(startDate, "DD-MM-YYYY").add(i, "days");
+      dates.push(date.format("DD-MM-YYYY"));
+    }
+
+    formik.setFieldValue("dates", dates);
     formik.setFieldValue("no_of_days", numberOfDays);
   };
-  
+
   const fetchDisabledDates = async () => {
     try {
-      // Make an API call to fetch the disabled dates for the resort
-      // based on the resort ID
-      const response = await disabledDateList(resortData._id)
-      if(response.success){
+      const response = await disabledDateList(resortData._id);
+      if (response.success) {
         console.log(response);
-        setDisabledDates(response.disabledDates)
-       
+        setDisabledDates(response.disabledDates);
+      } else {
+        console.log(response.data.message);
       }
-      console.log(disabledDates);
     } catch (error) {
-      console.error(error);
+      console.error(error.response);
     }
   };
-  
+
   const disabledDate = (current) => {
     if (disabledDates && disabledDates.length > 0) {
-      return disabledDates.some(date => current.format("DD-MM-YYYY") === date);
+      return disabledDates.some(
+        (date) => current.format("DD-MM-YYYY") === date
+      );
     }
     return false;
   };
-  
+
   useEffect(() => {
-    
     fetchDisabledDates();
   }, []);
-  
+
   return (
     <form onSubmit={formik.handleSubmit}>
       <p className="flex items-center justify-center mb-6 text-2xl font-bold">

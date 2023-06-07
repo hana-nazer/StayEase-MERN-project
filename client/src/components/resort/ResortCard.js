@@ -13,8 +13,12 @@ function ResortCard() {
       const response = await getResorts();
       if (response.success) {
         setResorts(response.data);
+      } else {
+        console.log(response.data.message);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error.response);
+    }
   };
 
   const onClickResort = (resortId) => {
@@ -39,7 +43,11 @@ function ResortCard() {
             />
 
             <div className="py-4">
-              <div className="text-xl font-semibold ">{resort.name}{" ,"}{resort.location}</div>
+              <div className="text-xl font-semibold ">
+                {resort.name}
+                {" ,"}
+                {resort.location}
+              </div>
               <p className="text-base font-semibold">
                 Rs {resort.charge_per_night} night
               </p>

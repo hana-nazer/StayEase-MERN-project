@@ -60,15 +60,23 @@ function BookingTable() {
           {bookings.map((booking, index) => (
             <tr
               key={index}
-              className={index % 2 === 0 ? "bg-white" : "bg-gray-200"} // Alternate row colors
+              className={index % 2 === 0 ? "bg-white" : "bg-gray-200"}
             >
-              <td className="p-2 border border-gray-400">{booking.resortName}</td>
-              <td className="p-2 border border-gray-400">{booking.customerName}</td>
+              <td className="p-2 border border-gray-400">
+                {booking.resortName}
+              </td>
+              <td className="p-2 border border-gray-400">
+                {booking.customerName}
+              </td>
               <td className="p-2 border border-gray-400">{booking.phone}</td>
               <td className="p-2 border border-gray-400">{booking.checkIn}</td>
               <td className="p-2 border border-gray-400">{booking.checkOut}</td>
-              <td className="p-2 border border-gray-400">{booking.numOfGuests}</td>
-              <td className="p-2 border border-gray-400">{booking.totalCharge}</td>
+              <td className="p-2 border border-gray-400">
+                {booking.numOfGuests}
+              </td>
+              <td className="p-2 border border-gray-400">
+                {booking.totalCharge}
+              </td>
               <td className="p-2 border border-gray-400"></td>
             </tr>
           ))}

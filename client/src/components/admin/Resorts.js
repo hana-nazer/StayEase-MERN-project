@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { resortList } from "../../api calls/admin";
 import { useNavigate } from "react-router-dom";
 function Resorts() {
-  const naviagte = useNavigate()
+  const naviagte = useNavigate();
   const [resorts, setResorts] = useState([]);
   useEffect(() => {
     fetchResorts();
@@ -14,20 +14,19 @@ function Resorts() {
       if (response.success) {
         setResorts(response.data);
       } else {
-        console.log(response.message);
+        console.log(response.data.message);
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
     }
   };
-  
-  const onView =(resortId)=>{
-    naviagte(`/admin/resortInfo/${resortId}`)
-  }
+
+  const onView = (resortId) => {
+    naviagte(`/admin/resortInfo/${resortId}`);
+  };
   return (
     <>
-      <div className="flex justify-end w-3/4 mb-4 mx-28">
-      </div>
+      <div className="flex justify-end w-3/4 mb-4 mx-28"></div>
       {resorts.map((resort) => {
         return (
           <div
@@ -45,11 +44,13 @@ function Resorts() {
               <div className="p-4 mt-5">
                 <p className="font-bold">{resort.name}</p>
                 <p className="font-bold">{resort.location}</p>
-                
               </div>
             </div>
             <div className="flex justify-center p-4 mt-5">
-              <button className="w-2/4 h-12 font-semibold bg-gray-200 rounded-md shadow"  onClick={() => onView(resort._id)}>
+              <button
+                className="w-2/4 h-12 font-semibold bg-gray-200 rounded-md shadow"
+                onClick={() => onView(resort._id)}
+              >
                 View
               </button>
             </div>

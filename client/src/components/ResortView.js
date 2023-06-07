@@ -27,10 +27,10 @@ function ResortDetailedView(props) {
         dispatch(setResortData(response.data));
         dispatch(setOwnerData(response.owner));
       } else {
-        console.log(response.message);
+        console.log(response.data.message);
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
     }
   };
   if (!resortData) {

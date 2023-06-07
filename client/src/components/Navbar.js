@@ -9,10 +9,8 @@ function Navbar(props) {
   const role = props.role;
   const name = props.name;
   const search = props.search;
-  const page = props.page;
 
   let navbarColorClass;
-
   if (role === "admin") {
     navbarColorClass = "bg-gray-700";
   } else if (role === "owner") {
@@ -47,10 +45,7 @@ function Navbar(props) {
   };
 
   const handleSearch = (event) => {
-    // Handle search logic here
     const searchTerm = event.target.value;
-    // Perform the necessary search operations based on the searchTerm
-    // ...
   };
 
   return (
@@ -59,7 +54,6 @@ function Navbar(props) {
       style={navbarStyle}
     >
       <Logo />
-
       <div className="flex items-center ">
         {search && (
           <>
@@ -81,7 +75,6 @@ function Navbar(props) {
             </div>
           </>
         )}
-
         <div className="flex items-center ml-10">
           {!role ? (
             <Link to="/login" className="text-white">

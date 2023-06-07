@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
-import {useDispatch} from 'react-redux'
+import { useDispatch } from "react-redux";
 import { setLocation } from "../../redux/locationSlice";
 import { addLocation } from "../../api calls/admin";
 function LocationForm() {
   const locationRef = useRef("");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const submit = async (event) => {
     event.preventDefault();
@@ -13,12 +13,13 @@ function LocationForm() {
       try {
         const response = await addLocation({ location: newPlace });
         if (response.success) {
-          dispatch(setLocation(response.data))
-          console.log("response", response.data);
+          dispatch(setLocation(response.data));
           locationRef.current.value = "";
+        } else {
+          console.log(response.data.message);
         }
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
       }
     }
   };

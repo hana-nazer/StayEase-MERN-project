@@ -18,14 +18,13 @@ function RegistrationForm() {
   const fetchLocations = async () => {
     try {
       const response = await getLocation(role);
-      console.log(response);
       if (response.success) {
         dispatch(setLocation(response.data));
       } else {
         console.log(response.data.message);
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
     }
   };
 

@@ -19,18 +19,15 @@ function Action() {
   const performAction = async (action) => {
     if (action === "Approve") {
       try {
-        console.log("hello");
-
         const response = await resortStatus(resortData._id, action);
-
         if (response.success) {
-          console.log("successs", response);
           dispatch(setResortData(response));
           navigate("/admin/resorts");
-          console.log("Resort approved", response);
+        } else {
+          console.log(response.data.message);
         }
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
       }
     } else if (action === "Reject") {
       try {
@@ -39,9 +36,8 @@ function Action() {
           dispatch(setResortData(response));
           navigate("/admin/resorts");
         }
-        console.log("Resort rejected", response);
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
       }
     }
   };

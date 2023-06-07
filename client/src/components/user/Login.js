@@ -13,10 +13,10 @@ function Login() {
         localStorage.setItem("user_token", response.data);
         navigate("/");
       } else {
-        console.log(response.message);
+        console.log(response.data.message);
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   };
   return (

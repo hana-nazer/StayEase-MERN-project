@@ -14,10 +14,10 @@ function Login() {
         localStorage.setItem("owner_token", response.data);
         navigate("/owner/");
       } else {
-        console.log(response.message);
+        console.log(response.data.message);
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
     }
   };
 

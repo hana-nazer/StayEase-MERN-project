@@ -57,96 +57,98 @@ function SignUp() {
         if (response.success) {
           navigate("/home");
         } else {
-          console.log(response.message);
+          console.log(response.data.message);
         }
       } catch (error) {
-        console.log(error);
+        console.log(error.response);
       }
     }
   };
 
   return (
     <>
-    <div
-      className="flex items-center justify-center h-screen "
-      style={{ backgroundColor: "#f3f4f6" }}
-    >
-      <div className="container flex flex-col w-1/2 mx-auto overflow-hidden bg-white border shadow-lg lg:flex-row rounded-xl">
-        <div
-          className="relative flex flex-col items-center justify-center w-full p-12 bg-center bg-no-repeat bg-cover lg:w-6/12"
-          style={{ backgroundImage: `url('images/sign-cover.png')` }}
-        >
-          <h1 className="text-2xl font-semibold text-white">Welcome back</h1>
-          <div>
-            <p className="font-medium text-white">
-              To keep connected please login
-            </p>
-          </div>
-          <div>
-            <Link
-              to="/login"
-              className="p-2 mt-5 font-semibold text-center text-white bg-opacity-50 bg-slate-200 rounded-xl"
-            >
-              Sign in
-            </Link>
-          </div>
-        </div>
-        <div className="w-full px-12 py-16 lg:w-96">
-          <h2 className="mb-4 text-3xl font-semibold">Create account</h2>
-          <p className="mb-4">
-            Create your account, it's free and only take a minute
-          </p>
-
-          <form onSubmit={handleSubmit}>
-            <div className="mt-5">
-              <input
-                type="text"
-                placeholder="Name"
-                className="w-full px-2 py-1 border border-gray-400"
-                name="name"
-                value={formData.name}
-                onBlur={validateName}
-                onChange={handleChange}
-              />
-              {nameError && <p className="text-red-700">{nameError}</p>}
+      <div
+        className="flex items-center justify-center h-screen "
+        style={{ backgroundColor: "#f3f4f6" }}
+      >
+        <div className="container flex flex-col w-1/2 mx-auto overflow-hidden bg-white border shadow-lg lg:flex-row rounded-xl">
+          <div
+            className="relative flex flex-col items-center justify-center w-full p-12 bg-center bg-no-repeat bg-cover lg:w-6/12"
+            style={{ backgroundImage: `url('images/sign-cover.png')` }}
+          >
+            <h1 className="text-2xl font-semibold text-white">Welcome back</h1>
+            <div>
+              <p className="font-medium text-white">
+                To keep connected please login
+              </p>
             </div>
-            <div className="mt-5">
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-full px-2 py-1 border border-gray-400"
-                name="email"
-                value={formData.email}
-                onBlur={validateEmail}
-                onChange={handleChange}
-              />
-              {emailError && <p className="text-red-700">{emailError}</p>}
-            </div>
-
-            <div className="mt-5">
-              <input
-                type="password"
-                placeholder="Password"
-                className="w-full px-2 py-1 border border-gray-400"
-                name="password"
-                value={formData.password}
-                onBlur={validatePassword}
-                onChange={handleChange}
-              />
-              {passwordError && <p className="text-red-700">{passwordError}</p>}
-            </div>
-
-            <div className="mt-5">
-              <button
-                className="w-full py-3 text-center text-white bg-cyan-800"
-                type="submit"
+            <div>
+              <Link
+                to="/login"
+                className="p-2 mt-5 font-semibold text-center text-white bg-opacity-50 bg-slate-200 rounded-xl"
               >
-                Sign Up
-              </button>
+                Sign in
+              </Link>
             </div>
-          </form>
+          </div>
+          <div className="w-full px-12 py-16 lg:w-96">
+            <h2 className="mb-4 text-3xl font-semibold">Create account</h2>
+            <p className="mb-4">
+              Create your account, it's free and only take a minute
+            </p>
+
+            <form onSubmit={handleSubmit}>
+              <div className="mt-5">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  className="w-full px-2 py-1 border border-gray-400"
+                  name="name"
+                  value={formData.name}
+                  onBlur={validateName}
+                  onChange={handleChange}
+                />
+                {nameError && <p className="text-red-700">{nameError}</p>}
+              </div>
+              <div className="mt-5">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="w-full px-2 py-1 border border-gray-400"
+                  name="email"
+                  value={formData.email}
+                  onBlur={validateEmail}
+                  onChange={handleChange}
+                />
+                {emailError && <p className="text-red-700">{emailError}</p>}
+              </div>
+
+              <div className="mt-5">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  className="w-full px-2 py-1 border border-gray-400"
+                  name="password"
+                  value={formData.password}
+                  onBlur={validatePassword}
+                  onChange={handleChange}
+                />
+                {passwordError && (
+                  <p className="text-red-700">{passwordError}</p>
+                )}
+              </div>
+
+              <div className="mt-5">
+                <button
+                  className="w-full py-3 text-center text-white bg-cyan-800"
+                  type="submit"
+                >
+                  Sign Up
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
       </div>
     </>
   );

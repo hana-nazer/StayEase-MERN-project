@@ -5,9 +5,8 @@ import LoginForm from "../LoginForm";
 import LoginTitle from "../LoginTitle";
 import { adminLogin } from "../../api calls/admin";
 
-function Login() {
+function  Login() {
   const navigate = useNavigate();
-
   const handleSubmit = async (formData) => {
     try {
       const response = await adminLogin(formData);
@@ -15,10 +14,10 @@ function Login() {
         localStorage.setItem("admin_token", response.data);
         navigate("/admin/dashboard");
       } else {
-        console.log(response.message);
+        console.log(response.data.message);
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
     }
   };
 

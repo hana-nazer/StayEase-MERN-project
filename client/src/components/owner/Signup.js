@@ -57,10 +57,10 @@ function Signup() {
       if (response.success) {
         navigate("/owner/");
       } else {
-        console.log(response.message);
+        console.log(response.data.message);
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
     }
   };
 

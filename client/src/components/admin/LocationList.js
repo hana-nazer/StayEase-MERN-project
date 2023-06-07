@@ -18,7 +18,7 @@ function LocationList() {
         console.log(response.data.message);
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   };
 
