@@ -10,6 +10,7 @@ router.post('/login',userAuthController.postLogin)
 router.get('/resorts',userResortController.getResorts)
 router.get('/resortInfo/:resortId',userResortController.resortData)
 router.post('/book/:resortId',bookingController.postBooking)
+router.get("/resorts/:resortId/disableddates", bookingController.fetchDisabledDates);
 
 
 module.exports = router 

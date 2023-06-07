@@ -7,22 +7,21 @@ function BookingInfo() {
   const navigate = useNavigate();
   const resortData = useSelector((state) => state.verifyResort.resortData);
   const bookingInfo = useSelector((state) => state.booking.bookingData);
-  const totalCharge =
-    resortData.charge_per_night * bookingInfo.no_of_days * bookingInfo.guests;
+  const totalCharge = resortData.charge_per_night * bookingInfo.no_of_days * bookingInfo.guests;
+  const lastDate = bookingInfo.dates[bookingInfo.dates.length - 1];
   const bookingDetails = {
     name: bookingInfo.name,
     phone: bookingInfo.phone,
     guests: bookingInfo.guests,
     resortId: resortData._id,
     no_of_days: bookingInfo.no_of_days,
+    dates: bookingInfo.dates,
     checkIn: bookingInfo.dates[0],
-    checkOut: bookingInfo.dates[1],
+    checkOut: lastDate,
     charge: totalCharge,
   };
-
   const handlePayment = async () => {
     try {
-      console.log("button clicked");
       const response = await postBooking(bookingDetails, resortData._id);
       if (response.success) {
         navigate("/asd");

@@ -34,10 +34,21 @@ export const getResorts = async () => {
 // booking
 export const postBooking = async (payload, resortId) => {
   try {
-    console.log("hello");
     const response = await userApi.post(`/book/${resortId}`, payload);
     return response.data;
   } catch (error) {
     return error.response;
   }
 };
+
+
+// disabled dates
+export const disabledDateList= async(resortId)=>{
+  try {
+    console.log("just called");
+    const response = await userApi.get(`/resorts/${resortId}/disableddates`)
+    return response.data
+  } catch (error) {
+    console.log(error);
+  }
+}

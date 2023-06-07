@@ -1,15 +1,16 @@
-import React from "react";
+import React ,{useState,useEffect} from "react";
 import { useFormik } from "formik";
 import moment from "moment";
 import {  useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setBookingData } from "../../redux/BookingSlice";
-// import { postBooking } from "../../api calls/users";
+import { disabledDateList } from "../../api calls/users";
 import { DatePicker } from "antd";
 
 function BookingData() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [disabledDates, setDisabledDates] = useState([]);
   const resortData = useSelector((state) => state.verifyResort.resortData);
   const formik = useFormik({
     initialValues: {
@@ -26,7 +27,7 @@ function BookingData() {
           guests: values.guests,
           name: values.name,
           phone: values.phone,
-          no_of_days : no_of_days+1
+          no_of_days : no_of_days
         };
        
         dispatch(setBookingData(bookingData));
@@ -35,12 +36,46 @@ function BookingData() {
     },
   });
   const handleChange = (selectedDates) => {
-    const numberOfDays = selectedDates[1].diff(selectedDates[0], 'days');
+    const numberOfDays = selectedDates[1].diff(selectedDates[0], 'days')+1;
     const startDate = moment(selectedDates[0].toDate()).format("DD-MM-YYYY");
-    const endDate = moment(selectedDates[1].toDate()).format("DD-MM-YYYY");
-    formik.setFieldValue("dates", [startDate, endDate]);
+    const dates = [];
+  for (let i = 0; i < numberOfDays; i++) {
+    const date = moment(startDate, "DD-MM-YYYY").add(i, 'days');
+    dates.push(date.format("DD-MM-YYYY"));
+  }
+    
+    formik.setFieldValue("dates",dates)
     formik.setFieldValue("no_of_days", numberOfDays);
   };
+  
+  const fetchDisabledDates = async () => {
+    try {
+      // Make an API call to fetch the disabled dates for the resort
+      // based on the resort ID
+      const response = await disabledDateList(resortData._id)
+      if(response.success){
+        console.log(response);
+        setDisabledDates(response.disabledDates)
+       
+      }
+      console.log(disabledDates);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  const disabledDate = (current) => {
+    if (disabledDates && disabledDates.length > 0) {
+      return disabledDates.some(date => current.format("DD-MM-YYYY") === date);
+    }
+    return false;
+  };
+  
+  useEffect(() => {
+    
+    fetchDisabledDates();
+  }, []);
+  
   return (
     <form onSubmit={formik.handleSubmit}>
       <p className="flex items-center justify-center mb-6 text-2xl font-bold">
@@ -51,8 +86,8 @@ function BookingData() {
           onChange={handleChange}
           format="DD-MM-YYYY"
           name="dates"
-          onBlur={formik.handleBlur}
           style={{ width: "100%" }}
+          disabledDate={disabledDate}
         />
       </div>
       <div className="mb-6">
@@ -63,7 +98,6 @@ function BookingData() {
           name="guests"
           value={formik.values.guests}
           onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
           max={resortData.no_of_guest}
         />
       </div>
@@ -75,7 +109,6 @@ function BookingData() {
           name="name"
           value={formik.values.name}
           onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
         />
       </div>
       <div className="mb-6">
@@ -86,7 +119,6 @@ function BookingData() {
           name="phone"
           value={formik.values.phone}
           onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
         />
       </div>
       <div className="text-center">
