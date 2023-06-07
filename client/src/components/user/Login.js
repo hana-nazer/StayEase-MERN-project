@@ -1,6 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import styles from "../../stylesheets/loginPage.module.css";
+import { Link, useNavigate } from "react-router-dom";
 import LoginForm from "../LoginForm";
 import LoginTitle from "../LoginTitle";
 import { LoginUser } from "../../api calls/users";
@@ -22,11 +21,20 @@ function Login() {
   };
   return (
     <>
-      <div className={styles.parent_div}>
-        <div className={styles.sub_div}>
-          <div className={styles.form_div}>
+      <div
+        className="flex items-center justify-center h-screen "
+        style={{ backgroundColor: "#f3f4f6" }}
+      >
+        <div className="w-1/3 mx-auto overflow-hidden bg-white border shadow-lg lg:flex-row rounded-xl">
+          <div className="w-full px-10 py-12">
             <LoginTitle title=" Login into your account" />
             <LoginForm onSubmit={handleSubmit} />
+            <p className="mt-2">
+              Dont have a account{" "}
+              <Link to="/signup" className="text-blue-700 underline">
+                signup
+              </Link>
+            </p>
           </div>
         </div>
       </div>

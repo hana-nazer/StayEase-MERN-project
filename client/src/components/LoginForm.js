@@ -53,7 +53,7 @@ function LoginForm(props) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
         <div className="mt-5">
           <input
             type="email"
