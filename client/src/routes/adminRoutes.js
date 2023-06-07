@@ -72,8 +72,14 @@ function AdminRoutes() {
             </ProtectedAdmin>
           }
         />
-      <Route path="/bookings" element={<ProtectedAdmin><BookingList/></ProtectedAdmin>}/>
-
+        <Route
+          path="/bookings"
+          element={
+            <ProtectedAdmin>
+              <BookingList />
+            </ProtectedAdmin>
+          }
+        />
       </Routes>
     </>
   );

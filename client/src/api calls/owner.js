@@ -27,7 +27,7 @@ export const GetCurrentOwner = async () => {
     const response = await ownerApi.get("/get-current-owner");
     return response.data;
   } catch (error) {
-    return error;
+    return error.response;
   }
 };
 
@@ -37,10 +37,9 @@ export const resortData = async (payload) => {
     const response = await ownerApi.post("/register", payload);
     return response.data;
   } catch (error) {
-    return { success: false, message: "An error occurred during the request" };
+    return error.response;
   }
 };
-
 
 // image upload
 export const uploadImg = async (images) => {
@@ -64,7 +63,6 @@ export const uploadImg = async (images) => {
     throw error;
   }
 };
-
 
 // get resort list
 export const getResorts = async () => {

@@ -14,8 +14,22 @@ function OwnerRoutes() {
     <Routes>
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="" element={<Protected><HomePage /></Protected>} />
-      <Route path="/resortlist" element={<Protected><ResortList /></Protected>} />
+      <Route
+        path=""
+        element={
+          <Protected>
+            <HomePage />
+          </Protected>
+        }
+      />
+      <Route
+        path="/resortlist"
+        element={
+          <Protected>
+            <ResortList />
+          </Protected>
+        }
+      />
       <Route
         path="/register"
         element={
@@ -24,8 +38,22 @@ function OwnerRoutes() {
           </Protected>
         }
       />
-      <Route path="/resortInfo/:resortId" element={<Protected><ResortInfo /></Protected>} />
-      <Route path="/bookings" element={<Protected><BookingData/></Protected>}/>
+      <Route
+        path="/resortInfo/:resortId"
+        element={
+          <Protected>
+            <ResortInfo />
+          </Protected>
+        }
+      />
+      <Route
+        path="/bookings"
+        element={
+          <Protected>
+            <BookingData />
+          </Protected>
+        }
+      />
     </Routes>
   );
 }

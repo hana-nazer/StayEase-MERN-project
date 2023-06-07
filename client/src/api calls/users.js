@@ -3,7 +3,6 @@ import { userApi } from "./axios";
 //register a new user
 export const RegisterUser = async (payload) => {
   try {
-    console.log(payload);
     const response = await userApi.post("/signup", payload);
     return response.data;
   } catch (error) {
@@ -41,14 +40,12 @@ export const postBooking = async (payload, resortId) => {
   }
 };
 
-
 // disabled dates
-export const disabledDateList= async(resortId)=>{
+export const disabledDateList = async (resortId) => {
   try {
-    console.log("just called");
-    const response = await userApi.get(`/resorts/${resortId}/disableddates`)
-    return response.data
+    const response = await userApi.get(`/resorts/${resortId}/disableddates`);
+    return response.data;
   } catch (error) {
-    console.log(error);
+    return error.response;
   }
-}
+};

@@ -20,16 +20,6 @@ export const getPendingResorts = async () => {
   }
 };
 
-// pending resort data
-// export const getResortData = async (resortId) => {
-//   try {
-//     const response = await adminApi.get(`/view_resort/${resortId}`);
-//     return response.data;
-//   } catch (error) {
-//     return { success: false, message: "Failed to retrieve resort details" };
-//   }
-// };
-
 // resort status
 export const resortStatus = async (resortId, action) => {
   try {
@@ -37,11 +27,9 @@ export const resortStatus = async (resortId, action) => {
       resortId,
       action,
     });
-    console.log("api", response.data);
     return response.data;
   } catch (error) {
-    console.log(error);
-    throw new Error("Failed to update resort status");
+    return error.response;
   }
 };
 
@@ -56,26 +44,24 @@ export const resortList = async () => {
 };
 
 //get resort data - approved
-export const resortInfo =async(resortId)=>{
+export const resortInfo = async (resortId) => {
   try {
-    const response = await adminApi.get(`/resortData/${resortId}`)
-    return response.data
+    const response = await adminApi.get(`/resortData/${resortId}`);
+    return response.data;
   } catch (error) {
-    return error.response
+    return error.response;
   }
-}
-
+};
 
 //add location
-export const addLocation = async(payload)=>{
+export const addLocation = async (payload) => {
   try {
-    const response = await adminApi.post('/add_location',payload)
-    console.log(payload);
-    return response.data
+    const response = await adminApi.post("/add_location", payload);
+    return response.data;
   } catch (error) {
-    return error.response
+    return error.response;
   }
-}
+};
 
 // get admin
 export const GetCurrentAdmin = async () => {
