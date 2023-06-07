@@ -18,8 +18,8 @@ app.use(express.json());
 // Enable CORS for incoming requests
 app.use(
   cors({
-    credentials: process.env.CORS_CREDENTIALS === "true", // Whether to allow cookies to be sent along with the request
-    origin: process.env.CORS_ORIGIN, // The origin(s) from which requests are allowed, specified as a string or an array of strings
+    credentials: process.env.CORS_CREDENTIALS === "true",
+    origin: process.env.CORS_ORIGIN, 
   })
 );
 
@@ -28,10 +28,8 @@ app.use("/", userRouter);
 app.use("/owner", ownerRouter);
 app.use("/admin",adminRouter)
 
-// Set the port number to the value of the PORT environment variable if it exists, or 5000 otherwise
 const port = process.env.PORT || 5000;
 
-// Start the app and listen for incoming requests on the specified port
 app.listen(port, () => {
   console.log(`server is running in the port ${port}`);
 });

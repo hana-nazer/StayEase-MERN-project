@@ -6,11 +6,14 @@ const authMiddleware = require("../middlewares/authMiddleware");
 
 router.post("/signup", ownerAuthController.ownerSignUp);
 router.post("/login", ownerAuthController.ownerLogin);
-router.get('/get-current-owner',authMiddleware,ownerAuthController.getCurrentOwner)
+router.get(
+  "/get-current-owner",
+  authMiddleware,
+  ownerAuthController.getCurrentOwner
+);
 router.post("/register", authMiddleware, ownerResorts.registerResort);
 router.get("/resorts", authMiddleware, ownerResorts.getResorts);
-router.get('/resortInfo/:resortId',authMiddleware,ownerResorts.resortData)
-router.get('/fetch-location',authMiddleware,ownerResorts.location)
-
+router.get("/resortInfo/:resortId", authMiddleware, ownerResorts.resortData);
+router.get("/fetch-location", authMiddleware, ownerResorts.location);
 
 module.exports = router;

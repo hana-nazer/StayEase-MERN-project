@@ -1,8 +1,8 @@
 const Resort = require("../../models/resortModel");
 const Owner = require("../../models/ownerModel");
-const Location = require('../../models/locationModel')
+const Location = require("../../models/locationModel");
 
-// getPending resorts
+// getPending resorts in for approval
 exports.getPendingResorts = async (req, res) => {
   try {
     const pendingResorts = await Resort.find({ status: "pending" });
@@ -12,26 +12,24 @@ exports.getPendingResorts = async (req, res) => {
   }
 };
 
-// specific resort detail for approval
+//  Get specific resort details for approval
 exports.getResortData = async (req, res) => {
   try {
     const resort = await Resort.findById(req.params.resortId);
     if (!resort) {
       return res.status(404).json({ message: "Resort not found" });
     }
-    const owner = resort.owner;
-    const ownerData = await Owner.findById(owner);
+    const ownerData = await Owner.findById(resort.owner);
     res.send({ success: true, data: resort, owner: ownerData });
   } catch (error) {
     res.status(500).json({ message: "Failed to retrieve resort details" });
   }
 };
 
-// review resort
+// Review resort for approval/rejection
 exports.reviewResort = async (req, res) => {
   try {
     const { resortId, action } = req.body;
-
     const resort = await Resort.findById(resortId);
     if (!resort) {
       return res.send({
@@ -39,23 +37,25 @@ exports.reviewResort = async (req, res) => {
         message: "Resort not found",
       });
     }
-
     // Update the resort's status based on the provided value
     if (action === "Approve") {
       resort.status = "approved";
+      const updatedResort = await resort.save();
+      res.send({
+        success: true,
+        message: "Resort review completed successfully",
+        data: updatedResort,
+      });
     }
-
     if (action === "Reject") {
       resort.status = "rejected";
+      const updatedResort = await resort.save();
+      res.send({
+        success: false,
+        message: "Rejected the resort",
+        data: updatedResort,
+      });
     }
-
-    const updatedResort = await resort.save();
-
-    res.send({
-      success: true,
-      message: "Resort review completed successfully",
-      data: updatedResort,
-    });
   } catch (error) {
     res.send({
       success: false,
@@ -64,7 +64,7 @@ exports.reviewResort = async (req, res) => {
   }
 };
 
-//resort list
+// Get list of approved resorts
 exports.resortList = async (req, res) => {
   try {
     const resorts = await Resort.find({ status: "approved" });
@@ -74,7 +74,7 @@ exports.resortList = async (req, res) => {
   }
 };
 
-//resort info of approved resort
+// Get resort details of an approved resort
 exports.resortData = async (req, res) => {
   try {
     const resort = await Resort.findById(req.params.resortId);
@@ -89,13 +89,12 @@ exports.resortData = async (req, res) => {
   }
 };
 
-// fetch location
-exports.location=async(req,res)=>{
+// Fetch all locations
+exports.location = async (req, res) => {
   try {
-    const location = await Location.find()
-    res.send({success:true , data:location})
+    const location = await Location.find();
+    res.send({ success: true, data: location });
   } catch (error) {
     res.status(500).json({ message: "Failed to retrieve location" });
-    
   }
-}
+};

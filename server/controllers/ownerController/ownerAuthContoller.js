@@ -80,9 +80,8 @@ exports.getCurrentOwner = async (req, res) => {
       success: true,
       message: "owner data",
       data: owner,
-      
     });
   } catch (error) {
-    console.log("error");
+    res.status(500).json({ message: "Failed to retrieve owner details" });
   }
 };

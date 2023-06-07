@@ -1,7 +1,7 @@
 const Admin = require("../../models/adminModel");
 const { createToken } = require("../../middlewares/tokenAuth");
 const bcrypt = require("bcryptjs");
-const User = require('../../models/userModel')
+const User = require("../../models/userModel");
 
 // login admin
 exports.adminLogin = async (req, res) => {
@@ -46,30 +46,26 @@ exports.adminLogin = async (req, res) => {
   }
 };
 
+// Get the admin details
 exports.getCurrentAdmin = async (req, res) => {
   try {
     const admin = await Admin.findById(req.userId).select("-password");
     res.send({
       success: true,
-      message: "admin data",
+      message: "Successully retrieved admin details",
       data: admin,
-      
     });
   } catch (error) {
-    console.log("error");
+    res.status(500).json({ message: "Failed to retrieve admin details" });
   }
 };
 
-exports.usersList = async(req,res)=>{
+// Retrieve users list
+exports.usersList = async (req, res) => {
   try {
-    const users = await User.find()
-    console.log(users);
-    res.send({succes:true, data:users})
+    const users = await User.find();
+    res.send({ succes: true, data: users });
   } catch (error) {
     res.status(500).json({ message: "Failed to retrieve users" });
-    
   }
-}
-
-
-
+};

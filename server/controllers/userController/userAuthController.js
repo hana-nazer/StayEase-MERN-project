@@ -1,5 +1,5 @@
 const User = require("../../models/userModel");
-const { createToken} = require('../../middlewares/tokenAuth');
+const { createToken } = require("../../middlewares/tokenAuth");
 const bcrypt = require("bcryptjs");
 
 // register a new user
