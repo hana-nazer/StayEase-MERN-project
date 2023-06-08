@@ -7,11 +7,12 @@ import CategoryIcons from "../../components/user/CategoryIcons";
 
 function HomePage() {
   return (
-    <>
-      {/* <Navbar search="true" /> */}
+    <>   <Navbar search="true" />
+
       <div>
+     
         <Banner />
-        <div className="relative h-1/2">
+        <div className="relative">
           <div
             className="absolute left-0 right-0 flex items-end justify-center bottom-1/2"
             style={{ transform: "translateY(50%)" }}

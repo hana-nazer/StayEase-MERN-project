@@ -16,7 +16,12 @@ function Navbar(props) {
   } else if (role === "owner") {
     navbarColorClass = "bg-teal-900";
   } else {
-    navbarColorClass = "bg-dark-green";
+    if(search){
+      navbarColorClass = "bg-transparent border-b ";
+    }else{
+      navbarColorClass = "bg-dark-green";
+    }
+   
   }
 
   const navbarStyle = {
