@@ -37,3 +37,20 @@ export const getLocation = async (role) => {
     return { success: false, message: "Failed to fetch location" };
   }
 };
+
+
+// Get category
+export const getCategory = async (role) => {
+  try {
+    if (role === "owner") {
+      const response = await ownerApi.get("/fetch-category");
+      return response.data;
+    }
+    if (role === "admin") {
+      const response = await adminApi.get("/fetch-category");
+      return response.data;
+    }
+  } catch (error) {
+    return { success: false, message: "Failed to fetch category" };
+  }
+};

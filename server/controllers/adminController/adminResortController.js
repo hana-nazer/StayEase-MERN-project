@@ -89,12 +89,4 @@ exports.resortData = async (req, res) => {
   }
 };
 
-// Fetch all locations
-exports.location = async (req, res) => {
-  try {
-    const location = await Location.find();
-    res.send({ success: true, data: location });
-  } catch (error) {
-    res.status(500).json({ message: "Failed to retrieve location" });
-  }
-};
+

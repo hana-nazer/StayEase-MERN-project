@@ -19,9 +19,12 @@ const resortSlice = createSlice({
     setOwnerData: (state, action) => {
       state.ownerData = action.payload;
     },
+    clearAction:(state)=>{
+      state.actionSelected = null
+    }
   },
 });
 
-export const { setActionSelected, setResortData, setOwnerData } =
+export const { setActionSelected, setResortData, setOwnerData ,clearAction} =
   resortSlice.actions;
 export default resortSlice.reducer;

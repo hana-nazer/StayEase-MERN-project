@@ -123,7 +123,7 @@ function BookingData() {
       </div>
       <div className="text-center">
         <button
-          className="w-full px-8 py-3 text-white rounded-lg bg-cyan-800"
+          className="w-full px-8 py-3 text-white rounded-lg bg-custom-gray"
           type="submit"
         >
           Proceed

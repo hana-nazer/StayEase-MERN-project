@@ -68,8 +68,7 @@ function SignUp() {
   return (
     <>
       <div
-        className="flex items-center justify-center h-screen "
-        style={{ backgroundColor: "#f3f4f6" }}
+        className="flex items-center justify-center h-screen bg-white-smoke"
       >
         <div className="container flex flex-col w-1/2 mx-auto overflow-hidden bg-white border shadow-lg lg:flex-row rounded-xl">
           <div
@@ -140,7 +139,7 @@ function SignUp() {
 
               <div className="mt-5">
                 <button
-                  className="w-full py-3 text-center text-white bg-cyan-800"
+                  className="w-full py-3 text-center text-white bg-custom-gray"
                   type="submit"
                 >
                   Sign Up

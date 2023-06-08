@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setActionSelected, setResortData } from "../../redux/resortSlice";
+import { setActionSelected, setResortData,clearAction } from "../../redux/resortSlice";
 import { resortStatus } from "../../api calls/admin";
 
 function Action() {
@@ -23,6 +23,7 @@ function Action() {
         if (response.success) {
           dispatch(setResortData(response));
           navigate("/admin/resorts");
+          dispatch(clearAction())
         } else {
           console.log(response.data.message);
         }

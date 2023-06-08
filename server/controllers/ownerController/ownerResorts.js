@@ -1,6 +1,7 @@
 const Owner = require("../../models/ownerModel");
 const Resort = require("../../models/resortModel");
 const Location = require("../../models/locationModel");
+const Category = require('../../models/CategoryModel')
 
 // register resort
 exports.registerResort = async (req, res) => {
@@ -16,6 +17,7 @@ exports.registerResort = async (req, res) => {
       amenities: req.body.amenities,
       owner: req.userId,
       images: req.body.imgUrls,
+      category:req.body.category
     });
 
     // Save the new resort to the database
@@ -67,5 +69,15 @@ exports.location = async (req, res) => {
     res.send({ success: true, data: location });
   } catch (error) {
     res.status(500).json({ message: "Failed to retrieve location" });
+  }
+};
+
+// Fetch all category
+exports.category = async (req, res) => {
+  try {
+    const category = await Category.find();
+    res.send({ success: true, data: category });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to retrieve category" });
   }
 };

@@ -1,19 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { resortData } from "../../api calls/owner";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { uploadImg } from "../../api calls/owner";
-import { getLocation } from "../../api calls/resort";
+import { getLocation ,getCategory} from "../../api calls/resort";
 import { useSelector, useDispatch } from "react-redux";
 import { setLocation } from "../../redux/locationSlice";
+import { setCategory } from "../../redux/categorySlice";
 
 function RegistrationForm() {
   const locations = useSelector((state) => state.location.location);
+  const categories = useSelector((state)=>state.category.category)
   const dispatch = useDispatch();
 
   const currentUser = useSelector((state) => state.getUser.getOwner);
   const role = currentUser.role;
   const navigate = useNavigate();
+  
+  
+  const fetchCategory=async()=>{
+    try {
+      const response = await getCategory(role);
+      if (response.success) {
+        dispatch(setCategory(response.data));
+      } else {
+        console.log(response.data.message);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+  
+  
 
   const fetchLocations = async () => {
     try {
@@ -30,12 +48,14 @@ function RegistrationForm() {
 
   useEffect(() => {
     fetchLocations();
+    fetchCategory()
   }, []);
 
   const formik = useFormik({
     initialValues: {
       name: "",
       place: "",
+      category:"",
       description: "",
       address: "",
       amenities: [],
@@ -50,6 +70,9 @@ function RegistrationForm() {
       }
       if (!values.place.trim()) {
         errors.place = "Place is required";
+      }
+      if (!values.category.trim()) {
+        errors.category = "category is required";
       }
       if (!values.description.trim()) {
         errors.description = "Description is required";
@@ -78,6 +101,7 @@ function RegistrationForm() {
         let formData = {
           name: values.name,
           place: values.place,
+          category:values.category,
           address: values.address,
           description: values.description,
           charge: values.charge,
@@ -145,34 +169,71 @@ function RegistrationForm() {
                 </span>
               )}
             </div>
-            <div className="mb-4">
-              <label
-                className="block mb-2 font-bold text-gray-700"
-                htmlFor="place"
-              >
-                Place:
-              </label>
-              <select
-                className="w-full px-3 py-2 border border-gray-400 rounded-lg"
-                id="place"
-                name="place"
-                value={formik.values.place}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                onFocus={() => handleFieldFocus("place")}
-              >
-                <option value="">Select Place</option>
-                {locations.map((location) => (
-                  <option key={location._id} value={location.location}>
-                    {location.location}
-                  </option>
-                ))}
-              </select>
-              {formik.touched.place && formik.errors.place && (
-                <span className="text-sm text-red-500">
-                  {formik.errors.place}
-                </span>
-              )}
+            {/* -------------------- */}
+            <div className="flex">
+              <div className="flex-1 mb-4">
+                <label
+                  className="block mb-2 font-bold text-gray-700"
+                  htmlFor="place"
+                >
+                  Place:
+                </label>
+                <select
+                  className="w-full px-3 py-2 border border-gray-400 rounded-lg"
+                  id="place"
+                  name="place"
+                  value={formik.values.place}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  onFocus={() => handleFieldFocus("place")}
+                >
+                  <option value="">Select Place</option>
+                  {locations.map((location) => (
+                    <option key={location._id} value={location.location}>
+                      {location.location}
+                    </option>
+                  ))}
+                </select>
+
+                {formik.touched.place && formik.errors.place && (
+                  <span className="text-sm text-red-500">
+                    {formik.errors.place}
+                  </span>
+                )}
+              </div>
+
+              <div className="flex-1 mb-4 ml-4">
+                <div className="flex-1 mb-4">
+                  <label
+                    className="block mb-2 font-bold text-gray-700"
+                    htmlFor="category"
+                  >
+                    Category:
+                  </label>
+                  <select
+                    className="w-full px-3 py-2 border border-gray-400 rounded-lg"
+                    id="category"
+                    name="category"
+                    value={formik.values.category}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    onFocus={() => handleFieldFocus("category")}
+                  >
+                    <option value="">Choose Category</option>
+                    {categories.map((category) => (
+                      <option key={category._id} value={category.category}>
+                        {category.category}
+                      </option>
+                    ))}
+                  </select>
+
+                  {formik.touched.category && formik.errors.category && (
+                    <span className="text-sm text-red-500">
+                      {formik.errors.category}
+                    </span>
+                  )}
+                </div>
+              </div>
             </div>
 
             <div className="mb-4">

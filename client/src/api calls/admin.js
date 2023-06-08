@@ -63,6 +63,16 @@ export const addLocation = async (payload) => {
   }
 };
 
+// add category
+export const addCategory = async(payload)=>{
+  try {
+    const response = await adminApi.post("/add_category", payload);
+    return response.data;
+  } catch (error) {
+    return error.response;
+  }
+}
+
 // get admin
 export const GetCurrentAdmin = async () => {
   try {

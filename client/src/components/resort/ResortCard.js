@@ -30,10 +30,10 @@ function ResortCard() {
   };
 
   return (
-    <div className="grid grid-cols-4 gap-5">
+    <div className="grid grid-cols-4 gap-5 ">
       {resorts.map((resort) => (
         <div
-          className="w-full col-span-1 overflow-hidden bg-white rounded-md shadow-md cursor-pointer hover:shadow-lg"
+          className="w-full col-span-1 mb-5 overflow-hidden bg-white rounded-md shadow-md cursor-pointer hover:shadow-lg"
           key={resort.id}
           onClick={() => onClickResort(resort._id)}
           style={{ fontFamily: "Lato" }}
@@ -45,8 +45,8 @@ function ResortCard() {
           />
 
           <div className="p-4">
-            <h2 className="mb-1 text-xl font-semibold text-gray-800">{resort.name}</h2>
-            <p className="mb-1 text-gray-600">{resort.location}</p>
+            <h2 className="mb-1 text-xl font-semibold text-custom-gray">{resort.name}</h2>
+            <p className="mb-1 text-gray-700">{resort.location}</p>
             <p className="text-gray-700">
               Rs {resort.charge_per_night} per night
             </p>

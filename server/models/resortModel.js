@@ -9,6 +9,7 @@ const resortSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
   description: {
     type: String,
     required: true,
@@ -39,6 +40,10 @@ images:[],
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Owner",
+  },
+  category: {
+    type: String,
+    required: true,
   },
 });
 module.exports = mongoose.model("resorts", resortSchema);

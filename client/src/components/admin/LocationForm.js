@@ -5,8 +5,7 @@ import { addLocation } from "../../api calls/admin";
 function LocationForm() {
   const locationRef = useRef("");
   const dispatch = useDispatch();
-
-  const submit = async (event) => {
+ const submit = async (event) => {
     event.preventDefault();
     let newPlace = locationRef.current.value;
     if (newPlace !== "") {

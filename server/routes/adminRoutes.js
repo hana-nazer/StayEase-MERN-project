@@ -4,6 +4,7 @@ const authMiddleware = require("../middlewares/authMiddleware");
 const adminAuthController = require("../controllers/adminController/adminAuthController");
 const adminResortController = require("../controllers/adminController/adminResortController");
 const locationController = require("../controllers/adminController/locationController");
+const categoryController = require('../controllers/adminController/CategoryController')
 
 router.post("/login", adminAuthController.adminLogin);
 router.get("/pending", authMiddleware, adminResortController.getPendingResorts);
@@ -19,6 +20,7 @@ router.post(
 );
 router.get("/resorts", authMiddleware, adminResortController.resortList);
 router.post("/add_location", authMiddleware, locationController.addLocation);
+router.post("/add_category",authMiddleware,categoryController.addCategory)
 router.get(
   "/resortInfo/:resortId",
   authMiddleware,
@@ -31,6 +33,7 @@ router.get(
   authMiddleware,
   adminAuthController.getCurrentAdmin
 );
-router.get("/fetch-location", authMiddleware, adminResortController.location);
+router.get("/fetch-location", authMiddleware, locationController.location);
+router.get('/fetch-category',authMiddleware,categoryController.category)
 
 module.exports = router;

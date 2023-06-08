@@ -3,7 +3,7 @@ import ResortCard from "../resort/ResortCard";
 
 function Home() {
   return (
-    <div className="container mx-auto mt-20">
+    <div className="container py-20 mx-auto">
       <ResortCard/>
     </div>
   );

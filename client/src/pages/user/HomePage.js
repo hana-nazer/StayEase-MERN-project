@@ -7,9 +7,9 @@ function HomePage() {
   return (
     <>
       <Navbar search="true" />
-      <div className="mb-12">
-        <Home />
-      </div>
+        <div className=" bg-white-smoke">
+          <Home />
+        </div>
       <Footer />
     </>
   );

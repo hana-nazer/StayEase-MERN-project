@@ -10,7 +10,7 @@ function BookNow(props) {
   return (
    <>
    <div>
-        <button className="w-full p-2 text-2xl font-semibold text-white rounded-md bg-cyan-800 mb-7" onClick={onBook}>
+        <button className="w-full p-2 text-2xl font-semibold text-white rounded-md bg-custom-gray mb-7" onClick={onBook}>
           Book now
         </button>
       </div>

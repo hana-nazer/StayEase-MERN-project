@@ -10,78 +10,85 @@ import ResortInfo from "../pages/admin/ResortInfo";
 import UsersList from "../pages/admin/UsersList";
 import ProtectedAdmin from "../components/protectedRoute/ProtectedAdmin";
 import BookingList from "../pages/admin/BookingList";
+import Category from "../pages/admin/Category";
 
 function AdminRoutes() {
   return (
-    <>
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedAdmin>
-              <AdminHome />
-            </ProtectedAdmin>
-          }
-        />
-        <Route
-          path="/requests"
-          element={
-            <ProtectedAdmin>
-              <Request />
-            </ProtectedAdmin>
-          }
-        />
-        <Route
-          path="/view_resort/:resortId"
-          element={
-            <ProtectedAdmin>
-              <ResortDetailedView />
-            </ProtectedAdmin>
-          }
-        />
-        <Route
-          path="/resorts"
-          element={
-            <ProtectedAdmin>
-              <ResortList />
-            </ProtectedAdmin>
-          }
-        />
-        <Route
-          path="/location"
-          element={
-            <ProtectedAdmin>
-              <Location />
-            </ProtectedAdmin>
-          }
-        />
-        <Route
-          path="/resortInfo/:resortId"
-          element={
-            <ProtectedAdmin>
-              <ResortInfo />
-            </ProtectedAdmin>
-          }
-        />
-        <Route
-          path="/users"
-          element={
-            <ProtectedAdmin>
-              <UsersList />
-            </ProtectedAdmin>
-          }
-        />
-        <Route
-          path="/bookings"
-          element={
-            <ProtectedAdmin>
-              <BookingList />
-            </ProtectedAdmin>
-          }
-        />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedAdmin>
+            <AdminHome />
+          </ProtectedAdmin>
+        }
+      />
+      <Route
+        path="/requests"
+        element={
+          <ProtectedAdmin>
+            <Request />
+          </ProtectedAdmin>
+        }
+      />
+      <Route
+        path="/view_resort/:resortId"
+        element={
+          <ProtectedAdmin>
+            <ResortDetailedView />
+          </ProtectedAdmin>
+        }
+      />
+      <Route
+        path="/resorts"
+        element={
+          <ProtectedAdmin>
+            <ResortList />
+          </ProtectedAdmin>
+        }
+      />
+      <Route
+        path="/location"
+        element={
+          <ProtectedAdmin>
+            <Location />
+          </ProtectedAdmin>
+        }
+      />
+      <Route
+        path="/resortInfo/:resortId"
+        element={
+          <ProtectedAdmin>
+            <ResortInfo />
+          </ProtectedAdmin>
+        }
+      />
+      <Route
+        path="/users"
+        element={
+          <ProtectedAdmin>
+            <UsersList />
+          </ProtectedAdmin>
+        }
+      />
+      <Route
+        path="/bookings"
+        element={
+          <ProtectedAdmin>
+            <BookingList />
+          </ProtectedAdmin>
+        }
+      />
+      <Route
+        path="/category"
+        element={
+          <ProtectedAdmin>
+            <Category />
+          </ProtectedAdmin>
+        }
+      />
+    </Routes>
   );
 }
 

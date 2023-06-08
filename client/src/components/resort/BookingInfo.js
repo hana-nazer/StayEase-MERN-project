@@ -64,7 +64,7 @@ function BookingInfo() {
         <div className="my-3 font-bold">Total:{totalCharge}</div>
         <div className="text-center ">
           <button
-            className="w-full px-8 py-3 text-white rounded-lg bg-cyan-800"
+            className="w-full px-8 py-3 text-white rounded-lg bg-custom-gray"
             onClick={handlePayment}
           >
             Pay now

@@ -15,5 +15,6 @@ router.post("/register", authMiddleware, ownerResorts.registerResort);
 router.get("/resorts", authMiddleware, ownerResorts.getResorts);
 router.get("/resortInfo/:resortId", authMiddleware, ownerResorts.resortData);
 router.get("/fetch-location", authMiddleware, ownerResorts.location);
+router.get('/fetch-category',authMiddleware,ownerResorts.category)
 
 module.exports = router;

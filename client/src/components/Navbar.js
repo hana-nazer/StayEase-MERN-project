@@ -16,7 +16,7 @@ function Navbar(props) {
   } else if (role === "owner") {
     navbarColorClass = "bg-teal-900";
   } else {
-    navbarColorClass = "bg-teal-500";
+    navbarColorClass = "bg-dark-green";
   }
 
   const navbarStyle = {
@@ -63,13 +63,14 @@ function Navbar(props) {
                   type="text"
                   placeholder="Search"
                   onChange={handleSearch}
-                  className="px-2 py-1 pr-8 text-white bg-transparent border-b border-white"
-                  style={{ outline: "none" }}
+                  className="h-8 px-2 py-1 pr-8 text-black bg-white focus:outline-none"
+                  style={{ lineHeight: "1rem", border: "none" }}
                 />
+
                 <FontAwesomeIcon
                   icon={faSearch}
-                  className="absolute w-4 h-4 text-white transform -translate-y-1/2 fill-current top-1/2 right-2"
-                  style={{ cursor: "pointer" }}
+                  className="absolute w-4 h-4 text-gray-500 fill current top-1 right-2"
+                  style={{ cursor: "pointer", marginTop: "0.3rem" }}
                 />
               </div>
             </div>

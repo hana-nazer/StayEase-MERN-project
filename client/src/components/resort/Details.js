@@ -13,6 +13,9 @@ function Details() {
         No:of guests:{resortData.no_of_guest}
       </p>
       <p className="mb-1 font-semibold">
+       Category:{resortData.category}
+      </p>
+      <p className="mb-1 font-semibold">
         Amenities:{" "}
         {resortData.amenities &&
           resortData.amenities.map((amenity) => amenity).join(", ")}
