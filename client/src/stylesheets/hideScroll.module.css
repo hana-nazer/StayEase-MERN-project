@@ -1,0 +1,22 @@
+.scrollcontainer {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.scrollcontainer::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
+}
+
+.scrollcontainer::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.image {
+  margin-right: 60px;
+}
+.tallerContainer {
+  height: 100px; /* Update the height value as desired */
+}

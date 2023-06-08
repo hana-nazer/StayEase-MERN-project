@@ -1,9 +1,10 @@
 import React from "react";
 import ResortCard from "../resort/ResortCard";
 
+
 function Home() {
   return (
-    <div className="container py-20 mx-auto">
+    <div className="container mx-auto">
       <ResortCard/>
     </div>
   );
