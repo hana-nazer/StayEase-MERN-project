@@ -11,27 +11,20 @@ function HomePage() {
       {/* <Navbar search="true" /> */}
       <div>
         <Banner />
-        <div style={{  position: "relative" }}>
+        <div className="relative h-1/2">
           <div
-            style={{
-              position: "absolute",
-              left: 0,
-              right: 0,
-              bottom: 0,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "flex-end",
-              
-            }}
+            className="absolute left-0 right-0 flex items-end justify-center bottom-1/2"
+            style={{ transform: "translateY(50%)" }}
           >
             <CategoryIcons />
           </div>
         </div>
+
+        <div className="py-20 bg-white-smoke h-1/2">
+          <Home />
+        </div>
       </div>
 
-      <div className="py-20 bg-white-smoke">
-        <Home />
-      </div>
       <Footer />
     </>
   );
