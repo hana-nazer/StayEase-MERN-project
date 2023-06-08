@@ -16,7 +16,7 @@ function Navbar(props) {
   } else if (role === "owner") {
     navbarColorClass = "bg-teal-900";
   } else {
-    navbarColorClass = "bg-cyan-800";
+    navbarColorClass = "bg-teal-500";
   }
 
   const navbarStyle = {
