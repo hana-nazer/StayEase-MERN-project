@@ -8,7 +8,7 @@ function LoginPage() {
 
   return (
     <>
-      <Navbar page='true' role='admin'/>
+      <Navbar page="login" role="admin"/>
       <Login />
       <Footer />
     </>

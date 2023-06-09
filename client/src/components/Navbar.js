@@ -12,6 +12,7 @@ function Navbar(props) {
   const role = props.role;
   const name = props.name;
   const search = props.search;
+  const page = props.page;
 
   let navbarColorClass;
   if (role === "admin") {
@@ -46,7 +47,7 @@ function Navbar(props) {
     } else {
       tokenKey = "user_token";
       redirectPath = "/";
-      dispatch(clearUser())
+      dispatch(clearUser());
     }
 
     localStorage.removeItem(tokenKey);
@@ -92,13 +93,17 @@ function Navbar(props) {
             </Link>
           ) : (
             <>
-              <span className="mr-2 text-white">{name}</span>
-              <FontAwesomeIcon
-                onClick={() => logoutHandler(role)}
-                icon={faSignOutAlt}
-                className="w-5 h-5 text-white fill-current"
-                style={{ cursor: "pointer", marginRight: "10px" }}
-              />
+              {props.page ? null : (
+                <>
+                  <span className="mr-2 text-white">{name}</span>
+                  <FontAwesomeIcon
+                    onClick={() => logoutHandler(role)}
+                    icon={faSignOutAlt}
+                    className="w-5 h-5 text-white fill-current"
+                    style={{ cursor: "pointer", marginRight: "10px" }}
+                  />
+                </>
+              )}
             </>
           )}
         </div>
