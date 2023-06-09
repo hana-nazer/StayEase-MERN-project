@@ -9,9 +9,15 @@ router.post("/signup", userAuthController.postSignUp);
 router.post("/login", userAuthController.postLogin);
 router.get("/resorts", userResortController.getResorts);
 router.get("/resortInfo/:resortId", userResortController.resortData);
-router.post("/book/:resortId", bookingController.postBooking);
+router.get(
+  "/get-current-user",
+  authMiddleware,
+  userAuthController.getCurrentUser
+);
+router.post("/book/:resortId", authMiddleware, bookingController.postBooking);
 router.get(
   "/resorts/:resortId/disableddates",
+  authMiddleware,
   bookingController.fetchDisabledDates
 );
 

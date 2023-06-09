@@ -15,5 +15,5 @@
 }
 
 .userButton {
-  @apply bg-cyan-800;
+  @apply bg-custom-gray;
 }

@@ -2,10 +2,13 @@ import React from "react";
 import Logo from "../components/Logo";
 import { useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { clearUser } from "../redux/getUserSlice";
+import { useDispatch } from "react-redux";
 import { faSignOutAlt, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar(props) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const role = props.role;
   const name = props.name;
   const search = props.search;
@@ -16,12 +19,11 @@ function Navbar(props) {
   } else if (role === "owner") {
     navbarColorClass = "bg-teal-900";
   } else {
-    if(search){
+    if (search) {
       navbarColorClass = "bg-transparent border-b ";
-    }else{
+    } else {
       navbarColorClass = "bg-dark-green";
     }
-   
   }
 
   const navbarStyle = {
@@ -31,10 +33,10 @@ function Navbar(props) {
     right: 0,
     zIndex: 9999,
   };
-
   const logoutHandler = (role) => {
     let tokenKey;
     let redirectPath;
+
     if (role === "admin") {
       tokenKey = "admin_token";
       redirectPath = "/admin/login";
@@ -44,7 +46,9 @@ function Navbar(props) {
     } else {
       tokenKey = "user_token";
       redirectPath = "/";
+      dispatch(clearUser())
     }
+
     localStorage.removeItem(tokenKey);
     navigate(redirectPath);
   };

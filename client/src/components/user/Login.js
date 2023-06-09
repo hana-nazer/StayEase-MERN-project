@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import LoginForm from "../LoginForm";
 import LoginTitle from "../LoginTitle";
 import { LoginUser } from "../../api calls/users";
+import { useDispatch } from "react-redux";
 
 function Login() {
   const navigate = useNavigate();

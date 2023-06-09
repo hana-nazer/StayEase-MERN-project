@@ -5,6 +5,7 @@ import LoginPage from "../pages/user/LoginPage";
 import ResortDetail from "../pages/user/ResortDetail";
 import Booking from "../pages/user/Booking";
 import BookingDetails from "../pages/user/BookingDetails";
+import ProtectedUser from "../components/protectedRoute/ProtectedUser";
 const HomePage = lazy(() => import("../pages/user/HomePage"));
 
 function UserRoutes() {
@@ -20,8 +21,23 @@ function UserRoutes() {
         <Route path="/login" element={<LoginPage />} />
         {/* <Route path="" element={<HomePage />} /> */}
         <Route path="/resortInfo/:resortId" element={<ResortDetail />} />
-        <Route path="/book/:resortId" element={<Booking />} />
-        <Route path="/bookingdetails" element={<BookingDetails />} />
+
+        <Route
+          path="/book/:resortId"
+          element={
+            <ProtectedUser>
+              <Booking />
+            </ProtectedUser>
+          }
+        />
+        <Route
+          path="/bookingdetails"
+          element={
+            <ProtectedUser>
+              <BookingDetails />
+            </ProtectedUser>
+          }
+        />
       </Routes>
     </>
   );

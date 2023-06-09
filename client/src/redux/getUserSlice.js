@@ -13,6 +13,7 @@ const getUserSlice = createSlice({
     setUser: (state, action) => {
       state.getUser = action.payload;
     },
+    clearUser:(state)=>{state.getUser=null},
     setOwner: (state, action) => {
       state.getOwner = action.payload;
     },
@@ -22,5 +23,5 @@ const getUserSlice = createSlice({
   },
 });
 
-export const { setUser, setOwner, setAdmin } = getUserSlice.actions;
+export const { setUser, setOwner, setAdmin,clearUser } = getUserSlice.actions;
 export default getUserSlice.reducer;

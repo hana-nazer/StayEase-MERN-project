@@ -49,3 +49,13 @@ export const disabledDateList = async (resortId) => {
     return error.response;
   }
 };
+
+// Get current user
+export const getCurrentUser = async () => {
+  try {
+    const response = await userApi.get("/get-current-user");
+    return response.data;
+  } catch (error) {
+    return error.response;
+  }
+};

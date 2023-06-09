@@ -55,7 +55,7 @@ function SignUp() {
       try {
         const response = await RegisterUser(formData);
         if (response.success) {
-          navigate("/home");
+          navigate("/");
         } else {
           console.log(response.data.message);
         }

@@ -64,12 +64,26 @@ exports.postLogin = async (req, res) => {
     res.send({
       success: true,
       message: "user loggedin successfully",
-      data: token,
+      data: token
     });
   } catch (error) {
     res.send({
       succes: false,
       message: error.message,
     });
+  }
+};
+
+// get current user
+exports.getCurrentUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.userId).select("-password");
+    res.send({
+      success: true,
+      message: "user data",
+      data: user,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to retrieve user details" });
   }
 };
