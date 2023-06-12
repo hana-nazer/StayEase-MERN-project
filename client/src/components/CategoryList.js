@@ -11,7 +11,6 @@ function CategoryList() {
   const fetchCategory = async () => {
     try {
       const response = await getCategory(role);
-      console.log(response);
       if (response.success) {
         dispatch(setCategory(response.data));
       } else {

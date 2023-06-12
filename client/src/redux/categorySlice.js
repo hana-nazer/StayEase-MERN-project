@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialCategory = {
   category: [],
+  
 };
 
 const categorySlice = createSlice({
