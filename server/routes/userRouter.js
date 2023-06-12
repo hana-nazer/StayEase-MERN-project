@@ -20,5 +20,6 @@ router.get(
   authMiddleware,
   bookingController.fetchDisabledDates
 );
+router.get('/fetch-category',userResortController.category)
 
 module.exports = router;

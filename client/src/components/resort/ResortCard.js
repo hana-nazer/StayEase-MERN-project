@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "lato-font";
-
+import { setResortData } from "../../redux/ResortCardSlice";
+import { useSelector, useDispatch } from "react-redux";
 import { getResorts } from "../../api calls/users";
 import { useNavigate } from "react-router-dom";
 
 function ResortCard() {
   const navigate = useNavigate();
-  const [resorts, setResorts] = useState([]);
+  const dispatch = useDispatch();
+  const resorts = useSelector((state) => state.resort.resorts);
 
   useEffect(() => {
     fetchResorts();
@@ -16,7 +18,7 @@ function ResortCard() {
     try {
       const response = await getResorts();
       if (response.success) {
-        setResorts(response.data);
+        dispatch(setResortData(response.data));
       } else {
         console.log(response.data.message);
       }
@@ -45,7 +47,9 @@ function ResortCard() {
           />
 
           <div className="p-4">
-            <h2 className="mb-1 text-xl font-semibold text-custom-gray">{resort.name}</h2>
+            <h2 className="mb-1 text-xl font-semibold text-custom-gray">
+              {resort.name}
+            </h2>
             <p className="mb-1 text-gray-700">{resort.location}</p>
             <p className="text-gray-700">
               Rs {resort.charge_per_night} per night

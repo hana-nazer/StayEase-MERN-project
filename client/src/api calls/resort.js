@@ -44,9 +44,11 @@ export const getCategory = async (role) => {
     if (role === "owner") {
       const response = await ownerApi.get("/fetch-category");
       return response.data;
-    }
-    if (role === "admin") {
+    } else if (role === "admin") {
       const response = await adminApi.get("/fetch-category");
+      return response.data;
+    } else {
+      const response = await userApi.get("fetch-category");
       return response.data;
     }
   } catch (error) {

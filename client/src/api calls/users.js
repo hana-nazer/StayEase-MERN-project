@@ -21,14 +21,24 @@ export const LoginUser = async (payload) => {
 };
 
 // getResorts
-export const getResorts = async () => {
+export const getResorts = async (category) => {
   try {
-    const response = await userApi.get("/resorts");
-    return response.data;
+    const params = {};
+    if (category) {
+      params.category = category;
+    }
+    const response = await userApi.get("/resorts", { params });
+console.log(response);
+    if (category) {
+      return { data: response.data, category };
+    } else {
+      return response.data;
+    }
   } catch (error) {
     return error.response;
   }
 };
+
 
 // booking
 export const postBooking = async (payload, resortId) => {
