@@ -38,7 +38,6 @@ export const getLocation = async (role) => {
   }
 };
 
-
 // Get category
 export const getCategory = async (role) => {
   try {

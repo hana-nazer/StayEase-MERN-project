@@ -7,6 +7,7 @@ function CategoryList() {
   const dispatch = useDispatch();
   const currentAdmin = useSelector((state) => state.getUser.getAdmin);
   const categories = useSelector((state) => state.category.category);
+  console.log(categories);
   const role = currentAdmin.role;
   const fetchCategory = async () => {
     try {
@@ -29,11 +30,13 @@ function CategoryList() {
     <>
       <div className="w-1/2 p-4 mt-10 border">
         <ul>
-          {categories.map((category) => (
-            <li className="py-2 border-b border-gray-300" key={category._id}>
-              {category.category}
+          {categories &&
+            categories.map((category) => (
+              <li className="flex py-2 mt-6 border-b border-gray-300" key={category._id}>
+              <img src={category.imageUrl} alt={category.category} className="w-10 h-10 mr-2 border" />
+              <span className="mr-2 ">{category.category}</span>
             </li>
-          ))}
+            ))}
         </ul>
       </div>
     </>

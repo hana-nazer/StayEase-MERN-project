@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 const categorySchema = new mongoose.Schema(
   {
-    category: String
+    category: String,
+    imageUrl: String
   },
   {
-    timestamps: true,
+    timestamps: true
   }
 );
 

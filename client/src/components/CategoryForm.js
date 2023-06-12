@@ -1,64 +1,3 @@
-// import React, { useRef } from "react";
-// import { useDispatch } from "react-redux";
-// import { setCategory } from "../redux/categorySlice";
-// import { addCategory } from "../api calls/admin";
-
-// function CategoryForm() {
-//   const categoryRef = useRef("");
-//   const dispatch = useDispatch();
-
-//   const submit = async (event) => {
-//     event.preventDefault();
-//     let newCategory = categoryRef.current.value.trim();
-//     if (newCategory !== "") {
-//       try {
-//         const response = await addCategory({ category: newCategory });
-//         if (response.success) {
-//           const categoryData = Array.isArray(response.data) ? response.data : [];
-//           dispatch(setCategory(categoryData));
-//           categoryRef.current.value = "";
-//         } else {
-//           console.log(response.data.message);
-//         }
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     }
-//   };
-
-//   return (
-//     <div className="w-1/2 p-4 mt-10 border">
-//       <p className="mb-3 text-xl font-semibold text-center">Add Category</p>
-//       <form onSubmit={submit}>
-//         <div className="mb-4">
-//           <label for='category'>Category name</label>
-//           <input
-//               className="w-full px-3 py-2 mr-1 border border-gray-400 rounded-lg"
-//             type="text"
-//             id="category"
-//             name="category"
-//             ref={categoryRef}
-//           />
-//         </div>
-//         <div className="mb-4">
-//           <label for="icon">CategoryIcon</label>
-//           <input
-//             className="w-full px-3 py-2 mr-1 border border-gray-400 rounded-lg"
-//             type="file"
-//             id="icon"
-//             name="icon"
-//             ref={categoryRef}
-//           />
-//         </div>
-//         <button className="w-full p-2 text-white bg-gray-700 rounded-lg">Add</button>
-
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default CategoryForm;
-
 import React from "react";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
@@ -83,11 +22,11 @@ function CategoryForm() {
 
       return errors;
     },
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       try {
         let iconUrl = await uploadImg(values.icon);
         console.log("iconUrl", iconUrl);
-
+    
         let formData = {
           category: values.category,
           iconUrl,
@@ -95,6 +34,7 @@ function CategoryForm() {
         const response = await addCategory(formData);
         if (response.success) {
           dispatch(setCategory(response.data));
+          formik.setValues({ category: "", icon: null });
         } else {
           console.log(response.data.message);
         }

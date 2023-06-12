@@ -23,6 +23,7 @@ exports.postBooking = async (req, res) => {
       no_of_days: req.body.no_of_days,
       dates: req.body.dates,
       totalCharge: req.body.charge,
+      user: req.userId,
     });
     const bookedResort = await bookingData.save();
     res.send({

@@ -1,22 +1,29 @@
 const Category = require("../../models/CategoryModel");
 
-//add location
+//add category
 exports.addCategory = async (req, res) => {
   try {
-    const { category } = req.body;
-    if (!category) {
+    const category = req.body.category;
+    const iconUrl = req.body.iconUrl;
+    if (!category || !iconUrl) {
       return res.send({
         success: false,
         message: "Give non empty value",
       });
     }
-    const newCategory = new Category(req.body);
-    await newCategory.save();
+
+    const newCategory = new Category({
+      category: category,
+      imageUrl: iconUrl,
+    });
+
+    const savedCategory = await newCategory.save();
     res.send({
       success: true,
       message: "added category successfully",
-      data: newCategory,
+      data: savedCategory,
     });
+
   } catch (error) {
     res.send({
       success: false,
