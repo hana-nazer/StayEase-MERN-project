@@ -1,6 +1,8 @@
 const Resort = require("../../models/resortModel");
 const Owner = require("../../models/ownerModel");
 const Location = require("../../models/locationModel");
+const Booking = require("../../models/BookingModel");
+const User = require("../../models/userModel");
 
 // getPending resorts in for approval
 exports.getPendingResorts = async (req, res) => {
@@ -89,4 +91,49 @@ exports.resortData = async (req, res) => {
   }
 };
 
+// // booking details
+// exports.bookings=async(req,res)=>{
+//   try {
+//     const bookings = await Booking.find()
+//     const resorts = bookings.map((booking) => booking.resort);
+//     console.log(resorts);
+//     res.send({success:true,data:bookings})
+//   } catch (error) {
+//     res.status(500).json({ message: "Failed to retrieve bookings" });
+//   }
+// }
+  
+exports.bookings = async (req, res) => {
+  try {
+    const bookings = await Booking.find();
+    const resortIds = bookings.map((booking) => booking.resort);
+    const users = bookings.map((booking) => booking.user);
+    const userNames = await User.find({ _id: { $in: users } }).select("name");
+    
 
+    const resortNames = await Resort.find({ _id: { $in: resortIds } }).select(
+      "name"
+    );
+
+    const bookingData = bookings.map((booking) => ({
+      _id: booking._id,
+      // name: booking.name,
+      phone: booking.phone,
+      numberOfGuests: booking.numberOfGuests,
+      resort:
+        resortNames.find((resort) => resort._id.equals(booking.resort))?.name ||
+        "",
+      no_of_days: booking.no_of_days,
+      dates: booking.dates,
+      totalCharge: booking.totalCharge,
+      user: userNames.find((user) => user._id.equals(booking.user))?.name || "",
+      __v: booking.__v,
+    }));
+
+    console.log(bookingData);
+
+    res.send({ success: true, data: bookingData });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to retrieve bookings" });
+  }
+};

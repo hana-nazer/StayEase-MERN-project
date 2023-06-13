@@ -28,17 +28,16 @@ export const getResorts = async (category) => {
       params.category = category;
     }
     const response = await userApi.get("/resorts", { params });
-console.log(response);
-    if (category) {
-      return { data: response.data, category };
-    } else {
+    console.log(response);
+    // if (category) {
+    //   return { data: response.data, category };
+    // } else {
       return response.data;
-    }
+    // }
   } catch (error) {
     return error.response;
   }
 };
-
 
 // booking
 export const postBooking = async (payload, resortId) => {

@@ -73,3 +73,13 @@ export const getResorts = async () => {
     return error.response;
   }
 };
+
+// bookings list
+export const Bookings = async () => {
+  try {
+    const response = await ownerApi.get("/bookings");
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};

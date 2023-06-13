@@ -1,56 +1,27 @@
 import React from "react";
 
-function BookingTable() {
-  const bookings = [
-    {
-      resortName: "Resort A",
-      customerName: "John Doe",
-      phone: "123-456-7890",
-      checkIn: "2023-06-10",
-      checkOut: "2023-06-15",
-      numOfGuests: 2,
-      totalCharge: "$500",
-    },
-    {
-      resortName: "Resort B",
-      customerName: "Jane Smith",
-      phone: "987-654-3210",
-      checkIn: "2023-07-01",
-      checkOut: "2023-07-07",
-      numOfGuests: 4,
-      totalCharge: "$800",
-    },
-    {
-      resortName: "Resort C",
-      customerName: "Mark Johnson",
-      phone: "555-123-4567",
-      checkIn: "2023-08-15",
-      checkOut: "2023-08-20",
-      numOfGuests: 1,
-      totalCharge: "$300",
-    },
-    {
-      resortName: "Resort D",
-      customerName: "Sarah Wilson",
-      phone: "111-222-3333",
-      checkIn: "2023-09-05",
-      checkOut: "2023-09-12",
-      numOfGuests: 3,
-      totalCharge: "$650",
-    },
-  ];
+function BookingTable({ details }) {
+  const bookings = details.map((booking, index) => ({
+    resortName: booking.resort,
+    customerName: booking.user,
+    phone: booking.phone,
+    checkIn: booking.dates[0],
+    checkOut: booking.dates[booking.dates.length - 1],
+    numOfGuests: booking.numberOfGuests,
+    totalCharge: booking.totalCharge,
+  }));
 
   return (
     <>
-      <table className="w-full ">
+      <table className="w-full">
         <caption className="p-2">Booking list</caption>
         <thead className="text-white bg-gray-700">
           <tr>
-            <th className="p-2 border border-white">resort</th>
+            <th className="p-2 border border-white">Resort</th>
             <th className="p-2 border border-white">Customer Name</th>
             <th className="p-2 border border-white">Phone</th>
-            <th className="p-2 border border-white">checkIn</th>
-            <th className="p-2 border border-white">checkOut</th>
+            <th className="p-2 border border-white">Check-in</th>
+            <th className="p-2 border border-white">Check-out</th>
             <th className="p-2 border border-white">Guests</th>
             <th className="p-2 border border-white">Charge</th>
             <th className="p-2 border border-white">View</th>

@@ -87,7 +87,6 @@ export const GetCurrentAdmin = async () => {
 };
 
 // to uplaod category icon
-
 export const uploadImg = async (image) => {
   const cloud_name = "dz8verrgd";
   const upload_preset = "category_icon";
@@ -108,5 +107,15 @@ export const uploadImg = async (image) => {
     // Handle any errors that occurred during the upload process
     console.error("Image upload error:", error);
     throw error;
+  }
+};
+
+// bookings list
+export const Bookings = async () => {
+  try {
+    const response = await adminApi.get("/bookings");
+    return response.data;
+  } catch (error) {
+    return error;
   }
 };

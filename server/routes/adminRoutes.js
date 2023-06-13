@@ -35,5 +35,6 @@ router.get(
 );
 router.get("/fetch-location", authMiddleware, locationController.location);
 router.get('/fetch-category',authMiddleware,categoryController.category)
+router.get('/bookings',authMiddleware,adminResortController.bookings)
 
 module.exports = router;
