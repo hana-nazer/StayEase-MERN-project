@@ -13,7 +13,6 @@ const bookingSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-
   resort: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Resort",
@@ -22,9 +21,9 @@ const bookingSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  dates:{
-    type:[],
-    required:true
+  dates: {
+    type: [],
+    required: true,
   },
   totalCharge: {
     type: Number,
@@ -33,6 +32,10 @@ const bookingSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "users",
+  },
+  transactionId: {
+    type: String,
+    required: true,
   },
 });
 

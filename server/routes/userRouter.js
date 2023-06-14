@@ -14,12 +14,17 @@ router.get(
   authMiddleware,
   userAuthController.getCurrentUser
 );
-router.post("/book/:resortId", authMiddleware, bookingController.postBooking);
+// router.post("/book/:resortId", authMiddleware, bookingController.postBooking);
 router.get(
   "/resorts/:resortId/disableddates",
   authMiddleware,
   bookingController.fetchDisabledDates
 );
-router.get('/fetch-category',userResortController.category)
+router.get("/fetch-category", userResortController.category);
+router.post(
+  "/create-checkout-session",
+  authMiddleware,
+  bookingController.makePayment
+);
 
 module.exports = router;

@@ -7,12 +7,13 @@ import Booking from "../pages/user/Booking";
 import BookingDetails from "../pages/user/BookingDetails";
 import ProtectedUser from "../components/protectedRoute/ProtectedUser";
 import LoadingFallback from "../components/LoadingFallback";
+import Success from "../components/Success";
 const HomePage = lazy(() => import("../pages/user/HomePage"));
 
 function UserRoutes() {
   return (
     <>
-      <Suspense fallback={<LoadingFallback/>}>
+      <Suspense fallback={<LoadingFallback />}>
         <Routes>
           <Route path="" element={<HomePage />} />
         </Routes>
@@ -20,9 +21,7 @@ function UserRoutes() {
       <Routes>
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
-        {/* <Route path="" element={<HomePage />} /> */}
         <Route path="/resortInfo/:resortId" element={<ResortDetail />} />
-
         <Route
           path="/book/:resortId"
           element={
@@ -36,6 +35,14 @@ function UserRoutes() {
           element={
             <ProtectedUser>
               <BookingDetails />
+            </ProtectedUser>
+          }
+        />
+        <Route
+          path="/success"
+          element={
+            <ProtectedUser>
+              <Success />
             </ProtectedUser>
           }
         />

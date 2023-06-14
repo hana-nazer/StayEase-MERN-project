@@ -1,10 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { postBooking } from "../../api calls/users";
+import { loadStripe } from "@stripe/stripe-js";
+import { userApi } from "../../api calls/axios";
 
 function BookingInfo() {
-  const navigate = useNavigate();
   const resortData = useSelector((state) => state.verifyResort.resortData);
   const bookingInfo = useSelector((state) => state.booking.bookingData);
   const totalCharge =
@@ -21,13 +20,36 @@ function BookingInfo() {
     checkOut: lastDate,
     charge: totalCharge,
   };
-  const handlePayment = async () => {
+
+  const makePayment = async () => {
+    const stripe = await loadStripe(
+      "pk_test_51NInNoSHtjRpyBDQv24akDwPFsTulGzPE4wg4B0viMQJCyEn5xD5LDl8V05ybuBdfpaPaN3ZEa87vTSEkC5agse900Be2DAUhl"
+    );
+    const body = { bookingDetails };
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
     try {
-      const response = await postBooking(bookingDetails, resortData._id);
-      if (response.success) {
-        navigate("/asd");
+      const response = await userApi.post("/create-checkout-session", body, {
+        headers: headers,
+      });
+      const session = response.data;
+      const result = stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+      if (result.error) {
+        console.log(result.error);
       } else {
-        console.log(response.data.message);
+        // const transactionId = session.id
+        // const bookingData = {
+        //   ...bookingDetails,
+        //   transactionId:transactionId
+        // }
+        // const savedResponse = await postBooking(bookingData,bookingDetails.resortId)
+        // if(savedResponse.success){
+        //   dispatch(setBookingDetails(response.data))
+        // }
       }
     } catch (error) {
       console.log(error.response);
@@ -57,15 +79,15 @@ function BookingInfo() {
               {resortData.charge_per_night * bookingInfo.no_of_days}
             </p>
             <p className="my-3 font-semibold">
-              No:of guests {""}: {bookingInfo.guests}
+              No:of guests: {bookingInfo.guests}
             </p>
           </div>
         </div>
-        <div className="my-3 font-bold">Total:{totalCharge}</div>
-        <div className="text-center ">
+        <div className="my-3 font-bold">Total: {totalCharge}</div>
+        <div className="text-center">
           <button
             className="w-full px-8 py-3 text-white rounded-lg bg-custom-gray"
-            onClick={handlePayment}
+            onClick={makePayment}
           >
             Pay now
           </button>
@@ -74,5 +96,4 @@ function BookingInfo() {
     </>
   );
 }
-
 export default BookingInfo;

@@ -4,7 +4,7 @@ const app = express();
 const cors = require("cors");
 const userRouter = require("./routes/userRouter");
 const ownerRouter = require("./routes/ownerRoutes");
-const adminRouter = require('./routes/adminRoutes')
+const adminRouter = require("./routes/adminRoutes");
 
 // Load environment variables from a .env file in the project root directory
 require("dotenv").config();
@@ -19,14 +19,14 @@ app.use(express.json());
 app.use(
   cors({
     credentials: process.env.CORS_CREDENTIALS === "true",
-    origin: process.env.CORS_ORIGIN, 
+    origin: process.env.CORS_ORIGIN,
   })
 );
 
 // Route incoming requests to the appropriate router
 app.use("/", userRouter);
 app.use("/owner", ownerRouter);
-app.use("/admin",adminRouter)
+app.use("/admin", adminRouter);
 
 const port = process.env.PORT || 5000;
 

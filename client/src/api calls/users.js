@@ -40,14 +40,15 @@ export const getResorts = async (category) => {
 };
 
 // booking
-export const postBooking = async (payload, resortId) => {
-  try {
-    const response = await userApi.post(`/book/${resortId}`, payload);
-    return response.data;
-  } catch (error) {
-    return error.response;
-  }
-};
+// export const postBooking = async (payload, resortId) => {
+//   try {
+//     const response = await userApi.post(`/book/${resortId}`, payload);
+//     return response.data;
+//   } catch (error) {
+//     return error.response;
+//   }
+// };
+
 
 // disabled dates
 export const disabledDateList = async (resortId) => {
@@ -68,3 +69,4 @@ export const getCurrentUser = async () => {
     return error.response;
   }
 };
+
