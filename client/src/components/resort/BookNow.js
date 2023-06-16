@@ -1,4 +1,6 @@
 import React from 'react'
+import "../../fonts/fonts.css";
+
 import { useNavigate } from 'react-router-dom'
 
 function BookNow(props) {
@@ -10,7 +12,7 @@ function BookNow(props) {
   return (
    <>
    <div>
-        <button className="w-full p-2 text-2xl font-semibold text-white rounded-md bg-custom-gray mb-7" onClick={onBook}>
+        <button className="w-full p-2 text-2xl font-semibold tracking-wide text-white rounded-md bg-nav-color mb-7 font-oswald" onClick={onBook}>
           Book now
         </button>
       </div>

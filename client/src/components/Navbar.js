@@ -24,7 +24,7 @@ function Navbar(props) {
     if (search) {
       navbarColorClass = "bg-transparent border-b ";
     } else {
-      navbarColorClass = "bg-dark-green";
+      navbarColorClass = "bg-nav-color";
     }
   }
 

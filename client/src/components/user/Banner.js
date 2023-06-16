@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../Navbar";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 function Banner() {
   const user = useSelector((state) => state.getUser.getUser);

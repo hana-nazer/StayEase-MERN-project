@@ -8,6 +8,10 @@ module.exports = {
           'dark-green':"#586B53",
           'white-smoke':"#f5f2ce",
           'custom-gray': '#33442F',
+          'nav-color':'#edcb9a'
+        },
+        fontFamily: {
+          oswald: ['Oswald', 'sans-serif'],
         },
       },
     },
