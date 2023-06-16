@@ -41,8 +41,8 @@ function HomePage() {
 
   return (
     <>
-      <Navbar search="true" role={role} name={name} />
       <div>
+        {/* <Navbar search="true" role={role} name={name} /> */}
         <Banner />
         <div className="relative">
           <div
@@ -53,7 +53,7 @@ function HomePage() {
           </div>
         </div>
 
-        <div className="py-20 bg-white-smoke h-1/2">
+        <div className="pt-20 pb-10 bg-white-smoke ">
           <Home />
         </div>
       </div>

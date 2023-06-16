@@ -32,7 +32,7 @@ function ResortCard() {
   };
 
   return (
-    <div className="grid grid-cols-4 gap-5 ">
+    <div className="grid grid-cols-1 gap-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
       {resorts.map((resort) => (
         <div
           className="w-full col-span-1 mb-5 overflow-hidden bg-white rounded-md shadow-md cursor-pointer hover:shadow-lg"
@@ -41,7 +41,7 @@ function ResortCard() {
           style={{ fontFamily: "Lato" }}
         >
           <img
-            className="object-cover w-full h-48 rounded-t-md"
+            className="object-cover w-full h-48 "
             src={resort.images[2]}
             alt="Sunset in the mountains"
           />

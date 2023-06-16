@@ -12,6 +12,7 @@ function Navbar(props) {
   const role = props.role;
   const name = props.name;
   const search = props.search;
+  const position = props.position
   const page = props.page;
 
   let navbarColorClass;
@@ -28,12 +29,13 @@ function Navbar(props) {
   }
 
   const navbarStyle = {
-    position: "fixed",
+    position: !position ? "fixed" : "top",
     top: 0,
     left: 0,
     right: 0,
     zIndex: 9999,
   };
+  
   const logoutHandler = (role) => {
     let tokenKey;
     let redirectPath;
@@ -59,56 +61,57 @@ function Navbar(props) {
   };
 
   return (
-    <nav
-      className={`flex justify-between items-center p-3 ${navbarColorClass}`}
-      style={navbarStyle}
-    >
-      <Logo />
-      <div className="flex items-center ">
-        {search && (
-          <>
-            <div className="flex items-center">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search"
-                  onChange={handleSearch}
-                  className="h-8 px-2 py-1 pr-8 text-black bg-white focus:outline-none"
-                  style={{ lineHeight: "1rem", border: "none" }}
-                />
-
-                <FontAwesomeIcon
-                  icon={faSearch}
-                  className="absolute w-4 h-4 text-gray-500 fill current top-1 right-2"
-                  style={{ cursor: "pointer", marginTop: "0.3rem" }}
-                />
-              </div>
-            </div>
-          </>
-        )}
-        <div className="flex items-center ml-10">
-          {!role ? (
-            <Link to="/login" className="text-white">
-              Login/Signup
-            </Link>
-          ) : (
+    <nav className={` p-3 ${navbarColorClass}`} style={navbarStyle}>
+      <div className="container flex justify-between mx-auto ">
+        <Logo />
+        <div className="flex items-center ">
+          {search && (
             <>
-              {props.page ? null : (
-                <>
-                  <span className="mr-2 text-white">{name}</span>
-                  <FontAwesomeIcon
-                    onClick={() => logoutHandler(role)}
-                    icon={faSignOutAlt}
-                    className="w-5 h-5 text-white fill-current"
-                    style={{ cursor: "pointer", marginRight: "10px" }}
+              <div className="flex items-center">
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    onChange={handleSearch}
+                    className="h-8 px-2 py-1 pr-8 text-black bg-white focus:outline-none"
+                    style={{ lineHeight: "1rem", border: "none" }}
                   />
-                </>
-              )}
+
+                  <FontAwesomeIcon
+                    icon={faSearch}
+                    className="absolute w-4 h-4 text-gray-500 fill current top-1 right-2"
+                    style={{ cursor: "pointer", marginTop: "0.3rem" }}
+                  />
+                </div>
+              </div>
             </>
           )}
+          <div className="flex items-center ml-10">
+            {!role ? (
+              <Link to="/login" className="text-white">
+                Login/Signup
+              </Link>
+            ) : (
+              <>
+                {props.page ? null : (
+                  <>
+                    <span className="mr-2 text-white">{name}</span>
+                    <FontAwesomeIcon
+                      onClick={() => logoutHandler(role)}
+                      icon={faSignOutAlt}
+                      className="w-5 h-5 text-white fill-current"
+                      style={{ cursor: "pointer", marginRight: "10px" }}
+                    />
+                  </>
+                )}
+              </>
+            )}
+          </div>
         </div>
       </div>
     </nav>
+
+   
   );
 }
 
