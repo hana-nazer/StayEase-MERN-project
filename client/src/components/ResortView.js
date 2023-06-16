@@ -10,6 +10,7 @@ import OwnerData from "./resort/OwnerData";
 import Images from "./resort/Images";
 import Action from "./resort/Action";
 import BookNow from "./resort/BookNow";
+import RoomServices from "./resort/RoomServices";
 
 function ResortDetailedView(props) {
   const action = props.action;
@@ -48,21 +49,20 @@ function ResortDetailedView(props) {
       </div>
       <Images />
       {role === "user" && <BookNow resortId={resortId} />}
+      <div className="mb-9">
+        <About />
+      </div>
 
-      <div className="grid grid-cols-3 gap-3">
-        <div className="col-span-2 ">
-          <div className="grid grid-rows-2">
-            <div className="mb-9">
-              <About />
-            </div>
-            <div>
-              <OwnerData />
-            </div>
-          </div>
+      <div className="flex ">
+        <div className="w-1/2 ">
+          <RoomServices />
         </div>
-        <div className="px-10 pt-3 border rounded-lg shadow-xl">
+        <div className="w-1/2 ">
           <Details />
         </div>
+      </div>
+      <div>
+        <OwnerData />
       </div>
     </div>
   );
