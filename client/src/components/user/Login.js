@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import LoginForm from "../LoginForm";
 import LoginTitle from "../LoginTitle";
 import { LoginUser } from "../../api calls/users";
-import { useDispatch } from "react-redux";
 
 function Login() {
   const navigate = useNavigate();
@@ -22,12 +21,8 @@ function Login() {
   };
   return (
     <>
-      <div
-        className="flex items-center justify-center h-screen "
-        style={{ backgroundColor: "#f3f4f6" }}
-      >
-        <div className="w-1/3 mx-auto overflow-hidden bg-white border shadow-lg lg:flex-row rounded-xl">
-          <div className="w-full px-10 py-12">
+      <div className="flex items-center justify-center h-screen bg-light-white">
+        <div className="w-full p-10 mx-auto overflow-hidden bg-white border shadow-lg lg:w-1/3 lg:flex-row rounded-xl">
             <LoginTitle title=" Login into your account" />
             <LoginForm onSubmit={handleSubmit} />
             <p className="mt-2">
@@ -36,7 +31,6 @@ function Login() {
                 signup
               </Link>
             </p>
-          </div>
         </div>
       </div>
     </>

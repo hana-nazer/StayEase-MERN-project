@@ -15,5 +15,5 @@
 }
 
 .userButton {
-  @apply bg-custom-gray;
+  @apply bg-nav-color;
 }

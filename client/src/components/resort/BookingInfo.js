@@ -58,7 +58,7 @@ function BookingInfo() {
   };
   return (
     <>
-      <div className="w-full bg-white border rounded-lg lg:w-2/6 ">
+      <div className="w-full bg-white border rounded-lg lg:w-2/6">
         <p className="py-4 text-3xl font-bold text-center text-gray-300 font-oswald">Your trip</p>
         <div className="flex justify-between px-2">
           <div>
