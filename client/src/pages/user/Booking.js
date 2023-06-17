@@ -13,12 +13,10 @@ function Booking() {
       <div className="">
         <Navbar role={role} name={name} />
       </div>
-      {/* <div className="bg-light-white"> */}
       <div className="container flex items-center justify-center h-screen mx-auto">
         <div className="w-full p-4 bg-white border xl:w-2/5">
           <BookingData />
         </div>
-      {/* </div> */}
       </div>
 
       <Footer />
