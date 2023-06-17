@@ -42,7 +42,6 @@ function HomePage() {
   return (
     <>
       <div>
-        {/* <Navbar search="true" role={role} name={name} /> */}
         <Banner />
         <div className="relative">
           <div

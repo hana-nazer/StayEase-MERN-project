@@ -9,21 +9,28 @@ function ResortCard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const resorts = useSelector((state) => state.resort.resorts);
+  const searchLocation = useSelector((state) => state.location.searchLocation);
 
   useEffect(() => {
     fetchResorts();
-  }, []);
+  }, [searchLocation]);
 
   const fetchResorts = async () => {
     try {
-      const response = await getResorts();
+      let response;
+      if (searchLocation) {
+        response = await getResorts(searchLocation);
+        console.log("search location");
+      } else {
+        response = await getResorts();
+      }
       if (response.success) {
         dispatch(setResortData(response.data));
       } else {
         console.log(response.data.message);
       }
     } catch (error) {
-      console.log(error.response);
+      console.log(error);
     }
   };
 

@@ -1,20 +1,25 @@
-import React from "react";
+import React  ,{useState,useEffect} from "react";
 import Logo from "../components/Logo";
 import { useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { clearUser } from "../redux/getUserSlice";
 import { useDispatch } from "react-redux";
 import { faSignOutAlt, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { searchLocation } from "../redux/locationSlice";
 
 function Navbar(props) {
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const role = props.role;
   const name = props.name;
   const search = props.search;
-  const position = props.position
+  const position = props.position;
   const page = props.page;
-
+  
+  
+ 
+  
   let navbarColorClass;
   if (role === "admin") {
     navbarColorClass = "bg-gray-700";
@@ -35,7 +40,7 @@ function Navbar(props) {
     right: 0,
     zIndex: 9999,
   };
-  
+
   const logoutHandler = (role) => {
     let tokenKey;
     let redirectPath;
@@ -58,6 +63,7 @@ function Navbar(props) {
 
   const handleSearch = (event) => {
     const searchTerm = event.target.value;
+    dispatch(searchLocation(searchTerm));
   };
 
   return (
@@ -69,6 +75,10 @@ function Navbar(props) {
             <>
               <div className="flex items-center">
                 <div className="relative">
+                  
+              
+               
+                  
                   <input
                     type="text"
                     placeholder="Search"
@@ -110,8 +120,6 @@ function Navbar(props) {
         </div>
       </div>
     </nav>
-
-   
   );
 }
 

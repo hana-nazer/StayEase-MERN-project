@@ -33,6 +33,10 @@ export const getLocation = async (role) => {
       const response = await adminApi.get("/fetch-location");
       return response.data;
     }
+    else{
+      const response = await userApi.get('/fetch-location')
+      return response.data
+    }
   } catch (error) {
     return { success: false, message: "Failed to fetch location" };
   }

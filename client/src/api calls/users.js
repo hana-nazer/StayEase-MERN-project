@@ -21,23 +21,52 @@ export const LoginUser = async (payload) => {
 };
 
 // getResorts
-export const getResorts = async (category) => {
+
+export const getResorts = async (searchTerm) => {
   try {
-    const params = {};
-    if (category) {
-      params.category = category;
+    let url = "/resorts";
+    if (searchTerm) {
+      url += `?location=${searchTerm}`;
     }
-    const response = await userApi.get("/resorts", { params });
+
+    const response = await userApi.get(url); // Use the userApi instance with the updated URL
+
     console.log(response);
-    // if (category) {
-    //   return { data: response.data, category };
-    // } else {
-      return response.data;
-    // }
+
+    return response.data;
   } catch (error) {
     return error.response;
   }
 };
+
+
+
+
+
+
+
+
+
+// export const getResorts = async (searchTerm) => {
+//   try {
+//     // let url = "/resorts";
+//     // if (searchTerm) {
+//     //   url += `?location=${searchTerm}`;
+//     // }
+//     let response;
+//     if (searchTerm) {
+//       const response = await userApi.get(`/resorts?location=${searchTerm}`);
+//     } else {
+//       const response = await userApi.get("/resorts");
+//     }
+
+//     console.log(response);
+
+//     return response.data;
+//   } catch (error) {
+//     return error.response;
+//   }
+// };
 
 // booking
 // export const postBooking = async (payload, resortId) => {
@@ -48,7 +77,6 @@ export const getResorts = async (category) => {
 //     return error.response;
 //   }
 // };
-
 
 // disabled dates
 export const disabledDateList = async (resortId) => {
@@ -69,4 +97,3 @@ export const getCurrentUser = async () => {
     return error.response;
   }
 };
-

@@ -9,6 +9,7 @@ router.post("/signup", userAuthController.postSignUp);
 router.post("/login", userAuthController.postLogin);
 router.get("/resorts", userResortController.getResorts);
 router.get("/resortInfo/:resortId", userResortController.resortData);
+router.get("/fetch-location", userResortController.location);
 router.get(
   "/get-current-user",
   authMiddleware,
