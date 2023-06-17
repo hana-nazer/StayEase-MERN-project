@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setBookingData } from "../../redux/BookingSlice";
 import { disabledDateList } from "../../api calls/users";
 import { DatePicker } from "antd";
+import '../../fonts/fonts.css'
 
 function BookingData() {
   const navigate = useNavigate();
@@ -77,8 +78,8 @@ function BookingData() {
   }, []);
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <p className="flex items-center justify-center mb-6 text-2xl font-bold">
+    <form onSubmit={formik.handleSubmit} >
+      <p className="flex items-center justify-center mb-6 text-3xl font-bold tracking-wide text-gray-300 font-oswald">
         Book your trip
       </p>
       <div className="mb-6" style={{ width: "100%" }}>
@@ -123,7 +124,7 @@ function BookingData() {
       </div>
       <div className="text-center">
         <button
-          className="w-full px-8 py-3 text-white rounded-lg bg-custom-gray"
+          className="w-full px-8 py-3 text-white rounded-lg bg-nav-color"
           type="submit"
         >
           Proceed

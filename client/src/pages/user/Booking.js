@@ -4,7 +4,6 @@ import Footer from "../../components/Footer";
 import BookingData from "../../components/resort/BookingData";
 import { useSelector } from "react-redux";
 
-
 function Booking() {
   const user = useSelector((state) => state.getUser.getUser);
   const role = user ? user.role : null;
@@ -12,10 +11,10 @@ function Booking() {
   return (
     <div>
       <div className="mb-20">
-        <Navbar  role={role} name={name}/>
+        <Navbar role={role} name={name} />
       </div>
-      <div className="container flex items-center justify-center mx-auto h-[32rem]">
-        <div className="w-2/5 p-4 border">
+      <div className="container flex items-center justify-center mx-auto h-[32rem] ">
+        <div className="w-full p-4 bg-white border xl:w-2/5">
           <BookingData />
         </div>
       </div>

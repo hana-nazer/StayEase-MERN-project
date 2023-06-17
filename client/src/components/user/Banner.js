@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../Navbar";
+import '../../fonts/fonts.css'
 import { useSelector } from "react-redux";
 
 function Banner() {
@@ -19,7 +20,7 @@ function Banner() {
         />
 
         <div className="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-20">
-          <p className="relative z-10 font-bold text-center text-white text-7xl font-roboto">
+          <p className="relative z-10 font-bold tracking-wider text-center text-gray-300 opacity-70 text-7xl font-oswald">
             ENJOY YOUR HOLIDAYS
           </p>
         </div>

@@ -12,7 +12,7 @@ function Confirmation() {
         <div className="flex items-center justify-between py-2 mx-6 my-8">
           <p className="text-xl font-semibold">Dates</p>
           <p className="text-md">
-            {bookingInfo.dates[0]} to {lastDate}{" "}
+            {bookingInfo.dates[0]} to {lastDate}
           </p>
         </div>
         <div>
