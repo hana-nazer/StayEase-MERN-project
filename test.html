@@ -1,138 +1,103 @@
 <html>
-<script defer src='https://use.fontawesome.com/releases/v5.0.6/js/all.js'></script> 
-</head>
-<style>
-    
-    body {
-        max-width: 1920px;
+  <head>
+    <style>
+      .table-container {
+        width: 100% !important;
+        overflow-x: scroll;
+      }
+      th,
+      td {
+        min-width: 200px;
+      }
+      @media (max-width: 600px) {
+        th,
+        td {
+          min-width: 200px;
+        }
+      }
+      table {
+        display: block;
+        max-width: -moz-fit-content;
+        max-width: fit-content;
         margin: 0 auto;
-        background-color: pink;
-        position: relative;
-    }
-
-    label[for="toggle"] {
-        position: fixed;
-        top: 25px;
-        left: 25px;
-        color: black;
-        z-index: 6;
-        font-size: 3rem;
-    }
-
-    .navigation--responsive {
-        display: none;
-    }
-
-    #toggle {
-        display: none;
-    }
-
-    svg.hamburger {
-        display: none;
-    }
-
-    /* Landscape phone to portrait tablet */
-    @media (max-width: 768px) {
-        .main-navigation {
-            display: none;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      @media (max-width: 600px) {
+        table {
+          display: block;
+          max-width: -moz-fit-content;
+          max-width: fit-content;
+          margin: 0 auto;
+          overflow-x: auto;
+          white-space: nowrap;
         }
-
-        svg.hamburger {
-            display: block;
-        }
-
-        .navigation--responsive {
-            display: block;
-            background: linear-gradient(to top, #be93c5,  #7bc6cc);
-            width: 200px;
-            height: 100vh;
-            position: fixed;
-            top: -100vh;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            margin: 0;
-            padding: 0;
-            transition: top 1s;
-        }
-     
-        .navigation--responsive ul {
-            display: block;
-            list-style: none;
-            height: 70vh;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: space-around;
-            margin: 85px 0 0 0;
-            padding: 0;
-        }
-
-        .navigation--responsive ul li {
-            margin: 0;
-            padding: 0;
-        }
-
-        .navigation--responsive li a {
-            padding: 50px 20px 50px 30px;
-            text-decoration:none;
-            color:black;
-            font-family:sans-serif;
-        }  
-      
-       #toggle:checked ~ .navigation--responsive {
-            top: 0vh;
-        } 
-   
-    }
-
-
-
-</style>
-<body>
-    <!-- Hamburger Menu -->
-    <label for="toggle">
-        <i class="fas fa-bars hamburger"></i>
-    </label>
-
-    <!-- HEADER BEGINS -->
-    <header>
-    <!-- Large Display Navigation begins -->
-        <nav class="main-navigation"> 
-            <ul>
-                <li>
-                    <a href="#">Home</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-                <li>
-                    <a href="#">Blog</a>
-                </li>
-            </ul>
-        </nav> <!-- Large Display Navigation Ends -->
-                    
-        <!-- Small display Responsive Navigation begins -->
-      <input type="checkbox" id="toggle" name="toggle"> 
-            <nav class="navigation--responsive">
-                <ul>
-                    <li>
-                        <a href="#home">Home</a>
-                    </li>
-                    <li>
-                        <a href="#look-book">About</a>
-                    </li>
-                    <li>
-                        <a href="#contact">Contact</a>
-                    </li>
-                    <li>
-                        <a href="#blog">Blog</a>
-                    </li>
-                </ul>
-            </nav><!-- responsive nav ends-->
-    </header>
-</body>
+      }
+    </style>
+  </head>
+  <body>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+            <th>Extn.</th>
+            <th>E-mail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tiger</td>
+            <td>Nixon</td>
+            <td>System Architect</td>
+            <td>Edinburgh</td>
+            <td>61</td>
+            <td>2011/04/25</td>
+            <td>$320,800</td>
+            <td>5421</td>
+            <td>t.nixon@datatables.net</td>
+          </tr>
+          <tr>
+            <td>Garrett</td>
+            <td>Winters</td>
+            <td>Accountant</td>
+            <td>Tokyo</td>
+            <td>63</td>
+            <td>2011/07/25</td>
+            <td>$170,750</td>
+            <td>8422</td>
+            <td>g.winters@datatables.net</td>
+          </tr>
+          <tr>
+            <td>Ashton</td>
+            <td>Cox</td>
+            <td>Junior Technical Author</td>
+            <td>San Francisco</td>
+            <td>66</td>
+            <td>2009/01/12</td>
+            <td>$86,000</td>
+            <td>1562</td>
+            <td>a.cox@datatables.net</td>
+          </tr>
+          <tr>
+            <td>Cedric</td>
+            <td>Kelly</td>
+            <td>Senior Javascript Developer</td>
+            <td>Edinburgh</td>
+            <td>22</td>
+            <td>2012/03/29</td>
+            <td>$433,060</td>
+            <td>6224</td>
+            <td>c.kelly@datatables.net</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
 </html>

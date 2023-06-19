@@ -26,6 +26,7 @@ exports.adminLogin = async (req, res) => {
         message: "Incorrect password",
       });
     }
+   
 
     // token creation
     const token = createToken(

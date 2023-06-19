@@ -25,7 +25,7 @@ function Sidebar(props) {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth < 768); 
+      setIsSmallScreen(window.innerWidth < 1024); 
     };
 
     handleResize(); 
@@ -41,7 +41,7 @@ function Sidebar(props) {
     setShowLinks(!showLinks);
   };
 
-  const navigationButtonClassName = "py-4 mt-6 ml-10 font-semibold text-center";
+  const navigationButtonClassName = "py-4 mt-6  font-semibold text-center ml-6";
   const navigationButtonIcon = showLinks ? (
     "×"
   ) : (

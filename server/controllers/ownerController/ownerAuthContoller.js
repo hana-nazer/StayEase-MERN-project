@@ -31,25 +31,27 @@ exports.ownerSignUp = async (req, res) => {
   }
 };
 
-// owner Login
+// login
 exports.ownerLogin = async (req, res) => {
   try {
-    // check user exist or not
+    // check if admin exists
     const owner = await Owner.findOne({ email: req.body.email });
-
     if (!owner) {
       return res.send({
         success: false,
-        message: "This owner does not exists",
+        message: "Invalid email",
       });
     }
 
-    // validate password
-    const validatePassword = bcrypt.compare(req.body.password, owner.password);
-    if (!validatePassword) {
+    // check password valid or not
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      owner.password
+    );
+    if (!validPassword) {
       return res.send({
         success: false,
-        message: "Invalid credentials",
+        message: "Incorrect password",
       });
     }
 
@@ -61,7 +63,7 @@ exports.ownerLogin = async (req, res) => {
     );
     res.send({
       success: true,
-      message: "loggedin successfully",
+      message: " loggedin successfully",
       data: token,
     });
   } catch (error) {

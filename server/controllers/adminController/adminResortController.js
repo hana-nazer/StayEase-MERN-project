@@ -130,7 +130,7 @@ exports.bookings = async (req, res) => {
       __v: booking.__v,
     }));
 
-    console.log(bookingData);
+  
 
     res.send({ success: true, data: bookingData });
   } catch (error) {
