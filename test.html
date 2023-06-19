@@ -1,0 +1,138 @@
+<html>
+<script defer src='https://use.fontawesome.com/releases/v5.0.6/js/all.js'></script> 
+</head>
+<style>
+    
+    body {
+        max-width: 1920px;
+        margin: 0 auto;
+        background-color: pink;
+        position: relative;
+    }
+
+    label[for="toggle"] {
+        position: fixed;
+        top: 25px;
+        left: 25px;
+        color: black;
+        z-index: 6;
+        font-size: 3rem;
+    }
+
+    .navigation--responsive {
+        display: none;
+    }
+
+    #toggle {
+        display: none;
+    }
+
+    svg.hamburger {
+        display: none;
+    }
+
+    /* Landscape phone to portrait tablet */
+    @media (max-width: 768px) {
+        .main-navigation {
+            display: none;
+        }
+
+        svg.hamburger {
+            display: block;
+        }
+
+        .navigation--responsive {
+            display: block;
+            background: linear-gradient(to top, #be93c5,  #7bc6cc);
+            width: 200px;
+            height: 100vh;
+            position: fixed;
+            top: -100vh;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            margin: 0;
+            padding: 0;
+            transition: top 1s;
+        }
+     
+        .navigation--responsive ul {
+            display: block;
+            list-style: none;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-around;
+            margin: 85px 0 0 0;
+            padding: 0;
+        }
+
+        .navigation--responsive ul li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navigation--responsive li a {
+            padding: 50px 20px 50px 30px;
+            text-decoration:none;
+            color:black;
+            font-family:sans-serif;
+        }  
+      
+       #toggle:checked ~ .navigation--responsive {
+            top: 0vh;
+        } 
+   
+    }
+
+
+
+</style>
+<body>
+    <!-- Hamburger Menu -->
+    <label for="toggle">
+        <i class="fas fa-bars hamburger"></i>
+    </label>
+
+    <!-- HEADER BEGINS -->
+    <header>
+    <!-- Large Display Navigation begins -->
+        <nav class="main-navigation"> 
+            <ul>
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+                <li>
+                    <a href="#">Blog</a>
+                </li>
+            </ul>
+        </nav> <!-- Large Display Navigation Ends -->
+                    
+        <!-- Small display Responsive Navigation begins -->
+      <input type="checkbox" id="toggle" name="toggle"> 
+            <nav class="navigation--responsive">
+                <ul>
+                    <li>
+                        <a href="#home">Home</a>
+                    </li>
+                    <li>
+                        <a href="#look-book">About</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+                    <li>
+                        <a href="#blog">Blog</a>
+                    </li>
+                </ul>
+            </nav><!-- responsive nav ends-->
+    </header>
+</body>
+</html>

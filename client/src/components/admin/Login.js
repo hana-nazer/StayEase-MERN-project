@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "../../stylesheets/loginPage.module.css";
 import LoginForm from "../LoginForm";
 import LoginTitle from "../LoginTitle";
 import { adminLogin } from "../../api calls/admin";
@@ -23,12 +22,10 @@ function  Login() {
 
   return (
     <>
-      <div className={styles.parent_div}>
-        <div className={styles.sub_div}>
-          <div className={styles.form_div}>
+      <div className="flex items-center justify-center h-screen overflow-hidden">
+        <div className="w-4/6 p-10 mx-auto overflow-hidden bg-white border shadow-lg md:w-1/3 rounded-xl">
             <LoginTitle title="Admin Login" />
             <LoginForm onSubmit={handleSubmit} role="admin" />
-          </div>
         </div>
       </div>
     </>
