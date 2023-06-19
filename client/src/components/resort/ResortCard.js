@@ -10,6 +10,9 @@ function ResortCard() {
   const dispatch = useDispatch();
   const resorts = useSelector((state) => state.resort.resorts);
   const searchLocation = useSelector((state) => state.location.searchLocation);
+  const selectedCategory = useSelector(
+    (state) => state.category.selectedCategory
+  );
 
   useEffect(() => {
     fetchResorts();
@@ -20,7 +23,6 @@ function ResortCard() {
       let response;
       if (searchLocation) {
         response = await getResorts(searchLocation);
-        console.log("search location");
       } else {
         response = await getResorts();
       }

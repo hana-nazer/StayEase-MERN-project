@@ -21,28 +21,18 @@ export const LoginUser = async (payload) => {
 };
 
 // getResorts
-
 export const getResorts = async (searchTerm) => {
   try {
     let url = "/resorts";
     if (searchTerm) {
       url += `?location=${searchTerm}`;
     }
-
-    const response = await userApi.get(url); // Use the userApi instance with the updated URL
-
-    console.log(response);
-
+    const response = await userApi.get(url);
     return response.data;
   } catch (error) {
     return error.response;
   }
 };
-
-
-
-
-
 
 
 
@@ -68,6 +58,7 @@ export const getResorts = async (searchTerm) => {
 //   }
 // };
 
+
 // booking
 // export const postBooking = async (payload, resortId) => {
 //   try {
@@ -77,6 +68,7 @@ export const getResorts = async (searchTerm) => {
 //     return error.response;
 //   }
 // };
+
 
 // disabled dates
 export const disabledDateList = async (resortId) => {

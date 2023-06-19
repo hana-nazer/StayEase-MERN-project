@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { getCategory } from "../api calls/resort";
 import { useSelector, useDispatch } from "react-redux";
-import { setCategory } from "../redux/categorySlice";
+import { setCategory,chooseCategory } from "../redux/categorySlice";
 
 function CategoryList() {
   const dispatch = useDispatch();
@@ -25,6 +25,12 @@ function CategoryList() {
   useEffect(() => {
     fetchCategory();
   }, [categories]);
+  
+  
+  const handleCategory =(category)=>{
+    console.log(category);
+    dispatch(chooseCategory(category))
+  }
 
   return (
     <>
@@ -32,7 +38,7 @@ function CategoryList() {
         <ul>
           {categories &&
             categories.map((category) => (
-              <li className="flex py-2 mt-6 border-b border-gray-300" key={category._id}>
+              <li className="flex py-2 mt-6 border-b border-gray-300" key={category._id} onClick={()=>handleCategory(category)}>
               <img src={category.imageUrl} alt={category.category} className="w-10 h-10 mr-2 border" />
               <span className="mr-2 ">{category.category}</span>
             </li>
