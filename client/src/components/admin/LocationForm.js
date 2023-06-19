@@ -24,18 +24,19 @@ function LocationForm() {
   };
   return (
     <>
-      <div className="w-1/2 p-4 mt-10 border">
-        <p className="mb-3 text-xl font-semibold">Locations</p>
+      <div className="w-full p-2 mt-10 border lg:w-1/2">
+        <p className="mb-3 text-xl font-semibold text-center">Locations</p>
         <form onSubmit={submit}>
           <div className="mb-4">
             <input
-              className="w-3/4 px-3 py-2 mr-1 border border-gray-400 rounded-lg"
+              className="w-full px-3 py-2 mb-2 mr-1 border border-gray-400 rounded-lg lg:w-3/4"
               type="text"
               id="location"
               name="location"
+              placeholder="Add loaction..."
               ref={locationRef}
             />
-            <button className="w-20 p-2 text-white bg-gray-700 rounded-lg">
+            <button className="w-full p-2 text-white bg-gray-700 rounded-lg lg:w-20">
               Add
             </button>
           </div>

@@ -27,7 +27,7 @@ function LocationList() {
   }, [locations]);
 
   return (
-    <div className="w-1/2 p-4 mt-10 border">
+    <div className="w-full p-4 mt-10 mb-10 border lg:w-1/2">
       <ul>
         {locations.map((location) => (
           <li className="py-2 border-b border-gray-300" key={location._id}>

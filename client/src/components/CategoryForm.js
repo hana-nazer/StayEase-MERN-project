@@ -45,7 +45,7 @@ function CategoryForm() {
   });
 
   return (
-    <div className="w-1/2 p-4 mt-10 border">
+    <div className="w-full p-4 m-4 mt-10 border lg:w-1/2">
       <p className="mb-3 text-xl font-semibold text-center">Add Category</p>
       <form onSubmit={formik.handleSubmit}>
         <div className="mb-4">

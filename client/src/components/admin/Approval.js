@@ -28,9 +28,9 @@ function Approval() {
   };
 
   return (
-    <div className="container mt-10">
-      <div>
-        <h1 className="mb-4 text-2xl font-semibold">Resort Requests</h1>
+    <div className="container flex items-center justify-center mx-auto mt-10">
+      <div className="m-10 border">
+        <h1 className="mb-4 text-2xl font-semibold text-center">Resort Requests</h1>
         <table className="border">
           <thead>
             <tr>
@@ -62,7 +62,7 @@ function Approval() {
             ))}
           </tbody>
         </table>
-      </div>
+        </div>
     </div>
   );
 }

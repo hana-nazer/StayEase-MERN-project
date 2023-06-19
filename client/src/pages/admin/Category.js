@@ -14,12 +14,12 @@ function Category() {
     <>
       <div className="flex flex-col h-screen">
         <Navbar role={role} name={name} />
-        <div className="flex flex-grow">
-          <div className="w-1/4">
-            <Sidebar role="admin" />
-          </div>
-          <div className="w-3/4 mb-16 mt-14">
+        <Sidebar role="admin" />
+        <div className="mt-16">
+          <div className="flex items-center justify-center w-full lg:w-4/5">
             <CategoryForm />
+          </div>
+          <div className="flex items-center justify-center w-full lg:w-4/5">
             <CategoryList />
           </div>
         </div>
