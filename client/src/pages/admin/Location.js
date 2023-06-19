@@ -16,7 +16,7 @@ function Location() {
       <div className="flex flex-col h-screen">
         <Navbar role={role} name={name} />
         <Sidebar role="admin" />
-        <div className="mt-10">
+        <div className="mt-16">
           <div className="flex items-center justify-center">
             <LocationForm />
           </div>
