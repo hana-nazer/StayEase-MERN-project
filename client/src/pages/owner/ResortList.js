@@ -16,7 +16,7 @@ function ResortList() {
         <Sidebar role="owner" />
         <div className="container py-10 mt-20 mb-16 lg:ml-0">
           <Resorts />
-        </div>
+        </div>  
         <Footer />
       </div>
     </>

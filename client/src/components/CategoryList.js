@@ -34,7 +34,7 @@ function CategoryList() {
 
   return (
     <>
-      <div className="w-full p-4 m-4 mt-10 mb-10 border lg:w-1/2">
+      <div className="w-3/4 p-4 m-4 mt-10 mb-10 border lg:w-1/2">
         <ul>
           {categories &&
             categories.map((category) => (

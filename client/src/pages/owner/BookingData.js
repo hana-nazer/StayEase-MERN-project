@@ -32,14 +32,14 @@ function BookingData() {
     <>
       <div className="flex flex-col h-screen">
         <Navbar role={role} name={name} />
-        <div className="flex flex-grow">
-          <div className="w-1/6">
+        {/* <div className="flex flex-grow"> */}
+          {/* <div className="w-1/6"> */}
             <Sidebar role={role} />
+          {/* </div> */}
+          <div className="container w-full mx-12 mb-16 overflow-x-scroll lg:ml-52 lg:w-3/4 mt-14">
+            <BookingTable details={details} role={role}/>
           </div>
-          <div className="container w-3/4 mb-16 m mt-14">
-            <BookingTable details={details}/>
-          </div>
-        </div>
+        {/* </div> */}
         <Footer />
       </div>
     </>

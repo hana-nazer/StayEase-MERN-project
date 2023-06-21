@@ -27,7 +27,7 @@ function CategoryForm() {
   };
 
   return (
-    <div className="w-1/2 p-4 mt-10 border">
+    <div className="w-3/4 p-4 m-4 mt-10 mb-10 border lg:w-1/2">
       <p className="mb-3 text-xl font-semibold text-center">Add Category</p>
       <form onSubmit={submit}>
         <div className="mb-4">

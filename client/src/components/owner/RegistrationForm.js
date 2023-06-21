@@ -1,4 +1,7 @@
 import React, { useEffect } from "react";
+import { toast } from "react-toastify";
+import { ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { resortData } from "../../api calls/owner";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
@@ -49,6 +52,8 @@ function RegistrationForm() {
   useEffect(() => {
     fetchLocations();
     fetchCategory()
+    
+   
   }, []);
 
   const formik = useFormik({
@@ -111,8 +116,14 @@ function RegistrationForm() {
         };
         const response = await resortData(formData);
         if (response.success) {
+         
           navigate("/owner/resortlist");
-        } else {
+          toast.success("Resort created successfully!", {
+            position: toast.POSITION.TOP_CENTER,
+          });
+        } 
+        
+        else {
           console.log(response.message);
         }
       } catch (error) {
@@ -138,6 +149,9 @@ function RegistrationForm() {
   };
 
   return (
+    <>
+    <ToastContainer/>
+    
     <div className="flex items-center justify-center min-h-screen py-12 overflow-hidden">
       <div className="flex flex-col w-full max-w-xl mx-auto mb-2 overflow-hidden bg-white border shadow-lg mt-7 lg:flex-row rounded-xl">
         <div className="w-full px-12 py-10 ">
@@ -392,6 +406,7 @@ function RegistrationForm() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

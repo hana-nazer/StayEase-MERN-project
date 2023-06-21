@@ -33,7 +33,7 @@ function Resorts() {
         return (
           <div
             key={resort._id}
-            className="grid w-full grid-cols-3 mb-4 border rounded-md shadow-md lg:ml-56 lg:w-3/4"
+            className="grid w-full grid-cols-3 mb-4 border rounded-md shadow-md lg:py-6 lg:ml-56 lg:w-3/4 "
           >
             <div className="grid grid-cols-2 col-span-2">
               <div className="flex justify-center p-4 py-14 lg:py-0">

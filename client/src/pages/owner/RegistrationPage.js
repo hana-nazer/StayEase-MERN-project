@@ -4,6 +4,8 @@ import Navbar from "../../components/Navbar";
 import RegistrationForm from "../../components/owner/RegistrationForm";
 import { useSelector } from "react-redux";
 
+
+
 function RegistrationPage() {
   const currentUser = useSelector((state)=>state.getUser.getOwner)
   const role = currentUser.role
