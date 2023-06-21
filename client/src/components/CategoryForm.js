@@ -6,12 +6,14 @@ import { addCategory } from "../api calls/admin";
 
 function CategoryForm() {
   const dispatch = useDispatch();
+  const categoryRef = useRef("");
+  const iconRef = useRef(null);
 
   const categorySubmit = async (event) => {
     event.preventDefault();
     try {
-      const category = event.target.category.value;
-      const iconFile = event.target.icon.files[0];
+      const category = categoryRef.current.value;
+      const iconFile = iconRef.current.files[0];
       const imageUrl = await uploadImg(iconFile);
       let formData = {
         category: category,
@@ -21,6 +23,8 @@ function CategoryForm() {
       if (response.success) {
         dispatch(setCategory(response.data));
         console.log(response.data);
+        categoryRef.current.value = ""; // Clear the category input field
+        iconRef.current.value = null; // Clear the icon input field
       }
     } catch (error) {
       // Handle error
@@ -39,6 +43,7 @@ function CategoryForm() {
               type="text"
               id="category"
               name="category"
+              ref={categoryRef}
             />
           </div>
           <div className="mb-4">
@@ -48,6 +53,7 @@ function CategoryForm() {
               type="file"
               id="icon"
               name="icon"
+              ref={iconRef}
             />
           </div>
           <button className="w-full p-2 text-white bg-gray-700 rounded-lg">
