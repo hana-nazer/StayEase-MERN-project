@@ -1,41 +1,64 @@
 import React, { useRef } from "react";
 import { uploadImg } from "../api calls/admin";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCategory } from "../redux/categorySlice";
 import { addCategory } from "../api calls/admin";
+import { useFormik } from "formik";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function CategoryForm() {
   const dispatch = useDispatch();
-  const categoryRef = useRef("");
-  const iconRef = useRef(null);
+  const categories = useSelector((state) => state.category.category);
 
-  const categorySubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const category = categoryRef.current.value;
-      const iconFile = iconRef.current.files[0];
-      const imageUrl = await uploadImg(iconFile);
-      let formData = {
-        category: category,
-        iconUrl: imageUrl,
-      };
-      const response = await addCategory(formData);
-      if (response.success) {
-        dispatch(setCategory(response.data));
-        console.log(response.data);
-        categoryRef.current.value = ""; // Clear the category input field
-        iconRef.current.value = null; // Clear the icon input field
+  const formik = useFormik({
+    initialValues: {
+      category: "",
+      icon: null,
+    },
+    validate: (values) => {
+      const errors = {};
+      if (!values.category.trim()) {
+        errors.category = "Category is required";
+      } else if (
+        categories.some(
+          (cat) => cat.category.toLowerCase() === values.category.toLowerCase()
+        )
+      ) {
+        errors.category = "Category is already added";
       }
-    } catch (error) {
-      // Handle error
-    }
-  };
+      if (!values.icon) {
+        errors.icon = "Icon is required";
+      }
+      return errors;
+    },
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        const { category, icon } = values;
+        const formData = new FormData();
+        formData.append("category", category);
+        formData.append("icon", icon);
+
+        const response = await addCategory(formData);
+        if (response.success) {
+          toast.success(response.message, {
+            position: toast.POSITION.TOP_CENTER,
+          });
+          dispatch(setCategory(response.data));
+          resetForm();
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  });
 
   return (
     <>
+      <ToastContainer />
       <div className="w-3/4 p-4 m-4 mt-10 mb-10 border lg:w-1/2">
         <p className="mb-3 text-xl font-semibold text-center">Add Category</p>
-        <form onSubmit={categorySubmit}>
+        <form onSubmit={formik.handleSubmit}>
           <div className="mb-4">
             <label htmlFor="category">Category name</label>
             <input
@@ -43,20 +66,37 @@ function CategoryForm() {
               type="text"
               id="category"
               name="category"
-              ref={categoryRef}
+              value={formik.values.category}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
+            {formik.touched.category && formik.errors.category && (
+              <span className="text-sm text-red-500">
+                {formik.errors.category}
+              </span>
+            )}
           </div>
           <div className="mb-4">
-            <label htmlFor="icon">CategoryIcon</label>
+            <label htmlFor="icon">Category Icon</label>
             <input
               className="w-full px-3 py-2 mr-1 border border-gray-400 rounded-lg"
               type="file"
               id="icon"
               name="icon"
-              ref={iconRef}
+              onChange={(event) => {
+                formik.setFieldValue("icon", event.currentTarget.files[0]);
+              }}
+              onBlur={formik.handleBlur}
             />
+            {formik.touched.icon && formik.errors.icon && (
+              <span className="text-sm text-red-500">{formik.errors.icon}</span>
+            )}
           </div>
-          <button className="w-full p-2 text-white bg-gray-700 rounded-lg">
+          <button
+            className="w-full p-2 text-white bg-gray-700 rounded-lg"
+            type="submit"
+            disabled={formik.isSubmitting}
+          >
             Add
           </button>
         </form>
