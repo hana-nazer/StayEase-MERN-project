@@ -67,9 +67,7 @@ export const addLocation = async (payload) => {
 // add category
 export const addCategory = async (payload) => {
   try {
-    console.log("hello");
     const response = await adminApi.post("/add_category", payload);
-    console.log(response);
     return response.data;
   } catch (error) {
     return error.response;

@@ -7,7 +7,6 @@ function CategoryList() {
   const dispatch = useDispatch();
   const currentAdmin = useSelector((state) => state.getUser.getAdmin);
   const categories = useSelector((state) => state.category.category);
-  console.log(categories);
   const role = currentAdmin.role;
   const fetchCategory = async () => {
     try {
@@ -28,7 +27,6 @@ function CategoryList() {
   
   
   const handleCategory =(category)=>{
-    console.log(category);
     dispatch(chooseCategory(category))
   }
 

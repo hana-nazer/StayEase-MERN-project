@@ -5,6 +5,7 @@ exports.addCategory = async (req, res) => {
   try {
     const category = req.body.category;
     const iconUrl = req.body.iconUrl;
+    console.log(category);
     if (!category || !iconUrl) {
       return res.send({
         success: false,

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLocation } from "../../redux/locationSlice";
 import { addLocation } from "../../api calls/admin";
 import { useFormik } from "formik";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function LocationForm() {
   const dispatch = useDispatch();
@@ -29,19 +31,21 @@ function LocationForm() {
       try {
         const response = await addLocation({ location: values.location });
         if (response.success) {
+          toast.success(response.message, {
+            position: toast.POSITION.TOP_CENTER,
+          });
           dispatch(setLocation(response.data));
           resetForm();
-        } else {
-          console.log(response.data.message);
-        }
+        } 
       } catch (error) {
-        console.log(error.response);
+        console.log(error);
       }
     },
   });
 
   return (
     <>
+      <ToastContainer />
       <div className="w-full p-4 m-4 mt-10 border lg:w-1/2">
         <p className="mb-3 text-xl font-semibold text-center">Locations</p>
         <form onSubmit={formik.handleSubmit}>

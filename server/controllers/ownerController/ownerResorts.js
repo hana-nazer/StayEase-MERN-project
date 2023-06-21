@@ -144,7 +144,6 @@ exports.bookings = async (req, res) => {
       bookingData.push(...mappedBookings);
     }
 
-    console.log(bookingData);
     res.send({ success: true, data: bookingData });
   } catch (error) {
     res.status(500).json({ message: "Failed to retrieve bookings" });

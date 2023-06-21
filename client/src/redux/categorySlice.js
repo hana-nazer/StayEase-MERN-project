@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  category: [], // Ensure the property name is "categories"
+  category: [], 
   selectedCategory: "",
 };
 const categorySlice = createSlice({
