@@ -1,4 +1,4 @@
-import React  ,{useState,useEffect} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Logo from "../components/Logo";
 import { useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,7 +8,27 @@ import { faSignOutAlt, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { searchLocation } from "../redux/locationSlice";
 
 function Navbar(props) {
-  
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+
+    window.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      window.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
+
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const role = props.role;
@@ -16,10 +36,7 @@ function Navbar(props) {
   const search = props.search;
   const position = props.position;
   const page = props.page;
-  
-  
- 
-  
+
   let navbarColorClass;
   if (role === "admin") {
     navbarColorClass = "bg-gray-700";
@@ -62,8 +79,7 @@ function Navbar(props) {
   };
 
   const handleSearch = (event) => {
-    // const searchTerm = event.target.value;
-    const searchTerm = event.target.value.toLowerCase(); 
+    const searchTerm = event.target.value.toLowerCase();
     dispatch(searchLocation(searchTerm));
   };
 
@@ -76,10 +92,6 @@ function Navbar(props) {
             <>
               <div className="flex items-center">
                 <div className="relative">
-                  
-              
-               
-                  
                   <input
                     type="text"
                     placeholder="Search"
@@ -97,6 +109,7 @@ function Navbar(props) {
               </div>
             </>
           )}
+
           <div className="flex items-center ml-10">
             {!role ? (
               <Link to="/login" className="text-white">
@@ -106,7 +119,30 @@ function Navbar(props) {
               <>
                 {props.page ? null : (
                   <>
-                    <span className="mr-2 text-white">{name}</span>
+                    <div className="relative inline-block" ref={dropdownRef}>
+                      <span
+                        className="mr-2 text-white cursor-pointer"
+                        onClick={toggleDropdown}
+                      >
+                        {name}
+                      </span>
+                      {showDropdown && (
+                        <div className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-md shadow-lg">
+                          <Link
+                            to="/bookings"
+                            className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                          >
+                            Upcoming Bookings
+                          </Link>
+                          <Link
+                            to="/bookings"
+                            className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                          >
+                            All bookings
+                          </Link>
+                        </div>
+                      )}
+                    </div>
                     <FontAwesomeIcon
                       onClick={() => logoutHandler(role)}
                       icon={faSignOutAlt}
