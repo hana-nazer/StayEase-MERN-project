@@ -8,7 +8,7 @@ function AddResort() {
   };
   return (
     <button
-      className="w-1/5 h-12 mb-4 font-semibold bg-gray-200 rounded-md shadow"
+      className="w-1/2 h-12 mb-4 font-semibold bg-gray-300 rounded-md shadow md:w-1/5"
       onClick={addResort}
     >
       Add resort

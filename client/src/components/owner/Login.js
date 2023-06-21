@@ -29,10 +29,8 @@ function Login() {
     <>
       <div className="flex items-center justify-center h-screen">
         <div className="w-full px-10 py-10 mx-8 mx-auto bg-white border shadow-lg md:w-1/2 lg:w-1/3 lg:flex-row rounded-xl">
-          {/* <div className="w-full border border-red-500">  */}
-            <LoginTitle title="owner Login" />
-            <LoginForm onSubmit={handleSubmit} role="owner" />
-          {/* </div> */}
+          <LoginTitle title="owner Login" />
+          <LoginForm onSubmit={handleSubmit} role="owner" />
         </div>
       </div>
       <ToastContainer />

@@ -14,7 +14,7 @@ function ResortList() {
       <div className="flex flex-col h-screen">
         <Navbar role={role} name={name} />
             <Sidebar role="admin" />
-          <div className="container col-span-5 py-10 mx-auto mt-20 mb-16 lg:pl-60">
+            <div className="container py-10 mx-1 mt-20 mb-16 ml-10 lg:ml-0">
             <Resorts />
           </div>
         <Footer />
