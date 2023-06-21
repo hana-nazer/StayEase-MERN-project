@@ -25,7 +25,9 @@ export const getResorts = async (searchTerm) => {
   try {
     let url = "/resorts";
     if (searchTerm) {
-      url += `?location=${searchTerm}`;
+      const encodedSearchTerm = encodeURIComponent(searchTerm); // Encode search term to handle special characters
+      url += `?location=${encodedSearchTerm}`;
+      // url += `?location=${searchTerm}`;
     }
     const response = await userApi.get(url);
     return response.data;

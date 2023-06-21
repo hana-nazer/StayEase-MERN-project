@@ -22,7 +22,8 @@ function ResortCard() {
     try {
       let response;
       if (searchLocation) {
-        response = await getResorts(searchLocation);
+        response = await getResorts(searchLocation.toLowerCase());
+        // response = await getResorts(searchLocation);
       } else {
         response = await getResorts();
       }

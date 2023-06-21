@@ -9,7 +9,9 @@ exports.getResorts = async (req, res) => {
     const { location } = req.query;
     let query = { status: "approved" };
     if (location) {
-      query.location = location;
+      const searchLocation = new RegExp(location, "i");
+      query.location = searchLocation;
+      // query.location = location;
     }
 
     // const resorts = await Resort.find(query);

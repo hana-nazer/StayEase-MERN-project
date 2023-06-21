@@ -62,7 +62,8 @@ function Navbar(props) {
   };
 
   const handleSearch = (event) => {
-    const searchTerm = event.target.value;
+    // const searchTerm = event.target.value;
+    const searchTerm = event.target.value.toLowerCase(); 
     dispatch(searchLocation(searchTerm));
   };
 
