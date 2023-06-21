@@ -34,7 +34,7 @@ exports.ownerSignUp = async (req, res) => {
 // login
 exports.ownerLogin = async (req, res) => {
   try {
-    // check if admin exists
+    // check if owner exists
     const owner = await Owner.findOne({ email: req.body.email });
     if (!owner) {
       return res.send({

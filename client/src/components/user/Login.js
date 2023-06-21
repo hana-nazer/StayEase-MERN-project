@@ -4,6 +4,9 @@ import LoginForm from "../LoginForm";
 import LoginTitle from "../LoginTitle";
 import { LoginUser } from "../../api calls/users";
 
+import "animate.css";
+import "react-notifications-component/dist/theme.css";
+
 function Login() {
   const navigate = useNavigate();
   const handleSubmit = async (formData) => {
@@ -23,14 +26,14 @@ function Login() {
     <>
       <div className="flex items-center justify-center h-screen bg-light-white">
         <div className="w-full p-10 mx-auto overflow-hidden bg-white border shadow-lg lg:w-1/3 lg:flex-row rounded-xl">
-            <LoginTitle title=" Login into your account" />
-            <LoginForm onSubmit={handleSubmit} />
-            <p className="mt-2">
-              Dont have a account{" "}
-              <Link to="/signup" className="text-blue-700 underline">
-                signup
-              </Link>
-            </p>
+          <LoginTitle title=" Login into your account" />
+          <LoginForm onSubmit={handleSubmit} />
+          <p className="mt-2">
+            Dont have a account{" "}
+            <Link to="/signup" className="text-blue-700 underline">
+              signup
+            </Link>
+          </p>
         </div>
       </div>
     </>

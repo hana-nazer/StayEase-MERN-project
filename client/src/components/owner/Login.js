@@ -1,4 +1,6 @@
 import styles from "../../stylesheets/loginPage.module.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { LoginOwner } from "../../api calls/owner";
 import LoginForm from "../LoginForm";
@@ -14,23 +16,26 @@ function Login() {
         localStorage.setItem("owner_token", response.data);
         navigate("/owner/");
       } else {
-        console.log(response.data.message);
+        toast.error(response.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     } catch (error) {
-      console.log(error.response);
+      console.log(error.message);
     }
   };
 
   return (
     <>
-      <div className={styles.parent_div}>
-        <div className={styles.sub_div}>
-          <div className={styles.form_div}>
+      <div className="flex items-center justify-center h-screen">
+        <div className="w-full px-10 py-10 mx-8 mx-auto bg-white border shadow-lg md:w-1/2 lg:w-1/3 lg:flex-row rounded-xl">
+          {/* <div className="w-full border border-red-500">  */}
             <LoginTitle title="owner Login" />
             <LoginForm onSubmit={handleSubmit} role="owner" />
-          </div>
+          {/* </div> */}
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }
