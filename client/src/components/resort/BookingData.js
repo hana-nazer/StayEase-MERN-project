@@ -182,5 +182,3 @@ function BookingData() {
 }
 
 export default BookingData;
-
-

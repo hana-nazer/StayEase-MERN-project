@@ -128,17 +128,12 @@ function Navbar(props) {
                       {showDropdown && (
                         <div className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-md shadow-lg">
                           <Link
-                            to="/upcoming"
-                            className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                          >
-                            Upcoming Bookings
-                          </Link>
-                          <Link
                             to="/allBookings"
                             className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
                           >
-                            All bookings
+                           Bookings
                           </Link>
+                          
                         </div>
                       )}
                     </div>

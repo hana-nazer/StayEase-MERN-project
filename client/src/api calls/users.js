@@ -36,14 +36,22 @@ export const getResorts = async (searchTerm) => {
   }
 };
 
-// reser password email
+// reset password email
 export const forgotPassword = async (email) => {
   try {
-    const response = await userApi.post("/forgotPassword", email);
+    console.log("user email", email);
+    const response = await userApi.post("/forgotPassword", { email });
+    console.log(response);
     return response.data;
   } catch (error) {
     return error.response;
   }
+};
+
+// reset password
+export const resetPassword = async (password, id, token) => {
+  const response = await userApi.post(`/resetPassword/${id}/${token}`,{password});
+  return response.data;
 };
 
 // export const getResorts = async (searchTerm) => {

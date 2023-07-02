@@ -1,12 +1,13 @@
 const User = require("../../models/userModel");
 const nodemailer = require("nodemailer");
+const jwt = require('jsonwebtoken')
 const { createToken } = require("../../middlewares/tokenAuth");
 
 exports.forgotPassword = async (req, res) => {
   const { email } = req.body;
   const user = await User.findOne({ email: email });
   if (!user) {
-    return res.send({ message: "User not found" });
+    return res.send({ message: "User not found" ,success:false});
   }
 
   const secret = process.env.SECRET + user.password;
@@ -40,5 +41,24 @@ exports.forgotPassword = async (req, res) => {
       }
     });
   } catch (error) {}
-  res.send({ message: "link is sent to the mail", resetLink: link });
+  res.send({ message: "link is sent to the mail", resetLink: link ,success:true});
 };
+
+
+exports.resetPassword = async(req,res)=>{
+  console.log("hello");
+ const {id,token} = req.params
+ const {password} = req.body
+ const user = await User.findById(id)
+ if(!user){
+  res.send({success:false,message:"no user found"})
+ }
+ const secret = process.env.SECRET + user.password
+ try {
+  const payload = jwt.verify(token,secret)
+  const userEmail = payload.email
+
+ } catch (error) {
+  
+ }
+}

@@ -1,37 +1,62 @@
 import React, { useState } from "react";
+import { forgotPassword } from "../../api calls/users";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ResetEmail() {
   const [email, setEmail] = useState("");
-  const handleEmail = (event) => {
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      console.log("email", email);
+      const response = await forgotPassword(email);
+
+      if (response.success) {
+        toast.success(response.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      } else {
+        toast.error(response.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleChange = (event) => {
     setEmail(event.target.value);
   };
 
-  const onReset = (event) => {
-    event.preventDefault();
-  };
   return (
     <div className="flex items-center justify-center h-screen bg-light-white">
       <div className="w-full p-10 mx-auto overflow-hidden bg-white border shadow-lg lg:w-1/3 lg:flex-row rounded-xl">
         <p className="">Enter your email</p>
-        <form onSubmit={onReset}>
+        <form onSubmit={handleSubmit}>
           <div className="mt-5">
             <input
               type="email"
               placeholder="Email"
               name="email"
+              className="w-full px-2 py-1 border border-gray-400"
               value={email}
-              className="w-full px-2 py-1 border border-gray-400 "
-              onChange={handleEmail}
+              onChange={handleChange}
             />
           </div>
 
           <div className="mt-5">
-            <button className="w-full px-2 py-1 text-lg text-white bg-sandy-beige">
+            <button
+              type="submit"
+              className="w-full px-2 py-1 text-lg text-white bg-sandy-beige"
+            >
               Submit
             </button>
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 }

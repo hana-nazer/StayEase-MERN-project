@@ -32,4 +32,5 @@ router.post(
 router.get('/bookings',authMiddleware,bookingController.bookings)
 
 router.post('/forgotPassword',passwordController.forgotPassword)
+router.post('/resetPassword/:id/:token',passwordController.resetPassword)
 module.exports = router;
