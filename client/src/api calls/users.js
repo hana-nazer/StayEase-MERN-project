@@ -36,8 +36,15 @@ export const getResorts = async (searchTerm) => {
   }
 };
 
-
-
+// reser password email
+export const forgotPassword = async (email) => {
+  try {
+    const response = await userApi.post("/forgotPassword", email);
+    return response.data;
+  } catch (error) {
+    return error.response;
+  }
+};
 
 // export const getResorts = async (searchTerm) => {
 //   try {
@@ -60,7 +67,6 @@ export const getResorts = async (searchTerm) => {
 //   }
 // };
 
-
 // booking
 // export const postBooking = async (payload, resortId) => {
 //   try {
@@ -71,7 +77,6 @@ export const getResorts = async (searchTerm) => {
 //   }
 // };
 
-
 // disabled dates
 export const disabledDateList = async (resortId) => {
   try {
@@ -79,6 +84,16 @@ export const disabledDateList = async (resortId) => {
     return response.data;
   } catch (error) {
     return error.response;
+  }
+};
+
+// bookings list
+export const Bookings = async () => {
+  try {
+    const response = await userApi.get("/bookings");
+    return response.data;
+  } catch (error) {
+    return error.message;
   }
 };
 

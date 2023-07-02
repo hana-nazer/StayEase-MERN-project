@@ -7,6 +7,7 @@ import getUserReducer from "./getUserSlice";
 import bookingReducer from "./BookingSlice";
 import categoryReducer from "./categorySlice";
 import resortCardReducer from './ResortCardSlice'
+import userBookingdReducer from './userBookingSlice'
 
 const store = configureStore({
   reducer: {
@@ -16,7 +17,8 @@ const store = configureStore({
     getUser: getUserReducer,
     booking: bookingReducer,
     category: categoryReducer,
-    resort:resortCardReducer
+    resort:resortCardReducer,
+    userBookings : userBookingdReducer
   },
   middleware: getDefaultMiddleware(),
   devTools: process.env.NODE_ENV !== "production" ? composeWithDevTools() : false,

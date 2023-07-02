@@ -9,6 +9,7 @@ import ProtectedUser from "../components/protectedRoute/ProtectedUser";
 import LoadingFallback from "../components/LoadingFallback";
 import Success from "../components/Success";
 import AllBookings from "../pages/user/AllBookings";
+import ResetEmail from "../pages/user/ResetEmail";
 const HomePage = lazy(() => import("../pages/user/HomePage"));
 
 function UserRoutes() {
@@ -55,6 +56,7 @@ function UserRoutes() {
             </ProtectedUser>
           }
         />
+        <Route path="/reset" element={<ResetEmail />} />
       </Routes>
     </>
   );

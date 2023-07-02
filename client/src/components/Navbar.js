@@ -99,7 +99,6 @@ function Navbar(props) {
                     className="h-8 px-2 py-1 pr-8 text-black bg-white focus:outline-none"
                     style={{ lineHeight: "1rem", border: "none" }}
                   />
-
                   <FontAwesomeIcon
                     icon={faSearch}
                     className="absolute w-4 h-4 text-gray-500 fill current top-1 right-2"

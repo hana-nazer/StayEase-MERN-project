@@ -3,7 +3,6 @@ const Resort = require("../../models/resortModel");
 require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 
-
 // fetching already booked dates of particular resort
 exports.fetchDisabledDates = async (req, res) => {
   try {
@@ -61,30 +60,43 @@ exports.makePayment = async (req, res) => {
 };
 
 // save booking to db
-// exports.postBooking = async (req, res) => {
-//   try {
-//     const bookingData = new Booking({
-//       name: req.body.name,
-//       phone: req.body.phone,
-//       numberOfGuests: req.body.guests,
-//       resort: req.body.resortId,
-//       no_of_days: req.body.no_of_days,
-//       dates: req.body.dates,
-//       totalCharge: req.body.charge,
-//       user: req.userId,
-//       transactionId: req.body.transactionId,
-//     });
-//     const bookedResort = await bookingData.save();
-//     res.send({
-//       success: true,
-//       message: "Booked successfully",
-//       data: bookedResort,
-//     });
-//   } catch (error) {
-//     res.send({
-//       success: false,
-//       message: error.message,
-//     });
-//   }
-// };
+exports.postBooking = async (req, res) => {
+  try {
+    const bookingData = new Booking({
+      name: req.body.name,
+      phone: req.body.phone,
+      numberOfGuests: req.body.guests,
+      resort: req.body.resortId,
+      no_of_days: req.body.no_of_days,
+      dates: req.body.dates,
+      totalCharge: req.body.charge,
+      user: req.userId,
+      transactionId: req.body.transactionId,
+    });
+    const bookedResort = await bookingData.save();
+    res.send({
+      success: true,
+      message: "Booked successfully",
+      data: bookedResort,
+    });
+  } catch (error) {
+    res.send({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 
+// feching bookings of particular user
+exports.bookings = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const bookings = await Booking.find({ user: userId });
+    bookings.map((booking) => {
+      console.log(booking.resort);
+    });
+    res.send({ success: true, data: bookings });
+  } catch (error) {
+    res.status(500).json({ message: "Unable to get Bookings" });
+  }
+};

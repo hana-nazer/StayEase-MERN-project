@@ -1,6 +1,5 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import { LoginOwner } from "../../api calls/owner";
 import LoginForm from "../LoginForm";
 import LoginTitle from "../LoginTitle";

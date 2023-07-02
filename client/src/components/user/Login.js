@@ -28,12 +28,20 @@ function Login() {
         <div className="w-full p-10 mx-auto overflow-hidden bg-white border shadow-lg lg:w-1/3 lg:flex-row rounded-xl">
           <LoginTitle title=" Login into your account" />
           <LoginForm onSubmit={handleSubmit} />
-          <p className="mt-2">
-            Dont have a account{" "}
-            <Link to="/signup" className="text-blue-700 underline">
-              signup
-            </Link>
-          </p>
+          <div className="flex justify-between">
+            
+            <p className="mt-2">
+              Dont have a account{" "}
+              <Link to="/signup" className="text-blue-700 underline">
+                signup
+              </Link>
+            </p>
+            <p className="mt-2">
+              <Link to="/reset" className="text-blue-700 underline">
+                Forgot password?
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </>

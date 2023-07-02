@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../stylesheets/login.module.css";
 
-function LoginForm(props) {
+function  LoginForm(props) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",

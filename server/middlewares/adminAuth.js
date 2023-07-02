@@ -1,5 +1,4 @@
 // using this code when doing something and checking expected user is there or not
-
 const jwt = require("jsonwebtoken");
 module.exports = function (req, res, next) {
   try {
@@ -7,7 +6,7 @@ module.exports = function (req, res, next) {
     const decoded = jwt.verify(token, process.env.SECRET);
     req.userId = decoded.userId;
     req.role = decoded.role;
-    if (req.role === "user") {
+    if (req.role === "admin") {
       return next();
     }
     return res

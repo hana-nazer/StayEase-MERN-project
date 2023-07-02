@@ -4,6 +4,7 @@ const userAuthController = require("../controllers/userController/userAuthContro
 const userResortController = require("../controllers/userController/userResortController");
 const authMiddleware = require("../middlewares/authMiddleware");
 const bookingController = require("../controllers/userController/BookingController");
+const passwordController = require('../controllers/userController/passwordController')
 
 router.post("/signup", userAuthController.postSignUp);
 router.post("/login", userAuthController.postLogin);
@@ -28,4 +29,7 @@ router.post(
   bookingController.makePayment
 );
 
+router.get('/bookings',authMiddleware,bookingController.bookings)
+
+router.post('/forgotPassword',passwordController.forgotPassword)
 module.exports = router;

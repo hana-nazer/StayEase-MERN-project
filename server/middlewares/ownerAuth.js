@@ -7,7 +7,7 @@ module.exports = function (req, res, next) {
     const decoded = jwt.verify(token, process.env.SECRET);
     req.userId = decoded.userId;
     req.role = decoded.role;
-    if (req.role === "user") {
+    if (req.role === "owner") {
       return next();
     }
     return res
