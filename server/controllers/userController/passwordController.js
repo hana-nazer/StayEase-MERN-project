@@ -1,13 +1,14 @@
 const User = require("../../models/userModel");
 const nodemailer = require("nodemailer");
-const jwt = require('jsonwebtoken')
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 const { createToken } = require("../../middlewares/tokenAuth");
 
 exports.forgotPassword = async (req, res) => {
   const { email } = req.body;
   const user = await User.findOne({ email: email });
   if (!user) {
-    return res.send({ message: "User not found" ,success:false});
+    return res.send({ message: "User not found", success: false });
   }
 
   const secret = process.env.SECRET + user.password;
@@ -41,24 +42,37 @@ exports.forgotPassword = async (req, res) => {
       }
     });
   } catch (error) {}
-  res.send({ message: "link is sent to the mail", resetLink: link ,success:true});
+  res.send({
+    message: "link is sent to the mail",
+    resetLink: link,
+    success: true,
+  });
 };
 
-
-exports.resetPassword = async(req,res)=>{
-  console.log("hello");
- const {id,token} = req.params
- const {password} = req.body
- const user = await User.findById(id)
- if(!user){
-  res.send({success:false,message:"no user found"})
- }
- const secret = process.env.SECRET + user.password
- try {
-  const payload = jwt.verify(token,secret)
-  const userEmail = payload.email
-
- } catch (error) {
-  
- }
-}
+exports.resetPassword = async (req, res) => {
+  const { id, token } = req.params;
+  const { password } = req.body;
+  const user = await User.findById(id);
+  if (!user) {
+    res.send({ success: false, message: "no user found" });
+  }
+  const secret = process.env.SECRET + user.password;
+  try {
+    const payload = jwt.verify(token, secret);
+    const userEmail = payload.email;
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    const newUser = await User.updateOne(
+      { email: userEmail },
+      { $set: { password: hashedPassword } }
+    );
+    if (newUser.modifiedCount === 1) {
+      res.send({ success: true, message: "Password updated successfully" });
+    } else {
+      res.send({ success: false, message: "password not updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.send({ success: false, message: "Error resetting password" });
+  }
+};

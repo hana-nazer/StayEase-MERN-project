@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import LoginForm from "../LoginForm";
 import LoginTitle from "../LoginTitle";
 import { LoginUser } from "../../api calls/users";
-
 import "animate.css";
 import "react-notifications-component/dist/theme.css";
 
@@ -16,10 +15,10 @@ function Login() {
         localStorage.setItem("user_token", response.data);
         navigate("/");
       } else {
-        console.log(response.data.message);
+        console.log(response.message);
       }
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
     }
   };
   return (
@@ -29,7 +28,6 @@ function Login() {
           <LoginTitle title=" Login into your account" />
           <LoginForm onSubmit={handleSubmit} />
           <div className="flex justify-between">
-            
             <p className="mt-2">
               Dont have a account{" "}
               <Link to="/signup" className="text-blue-700 underline">
