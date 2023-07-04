@@ -8,6 +8,7 @@ function DashboardData() {
   const [resorts, setResorts] = useState("");
   const [users, setUsers] = useState("");
   const [hosts, setHosts] = useState("");
+  const [monthCounts, setMonthCounts] = useState({});
 
   useEffect(() => {
     info();
@@ -21,6 +22,7 @@ function DashboardData() {
         setHosts(response.data.hosts);
         setResorts(response.data.resorts);
         setUsers(response.data.users);
+        setMonthCounts(response.data.months);
       }
     } catch (error) {
       console.log(error);
@@ -37,7 +39,7 @@ function DashboardData() {
             resorts={resorts}
           />
           <div className="py-14">
-            <Chart />
+            <Chart monthCounts={monthCounts} />
           </div>
         </div>
       </div>

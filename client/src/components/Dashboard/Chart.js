@@ -1,19 +1,46 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
 
-const Chart = () => {
+const Chart = ({ monthCounts }) => {
   const datas = [
-    { name: "Jan", bookingCount: 0, pv: 2400, amt: 2400 },
-    { name: "Feb", bookingCount: 0, pv: 2400, amt: 2400 },
-    { name: "March", bookingCount: 0, pv: 2400, amt: 2400 },
-    { name: "April", bookingCount: 5, pv: 2400, amt: 2400 },
-    { name: "May", bookingCount: 0, pv: 2400, amt: 2400 },
-    { name: "June", bookingCount: 0, pv: 2400, amt: 2400 },
-    { name: "July", bookingCount: 9, pv: 2400, amt: 2400 },
-    { name: "Aug", bookingCount: 0, pv: 2400, amt: 2400 },
-    { name: "Sept", bookingCount: 0, pv: 2400, amt: 2400 },
-    { name: "Oct", bookingCount: 0, pv: 2400, amt: 2400 },
-    { name: "Nov", bookingCount: 0, pv: 2400, amt: 2400 },
-    { name: "Dec", bookingCount: 0, pv: 2400, amt: 2400 },
+    {
+      name: "Jan",
+      bookingCount: monthCounts?.January || 0,
+    },
+    {
+      name: "Feb",
+      bookingCount: monthCounts?.February || 0,
+    },
+    {
+      name: "March",
+      bookingCount: monthCounts?.March || 0,
+    },
+    {
+      name: "April",
+      bookingCount: monthCounts?.April || 0,
+    },
+    { name: "May", bookingCount: monthCounts?.May || 0 },
+    { name: "June", bookingCount: monthCounts?.June || 0 },
+    { name: "July", bookingCount: monthCounts?.July || 0 },
+    {
+      name: "Aug",
+      bookingCount: monthCounts?.August || 0,
+    },
+    {
+      name: "Sept",
+      bookingCount: monthCounts?.September || 0,
+    },
+    {
+      name: "Oct",
+      bookingCount: monthCounts?.October || 0,
+    },
+    {
+      name: "Nov",
+      bookingCount: monthCounts?.November || 0,
+    },
+    {
+      name: "Dec",
+      bookingCount: monthCounts?.December || 0,
+    },
   ];
 
   return (
