@@ -11,10 +11,10 @@ import Images from "./resort/Images";
 import Action from "./resort/Action";
 import BookNow from "./resort/BookNow";
 import RoomServices from "./resort/RoomServices";
-// import TawkMessengerReact from "@tawk.to/tawk-messenger-react";
+import TawkMessengerReact from "@tawk.to/tawk-messenger-react";
 
 function ResortDetailedView(props) {
-  // const tawkMessengerRef = useRef();
+  const tawkMessengerRef = useRef();
   const action = props.action;
   const role = props.role;
   const resortData = useSelector((state) => state.verifyResort.resortData);
@@ -23,9 +23,9 @@ function ResortDetailedView(props) {
   useEffect(() => {
     fetchResortDetails();
   }, []);
-  // const onLoad = () => {
-  //   console.log("onLoad works!");
-  // };
+  const onLoad = () => {
+    console.log("onLoad works!");
+  };
 
   const fetchResortDetails = async () => {
     try {
@@ -59,14 +59,14 @@ function ResortDetailedView(props) {
         <About />
       </div>
       {/* -------------tawk to-------------- */}
-      {/* <div>
+      <div>
         <TawkMessengerReact
           propertyId="64a2e6ea94cf5d49dc614712"
           widgetId="https://tawk.to/chat/64a2e6ea94cf5d49dc614712/1h4e5c19d"
           ref={tawkMessengerRef}
           onLoad={onLoad}
         />
-      </div> */}
+      </div>
       {/* -------------- */}
       <div className="flex ">
         <div className="w-1/2 ">

@@ -37,8 +37,6 @@ exports.dashboardData = async (req, res) => {
       }
     });
 
-    // console.log(monthCounts);
-
     const resortsCount = await Resort.find().count();
     const bookingsCount = await Bookings.find().count();
     const usersCount = await User.find().count();
@@ -48,7 +46,7 @@ exports.dashboardData = async (req, res) => {
       bookings: bookingsCount,
       users: usersCount,
       hosts: hostsCount,
-      months:monthCounts
+      months: monthCounts,
     };
     res.send({ data: dashboardInfo, success: true });
   } catch (error) {
