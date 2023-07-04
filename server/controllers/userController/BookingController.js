@@ -92,10 +92,24 @@ exports.bookings = async (req, res) => {
   try {
     const userId = req.userId;
     const bookings = await Booking.find({ user: userId });
-    bookings.map((booking) => {
-      console.log(booking.resort);
+    const resortIds = bookings.map((booking) => booking.resort);
+    const resorts = await Resort.find({ _id: { $in: resortIds } });
+
+    const bookingData = bookings.map((booking) => {
+      const resort = resorts.find((resort) =>
+        resort._id.equals(booking.resort)
+      );
+
+      return {
+        booking: booking,
+        resortData: {
+          name: resort.name,
+          imageUrl: resort.images.length > 0 ? resort.images[0] : null,
+        },
+      };
     });
-    res.send({ success: true, data: bookings });
+
+    res.send({ success: true, data: bookingData });
   } catch (error) {
     res.status(500).json({ message: "Unable to get Bookings" });
   }

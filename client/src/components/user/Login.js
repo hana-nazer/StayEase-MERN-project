@@ -24,7 +24,7 @@ function Login() {
   return (
     <>
       <div className="flex items-center justify-center h-screen bg-light-white">
-        <div className="w-full p-10 mx-auto overflow-hidden bg-white border shadow-lg lg:w-1/3 lg:flex-row rounded-xl">
+        <div className="w-full px-10 pt-8 pb-6 mx-auto overflow-hidden bg-white border shadow-lg lg:w-1/3 lg:flex-row rounded-xl">
           <LoginTitle title=" Login into your account" />
           <LoginForm onSubmit={handleSubmit} />
           <div className="flex justify-between">
@@ -38,6 +38,12 @@ function Login() {
               <Link to="/reset" className="text-blue-700 underline">
                 Forgot password?
               </Link>
+            </p>
+          </div>
+          <div className="mt-2">
+            <p className="text-center">
+              Register as host {" "}
+              <Link className="text-blue-700 underline" to='/owner/signup'>register</Link>
             </p>
           </div>
         </div>

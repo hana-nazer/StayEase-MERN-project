@@ -92,7 +92,7 @@ function SignUp() {
               </div>
             </div>
           {/* </div> */}
-          <div className="w-full px-12 mt-6 lg:w-96">
+          <div className="w-full px-12 mt-6 lg:w-96 ">
             <h2 className="mb-4 text-3xl font-semibold">Create account</h2>
             <p className="mb-4">
               Create your account, it's free and only take a minute
@@ -139,7 +139,7 @@ function SignUp() {
                 )}
               </div>
 
-              <div className="mt-5 mb-3">
+              <div className="mt-5 mb-8">
                 <button
                   className="w-full py-3 text-center text-white bg-custom-gray"
                   type="submit"

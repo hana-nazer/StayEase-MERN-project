@@ -5,6 +5,7 @@ const adminAuthController = require("../controllers/adminController/adminAuthCon
 const adminResortController = require("../controllers/adminController/adminResortController");
 const locationController = require("../controllers/adminController/locationController");
 const categoryController = require("../controllers/adminController/CategoryController");
+const dashboardController = require('../controllers/adminController/dashboardController')
 
 router.post("/login", adminAuthController.adminLogin);
 router.get("/pending", adminAuth, adminResortController.getPendingResorts);
@@ -32,5 +33,6 @@ router.get(
 router.get("/fetch-location", adminAuth, locationController.location);
 router.get("/fetch-category", adminAuth, categoryController.category);
 router.get("/bookings", adminAuth, adminResortController.bookings);
+router.get('/dashboard',adminAuth,dashboardController.dashboardData )
 
 module.exports = router;

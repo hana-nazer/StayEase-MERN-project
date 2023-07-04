@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getResortData } from "../api calls/resort";
@@ -11,8 +11,10 @@ import Images from "./resort/Images";
 import Action from "./resort/Action";
 import BookNow from "./resort/BookNow";
 import RoomServices from "./resort/RoomServices";
+// import TawkMessengerReact from "@tawk.to/tawk-messenger-react";
 
 function ResortDetailedView(props) {
+  // const tawkMessengerRef = useRef();
   const action = props.action;
   const role = props.role;
   const resortData = useSelector((state) => state.verifyResort.resortData);
@@ -21,6 +23,10 @@ function ResortDetailedView(props) {
   useEffect(() => {
     fetchResortDetails();
   }, []);
+  // const onLoad = () => {
+  //   console.log("onLoad works!");
+  // };
+
   const fetchResortDetails = async () => {
     try {
       const response = await getResortData(resortId, role);
@@ -52,7 +58,16 @@ function ResortDetailedView(props) {
       <div className="mb-9">
         <About />
       </div>
-
+      {/* -------------tawk to-------------- */}
+      {/* <div>
+        <TawkMessengerReact
+          propertyId="64a2e6ea94cf5d49dc614712"
+          widgetId="https://tawk.to/chat/64a2e6ea94cf5d49dc614712/1h4e5c19d"
+          ref={tawkMessengerRef}
+          onLoad={onLoad}
+        />
+      </div> */}
+      {/* -------------- */}
       <div className="flex ">
         <div className="w-1/2 ">
           <RoomServices />

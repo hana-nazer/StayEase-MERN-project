@@ -69,7 +69,7 @@ function Signup() {
       <div className={styles.parent_div}>
         <div className={styles.sub_div}>
           <div className={styles.form_div}>
-            <h2 className={styles.form_heading}>Owner Signup</h2>
+            <h2 className={styles.form_heading}>Register as Host</h2>
             <form onSubmit={formSubmit}>
               <div className="mt-5">
                 <input

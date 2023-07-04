@@ -117,3 +117,8 @@ export const Bookings = async () => {
     return error;
   }
 };
+
+export const dashboardDetails = async () => {
+  const response = await adminApi.get("/dashboard");
+  return response.data;
+};
