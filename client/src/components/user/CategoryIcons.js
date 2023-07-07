@@ -3,7 +3,9 @@ import styles from "../../stylesheets/hideScroll.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setCategory } from "../../redux/categorySlice";
 import { getCategory } from "../../api calls/resort";
-function CategoryIcons() {
+function CategoryIcons({ onCategory }) {
+  const [selectedCategory, setSelectedCategory] = useState("");
+
   const categories = useSelector((state) => state.category.category);
   const dispatch = useDispatch();
 
@@ -20,8 +22,9 @@ function CategoryIcons() {
     }
   };
 
-  const onCategoryClick = async (category) => {
-    console.log(category);
+  const onCategoryClick = (category) => {
+    setSelectedCategory(category);
+    onCategory(category);
   };
 
   useEffect(() => {

@@ -16,7 +16,7 @@ function HomePage() {
         <Navbar role={role} name={name} />
         <Sidebar role="owner" />
         <div className="container w-full mx-12 mb-16 lg:ml-52 lg:w-3/4 mt-14">
-        <Dashboard/>
+          <Dashboard />
         </div>
         <Footer />
       </div>

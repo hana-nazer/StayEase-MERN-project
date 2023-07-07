@@ -1,15 +1,32 @@
 import React, { useEffect, useState } from "react";
-import DashboardInfo from '../owner/DashboardInfo'
+import DashboardInfo from "../owner/DashboardInfo";
 import DashboardChart from "../owner/DashboardChart";
+import { dashboardInfo } from "../../api calls/owner";
 
 function Dashboard() {
+  const [bookings, setBookings] = useState("");
+  const [resorts, setResorts] = useState("");
+  const [monthCounts, setMonthCounts] = useState("");
+  const info = async () => {
+    const response = await dashboardInfo();
+    if (response.success) {
+      setBookings(response.data.bookingsCount);
+      setResorts(response.data.resortCount);
+      setMonthCounts(response.data.months);
+    }
+  };
+
+  useEffect(() => {
+    info();
+  });
+
   return (
     <>
       <div>
         <div className="flex flex-col h-screen my-10 ">
-          <DashboardInfo/>
+          <DashboardInfo booking={bookings} resorts={resorts} />
           <div className="py-14">
-          <DashboardChart/>
+            <DashboardChart monthCounts={monthCounts} />
           </div>
         </div>
       </div>

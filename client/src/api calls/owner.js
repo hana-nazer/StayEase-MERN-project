@@ -83,3 +83,10 @@ export const Bookings = async () => {
     return error;
   }
 };
+
+
+// dashboardInfo
+export const dashboardInfo = async()=>{
+  const response = await ownerApi.get('/dashboard')
+  return response.data
+}

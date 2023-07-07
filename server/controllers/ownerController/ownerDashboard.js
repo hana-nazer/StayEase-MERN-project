@@ -6,9 +6,49 @@ exports.ownerDashboard = async (req, res) => {
   try {
     const resorts = await Resort.find({ owner: ownerId }).select("_id");
     const resortIds = resorts.map((resort) => resort._id);
-    const bookings = await Booking.find({ resort: { $in: resortIds } }).count();
+
+    // Get bookings for the owner's resorts
+    const bookings = await Booking.find({ resort: { $in: resortIds } });
+
+    // Calculate monthly booking counts
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    const monthCounts = {};
+
+    bookings.forEach((booking) => {
+      const parts = booking.dates[0].split("-"); // Assuming date format is DD-MM-YYYY
+      const isoDateString = `${parts[2]}-${parts[1]}-${parts[0]}`;
+      const date = new Date(isoDateString);
+      const month = date.getMonth();
+      const monthName = monthNames[month];
+
+      if (monthCounts.hasOwnProperty(monthName)) {
+        monthCounts[monthName]++;
+      } else {
+        monthCounts[monthName] = 1;
+      }
+    });
+
     const resortCount = await Resort.find({ owner: ownerId }).count();
-    res.send({ bookings, resortCount });
+    const dashboardInfo = {
+      bookingsCount: bookings.length,
+      resortCount: resortCount,
+      months: monthCounts,
+    };
+    res.send({ data: dashboardInfo, success: true });
   } catch (error) {
     res
       .status(500)

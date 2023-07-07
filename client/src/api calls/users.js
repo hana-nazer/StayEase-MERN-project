@@ -21,18 +21,20 @@ export const LoginUser = async (payload) => {
 };
 
 // getResorts
-export const getResorts = async (searchTerm) => {
+export const getResorts = async (location, category) => {
   try {
     let url = "/resorts";
-    if (searchTerm) {
-      const encodedSearchTerm = encodeURIComponent(searchTerm); // Encode search term to handle special characters
-      url += `?location=${encodedSearchTerm}`;
-      // url += `?location=${searchTerm}`;
+    if (location && category) {
+      url = `/resorts?location=${location}&category=${category}`;
+    } else if (location) {
+      url = `/resorts?location=${location}`;
+    } else if (category) {
+      url = `/resorts?category=${category}`;
     }
     const response = await userApi.get(url);
     return response.data;
   } catch (error) {
-    return error.response;
+    throw error.response.data;
   }
 };
 
@@ -50,7 +52,9 @@ export const forgotPassword = async (email) => {
 
 // reset password
 export const resetPassword = async (password, id, token) => {
-  const response = await userApi.post(`/resetPassword/${id}/${token}`,{password});
+  const response = await userApi.post(`/resetPassword/${id}/${token}`, {
+    password,
+  });
   return response.data;
 };
 

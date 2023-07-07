@@ -1,20 +1,39 @@
 const Resort = require("../../models/resortModel");
 const Owner = require("../../models/ownerModel");
-const Category = require("../../models/CategoryModel")
-const Location = require('../../models/locationModel')
+const Category = require("../../models/CategoryModel");
+const Location = require("../../models/locationModel");
 
 // resorts list
+// exports.getResorts = async (req, res) => {
+//   try {
+//     const { location } = req.query;
+//     let query = { status: "approved" };
+//     if (location) {
+//       const searchLocation = new RegExp(location, "i");
+//       query.location = searchLocation;
+//     }
+//     const resorts = await Resort.find(query);
+//     res.send({ success: true, data: resorts });
+//   } catch (error) {
+//     res.status(500).json({ message: "Failed to retrieve resorts" });
+//   }
+// };
+
 exports.getResorts = async (req, res) => {
   try {
-    const { location } = req.query;
+    const { location, category } = req.query;
     let query = { status: "approved" };
+
     if (location) {
       const searchLocation = new RegExp(location, "i");
       query.location = searchLocation;
-      // query.location = location;
     }
 
-    // const resorts = await Resort.find(query);
+    if (category) {
+      const searchCategory = new RegExp(category, "i");
+      query.category = searchCategory;
+    }
+
     const resorts = await Resort.find(query);
     res.send({ success: true, data: resorts });
   } catch (error) {
@@ -47,8 +66,6 @@ exports.category = async (req, res) => {
   }
 };
 
-
-// fetch location
 // fetch location
 exports.location = async (req, res) => {
   try {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
@@ -10,11 +10,16 @@ import { useNavigate } from "react-router-dom";
 import { setUser } from "../../redux/getUserSlice";
 
 function HomePage() {
+  const [getCategory, setGetCategory] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.getUser.getUser);
   const role = user ? user.role : null;
   const name = user ? user.name : null;
+
+  const getCategoryName = (category) => {
+    setGetCategory(category);
+  };
 
   const getUserData = async () => {
     try {
@@ -48,12 +53,12 @@ function HomePage() {
             className="absolute left-0 right-0 flex items-end justify-center bottom-1/2"
             style={{ transform: "translateY(50%)" }}
           >
-            <CategoryIcons />
+            <CategoryIcons onCategory={getCategoryName} />
           </div>
         </div>
 
         <div className="pt-20 pb-10 bg-white-smoke ">
-          <Home />
+          <Home category={getCategory} />
         </div>
       </div>
       <Footer />

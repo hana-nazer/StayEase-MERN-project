@@ -25,6 +25,7 @@ function ResetPassword() {
     try {
       const response = await resetPassword(password, id, token);
       if(response.success){
+        console.log("hello");
         navigate('/login')
       }
     } catch (error) {}

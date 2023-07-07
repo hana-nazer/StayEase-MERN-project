@@ -5,28 +5,30 @@ import { useSelector, useDispatch } from "react-redux";
 import { getResorts } from "../../api calls/users";
 import { useNavigate } from "react-router-dom";
 
-function ResortCard() {
+function ResortCard({ category }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const resorts = useSelector((state) => state.resort.resorts);
   const searchLocation = useSelector((state) => state.location.searchLocation);
-  const selectedCategory = useSelector(
-    (state) => state.category.selectedCategory
-  );
 
   useEffect(() => {
     fetchResorts();
-  }, [searchLocation]);
+  }, [searchLocation, category]);
 
   const fetchResorts = async () => {
     try {
       let response;
-      if (searchLocation) {
-        response = await getResorts(searchLocation.toLowerCase());
-        // response = await getResorts(searchLocation);
+
+      if (searchLocation && category) {
+        response = await getResorts(searchLocation, category);
+      } else if (searchLocation) {
+        response = await getResorts(searchLocation);
+      } else if (category) {
+        response = await getResorts(null, category);
       } else {
         response = await getResorts();
       }
+
       if (response.success) {
         dispatch(setResortData(response.data));
       } else {

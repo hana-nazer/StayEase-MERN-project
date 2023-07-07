@@ -1,6 +1,7 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
 
 const DashboardChart = ({ monthCounts }) => {
+  
   const datas = [
     {
       name: "Jan",
