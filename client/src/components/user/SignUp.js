@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-// import styles from "../../stylesheets/user/signup.module.css";
 import { RegisterUser } from "../../api calls/users";
 
 function SignUp() {
@@ -69,9 +68,8 @@ function SignUp() {
     <>
       <div className="flex items-center justify-center h-screen bg-white-smoke ">
         <div className="container flex flex-col w-1/2 mx-auto overflow-hidden bg-white border rounded-lg shadow-lg lg:flex-row">
-          {/* <div className=" md:hidden sm:hidden"> */}
           <div
-              className="relative flex flex-col items-center justify-center w-full p-12 bg-center bg-no-repeat bg-cover lg:w-6/12 "
+              className="relative flex flex-col items-center justify-center hidden w-full p-12 bg-center bg-no-repeat bg-cover lg:w-6/12 lg:block"
               style={{ backgroundImage: `url('images/sign-cover.png')` }}
             >
               <h1 className="text-2xl font-semibold text-white">
@@ -82,10 +80,10 @@ function SignUp() {
                   To keep connected please login
                 </p>
               </div>
-              <div>
+              <div className="mt-5">
                 <Link
                   to="/login"
-                  className="p-2 mt-5 font-semibold text-center text-white bg-opacity-50 bg-slate-200 rounded-xl"
+                  className="p-2 mt-10 font-semibold text-center text-white bg-opacity-50 bg-slate-200 rounded-xl"
                 >
                   Sign in
                 </Link>
