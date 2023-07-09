@@ -26,7 +26,8 @@ exports.ownerSignUp = async (req, res) => {
   } catch (error) {
     res.send({
       success: false,
-      message: error.message,
+      message: "Unexpected error occured",
+      error: error.message,
     });
   }
 };
@@ -69,7 +70,8 @@ exports.ownerLogin = async (req, res) => {
   } catch (error) {
     res.send({
       succes: false,
-      message: error.message,
+      message: "an error occured",
+      error: error.message,
     });
   }
 };
@@ -84,6 +86,8 @@ exports.getCurrentOwner = async (req, res) => {
       data: owner,
     });
   } catch (error) {
-    res.status(500).json({ message: "Failed to retrieve owner details" });
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to retrieve owner details" });
   }
 };

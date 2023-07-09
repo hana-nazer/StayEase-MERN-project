@@ -29,7 +29,7 @@ exports.ownerDashboard = async (req, res) => {
     const monthCounts = {};
 
     bookings.forEach((booking) => {
-      const parts = booking.dates[0].split("-"); // Assuming date format is DD-MM-YYYY
+      const parts = booking.dates[0].split("-");
       const isoDateString = `${parts[2]}-${parts[1]}-${parts[0]}`;
       const date = new Date(isoDateString);
       const month = date.getMonth();
@@ -52,6 +52,9 @@ exports.ownerDashboard = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .send({ error: "An error occurred while fetching the bookings." });
+      .send({
+        success: false,
+        message: "An error occurred while fetching the bookings.",
+      });
   }
 };

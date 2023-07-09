@@ -33,7 +33,8 @@ exports.registerResort = async (req, res) => {
   } catch (error) {
     res.send({
       success: false,
-      message: error.message,
+      message: "An error occured",
+      error: error.message,
     });
   }
 };
@@ -45,7 +46,9 @@ exports.getResorts = async (req, res) => {
     const resorts = await Resort.find({ owner: ownerId });
     res.send({ success: true, data: resorts });
   } catch (error) {
-    res.status(500).json({ message: "Failed to retrieve  resorts" });
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to retrieve  resorts" });
   }
 };
 
@@ -60,7 +63,9 @@ exports.resortData = async (req, res) => {
     const ownerData = await Owner.findById(owner);
     res.send({ success: true, data: resort, owner: ownerData });
   } catch (error) {
-    res.status(500).json({ message: "Failed to retrieve resort details" });
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to retrieve resort details" });
   }
 };
 
@@ -70,7 +75,9 @@ exports.location = async (req, res) => {
     const location = await Location.find();
     res.send({ success: true, data: location });
   } catch (error) {
-    res.status(500).json({ message: "Failed to retrieve location" });
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to retrieve location" });
   }
 };
 
@@ -80,36 +87,13 @@ exports.category = async (req, res) => {
     const category = await Category.find();
     res.send({ success: true, data: category });
   } catch (error) {
-    res.status(500).json({ message: "Failed to retrieve category" });
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to retrieve category" });
   }
 };
 
-// exports.booking = async (req, res) => {
-//   try {
-//     const resorts = await Resort.find({ owner: req.userId });
-//     const resortIds = resorts.map((resort) => resort._id);
-//     const bookings = await Booking.find({ resort: { $in: resortIds } });
-//     console.log(bookings);
-//     // const users=  bookings.map((booking)=>booking.user)
-//     // console.log(users);
-//     const bookingData = bookings.map((booking) => ({
-//       _id: booking._id,
-//       phone: booking.phone,
-//       numberOfGuests: booking.numberOfGuests,
-//       resort: "",
-//       no_of_days: booking.no_of_days,
-//       dates: booking.dates,
-//       totalCharge: booking.totalCharge,
-//       user: "",
-//     }));
-//     // console.log(bookingData);
-//     res.send({ success: true, data: bookingData });
-//   } catch (error) {
-//     res.status(500).json({ message: "Failed to retrieve bookings" });
-//   }
-// };
-
-
+// bookings
 exports.bookings = async (req, res) => {
   try {
     const allBookings = await Booking.find();
@@ -135,7 +119,7 @@ exports.bookings = async (req, res) => {
           no_of_days: booking.no_of_days,
           dates: booking.dates,
           totalCharge: booking.totalCharge,
-          user: user.name, // Assuming the username is stored in the 'username' field of the User model
+          user: user.name,
         };
 
         mappedBookings.push(mappedBooking);
@@ -146,7 +130,8 @@ exports.bookings = async (req, res) => {
 
     res.send({ success: true, data: bookingData });
   } catch (error) {
-    res.status(500).json({ message: "Failed to retrieve bookings" });
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to retrieve bookings" });
   }
 };
-
