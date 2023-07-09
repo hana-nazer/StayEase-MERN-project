@@ -3,6 +3,7 @@ const User = require("../../models/userModel");
 const Owner = require("../../models/ownerModel");
 const Bookings = require("../../models/BookingModel");
 
+// fetching data for dashboard
 exports.dashboardData = async (req, res) => {
   try {
     const bookings = await Bookings.find();
@@ -24,7 +25,7 @@ exports.dashboardData = async (req, res) => {
     const monthCounts = {};
 
     bookings.forEach((booking) => {
-      const parts = booking.dates[0].split("-"); // Assuming date format is DD-MM-YYYY
+      const parts = booking.dates[0].split("-");
       const isoDateString = `${parts[2]}-${parts[1]}-${parts[0]}`;
       const date = new Date(isoDateString);
       const month = date.getMonth();
@@ -50,6 +51,11 @@ exports.dashboardData = async (req, res) => {
     };
     res.send({ data: dashboardInfo, success: true });
   } catch (error) {
-    res.status(500).send({ error: "An error occurred" });
+    res
+      .status(500)
+      .json({
+        success: false,
+        message: "An error occurred while fetching dashboard data",
+      });
   }
 };

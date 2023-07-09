@@ -26,7 +26,6 @@ exports.adminLogin = async (req, res) => {
         message: "Incorrect password",
       });
     }
-   
 
     // token creation
     const token = createToken(
@@ -42,7 +41,8 @@ exports.adminLogin = async (req, res) => {
   } catch (error) {
     res.send({
       succes: false,
-      message: error.message,
+      message: "An error occured",
+      error: error.message,
     });
   }
 };
@@ -53,11 +53,12 @@ exports.getCurrentAdmin = async (req, res) => {
     const admin = await Admin.findById(req.userId).select("-password");
     res.send({
       success: true,
-      message: "Successully retrieved admin details",
       data: admin,
     });
   } catch (error) {
-    res.status(500).json({ message: "Failed to retrieve admin details" });
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to retrieve admin details" });
   }
 };
 
@@ -67,6 +68,8 @@ exports.usersList = async (req, res) => {
     const users = await User.find();
     res.send({ succes: true, data: users });
   } catch (error) {
-    res.status(500).json({ message: "Failed to retrieve users" });
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to retrieve users" });
   }
 };

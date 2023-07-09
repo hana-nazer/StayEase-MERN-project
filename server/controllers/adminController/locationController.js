@@ -18,9 +18,10 @@ exports.addLocation = async (req, res) => {
       data: newLocation,
     });
   } catch (error) {
-    res.send({
+    res.status(500).send({
       success: false,
-      message: error.message,
+      message: "An error occurred",
+      error: error.message,
     });
   }
 };
@@ -31,7 +32,8 @@ exports.location = async (req, res) => {
     const location = await Location.find();
     res.send({ success: true, data: location });
   } catch (error) {
-    res.status(500).json({ message: "Failed to retrieve location" });
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to retrieve location" });
   }
 };
-

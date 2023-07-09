@@ -5,7 +5,6 @@ exports.addCategory = async (req, res) => {
   try {
     const category = req.body.category;
     const iconUrl = req.body.iconUrl;
-    console.log(category);
     if (!category || !iconUrl) {
       return res.send({
         success: false,
@@ -24,11 +23,11 @@ exports.addCategory = async (req, res) => {
       message: "added category successfully",
       data: savedCategory,
     });
-
   } catch (error) {
-    res.send({
+    res.status(500).send({
       success: false,
-      message: error.message,
+      message: "An error occurred",
+      error: error.message,
     });
   }
 };
@@ -39,6 +38,8 @@ exports.category = async (req, res) => {
     const category = await Category.find();
     res.send({ success: true, data: category });
   } catch (error) {
-    res.status(500).json({ message: "Failed to retrieve category" });
+    res
+      .status(500)
+      .json({ succes: false, message: "Failed to retrieve category" });
   }
 };
