@@ -26,7 +26,8 @@ exports.postSignUp = async (req, res) => {
   } catch (error) {
     res.send({
       success: false,
-      message: error.message,
+      message: "An error occured",
+      error: error.message,
     });
   }
 };
@@ -64,12 +65,13 @@ exports.postLogin = async (req, res) => {
     res.send({
       success: true,
       message: "user loggedin successfully",
-      data: token
+      data: token,
     });
   } catch (error) {
     res.send({
       succes: false,
-      message: error.message,
+      message: "An error occured",
+      error: error.message,
     });
   }
 };
@@ -84,6 +86,8 @@ exports.getCurrentUser = async (req, res) => {
       data: user,
     });
   } catch (error) {
-    res.status(500).json({ message: "Failed to retrieve user details" });
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to retrieve user details" });
   }
 };

@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const { createToken } = require("../../middlewares/tokenAuth");
 
+// sending forgot password link
 exports.forgotPassword = async (req, res) => {
   const { email } = req.body;
   const user = await User.findOne({ email: email });
@@ -35,10 +36,17 @@ exports.forgotPassword = async (req, res) => {
     };
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-        console.log("error" + error);
+        res.status(500).json({
+          success: false,
+          message: "Error sending email",
+          error: error.message,
+        });
       } else {
-        console.log("email sent" + info.response);
-        res.status(201).json({ status: 201, info });
+        res.status(201).json({
+          success: true,
+          message: "Email sent successfully",
+          response: info.response,
+        });
       }
     });
   } catch (error) {}
@@ -49,6 +57,7 @@ exports.forgotPassword = async (req, res) => {
   });
 };
 
+// reset password
 exports.resetPassword = async (req, res) => {
   const { id, token } = req.params;
   const { password } = req.body;
@@ -72,7 +81,6 @@ exports.resetPassword = async (req, res) => {
       res.send({ success: false, message: "password not updated" });
     }
   } catch (error) {
-    console.log(error);
     res.send({ success: false, message: "Error resetting password" });
   }
 };

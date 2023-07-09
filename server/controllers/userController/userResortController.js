@@ -4,21 +4,6 @@ const Category = require("../../models/CategoryModel");
 const Location = require("../../models/locationModel");
 
 // resorts list
-// exports.getResorts = async (req, res) => {
-//   try {
-//     const { location } = req.query;
-//     let query = { status: "approved" };
-//     if (location) {
-//       const searchLocation = new RegExp(location, "i");
-//       query.location = searchLocation;
-//     }
-//     const resorts = await Resort.find(query);
-//     res.send({ success: true, data: resorts });
-//   } catch (error) {
-//     res.status(500).json({ message: "Failed to retrieve resorts" });
-//   }
-// };
-
 exports.getResorts = async (req, res) => {
   try {
     const { location, category } = req.query;
@@ -37,7 +22,9 @@ exports.getResorts = async (req, res) => {
     const resorts = await Resort.find(query);
     res.send({ success: true, data: resorts });
   } catch (error) {
-    res.status(500).json({ message: "Failed to retrieve resorts" });
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to retrieve resorts" });
   }
 };
 
@@ -46,13 +33,15 @@ exports.resortData = async (req, res) => {
   try {
     const resort = await Resort.findById(req.params.resortId);
     if (!resort) {
-      res.send({ message: "Resort not found" });
+      res.send({ success: false, message: "Resort not found" });
     }
     const owner = resort.owner;
     const ownerData = await Owner.findById(owner);
     res.send({ success: true, data: resort, owner: ownerData });
   } catch (error) {
-    res.status(500).json({ message: "Failed to retrieve resort details" });
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to retrieve resort details" });
   }
 };
 
@@ -62,7 +51,9 @@ exports.category = async (req, res) => {
     const category = await Category.find();
     res.send({ success: true, data: category });
   } catch (error) {
-    res.status(500).json({ message: "Failed to retrieve category" });
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to retrieve category" });
   }
 };
 

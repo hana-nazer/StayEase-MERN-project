@@ -11,7 +11,7 @@ exports.fetchDisabledDates = async (req, res) => {
     const bookedDates = bookings.map((booking) => booking.dates).flat();
     res.send({ success: true, disabledDates: bookedDates });
   } catch (error) {
-    res.status(500).json({ message: "Unable to get dates" });
+    res.status(500).json({ success: false, message: "Unable to get dates" });
   }
 };
 
@@ -55,7 +55,11 @@ exports.makePayment = async (req, res) => {
     const bookedResort = await bookingData.save();
     res.json({ id: session.id, message: "success", success: true });
   } catch (error) {
-    console.log(error);
+    res.send({
+      succes: false,
+      message: "Payment failed",
+      error: error.message,
+    });
   }
 };
 
@@ -82,7 +86,8 @@ exports.postBooking = async (req, res) => {
   } catch (error) {
     res.send({
       success: false,
-      message: error.message,
+      message: "Booking failed",
+      error: error.message,
     });
   }
 };
@@ -111,6 +116,6 @@ exports.bookings = async (req, res) => {
 
     res.send({ success: true, data: bookingData });
   } catch (error) {
-    res.status(500).json({ message: "Unable to get Bookings" });
+    res.status(500).json({ success: false, message: "Unable to get Bookings" });
   }
 };
