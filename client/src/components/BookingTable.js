@@ -1,25 +1,24 @@
 import React from "react";
 
-function BookingTable({ details ,role})
-
-{
-  
-  const user = role
-  const bookings = details.map((booking, index) => ({
-    resortName: booking.resort,
-    customerName: booking.user,
-    phone: booking.phone,
-    checkIn: booking.dates[0],
-    checkOut: booking.dates[booking.dates.length - 1],
-    numOfGuests: booking.numberOfGuests,
-    totalCharge: booking.totalCharge,
-  }));
+function BookingTable({ details, role }) {
+  const user = role;
+  const bookings = details
+    .map((booking, index) => ({
+      resortName: booking.resort,
+      customerName: booking.user,
+      phone: booking.phone,
+      checkIn: booking.dates[0],
+      checkOut: booking.dates[booking.dates.length - 1],
+      numOfGuests: booking.numberOfGuests,
+      totalCharge: booking.totalCharge,
+    }))
+    .reverse();
 
   return (
     <>
       <table className="w-full">
         <caption className="p-2">Booking list</caption>
-        <thead className={`text-white ${user ? 'bg-teal-900' : 'bg-gray-700'}`}>
+        <thead className={`text-white ${user ? "bg-teal-900" : "bg-gray-700"}`}>
           <tr>
             <th className="p-2 border border-white">Resort</th>
             <th className="p-2 border border-white">Customer Name</th>

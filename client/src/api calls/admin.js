@@ -122,3 +122,11 @@ export const dashboardDetails = async () => {
   const response = await adminApi.get("/dashboard");
   return response.data;
 };
+
+// get users list
+export const usersList = async () => {
+  try {
+    const response = await adminApi.get("/users");
+    return response.data;
+  } catch (error) {}
+};

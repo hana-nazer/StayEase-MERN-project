@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { RegisterUser } from "../../api calls/users";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -54,12 +56,14 @@ function SignUp() {
       try {
         const response = await RegisterUser(formData);
         if (response.success) {
-          navigate("/");
+          navigate("/login");
         } else {
-          console.log(response.data.message);
+          toast.error(response.message, {
+            position: toast.POSITION.TOP_CENTER,
+          });
         }
       } catch (error) {
-        console.log(error.response);
+        console.log(error.response.data.message);
       }
     }
   };
@@ -69,27 +73,24 @@ function SignUp() {
       <div className="flex items-center justify-center h-screen bg-white-smoke ">
         <div className="container flex flex-col w-1/2 mx-auto overflow-hidden bg-white border rounded-lg shadow-lg lg:flex-row">
           <div
-              className="relative flex flex-col items-center justify-center hidden w-full p-12 bg-center bg-no-repeat bg-cover lg:w-6/12 lg:block"
-              style={{ backgroundImage: `url('images/sign-cover.png')` }}
-            >
-              <h1 className="text-2xl font-semibold text-white">
-                Welcome back
-              </h1>
-              <div>
-                <p className="font-medium text-white">
-                  To keep connected please login
-                </p>
-              </div>
-              <div className="mt-5">
-                <Link
-                  to="/login"
-                  className="p-2 mt-10 font-semibold text-center text-white bg-opacity-50 bg-slate-200 rounded-xl"
-                >
-                  Sign in
-                </Link>
-              </div>
+            className="relative flex flex-col items-center justify-center hidden w-full p-12 bg-center bg-no-repeat bg-cover lg:w-6/12 lg:block"
+            style={{ backgroundImage: `url('images/sign-cover.png')` }}
+          >
+            <h1 className="text-2xl font-semibold text-white">Welcome back</h1>
+            <div>
+              <p className="font-medium text-white">
+                To keep connected please login
+              </p>
             </div>
-          {/* </div> */}
+            <div className="mt-5">
+              <Link
+                to="/login"
+                className="p-2 mt-10 font-semibold text-center text-white bg-opacity-50 bg-slate-200 rounded-xl"
+              >
+                Sign in
+              </Link>
+            </div>
+          </div>
           <div className="w-full px-12 mt-6 lg:w-96 ">
             <h2 className="mb-4 text-3xl font-semibold">Create account</h2>
             <p className="mb-4">
@@ -145,12 +146,11 @@ function SignUp() {
                   Sign Up
                 </button>
               </div>
-              
             </form>
           </div>
         </div>
       </div>
-
+      <ToastContainer />
     </>
   );
 }

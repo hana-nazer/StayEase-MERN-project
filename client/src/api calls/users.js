@@ -6,7 +6,12 @@ export const RegisterUser = async (payload) => {
     const response = await userApi.post("/signup", payload);
     return response.data;
   } catch (error) {
-    return error.response;
+    if (error.response && error.response.data) {
+      console.log(  error.response.data.message);
+      return error.response.data.message;
+    } else {
+      return "An error occurred while signing up. Please try again.";
+    }
   }
 };
 
@@ -16,7 +21,8 @@ export const LoginUser = async (payload) => {
     const response = await userApi.post("/login", payload);
     return response.data;
   } catch (error) {
-    return error.response;
+    console.log(error.response.data.message);
+    return error.response.data.message;
   }
 };
 

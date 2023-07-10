@@ -14,7 +14,6 @@ function BookingDetails() {
       <Navbar role={role} name={name} />
       <div className="flex items-center justify-center h-screen bg-light-white">
         <div className="container flex justify-center gap-4 mx-auto">
-          {/* <Confirmation /> */}
           <BookingInfo />
         </div>
       </div>

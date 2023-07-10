@@ -35,6 +35,7 @@ exports.resortData = async (req, res) => {
     if (!resort) {
       res.send({ success: false, message: "Resort not found" });
     }
+   
     const owner = resort.owner;
     const ownerData = await Owner.findById(owner);
     res.send({ success: true, data: resort, owner: ownerData });

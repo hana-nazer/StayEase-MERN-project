@@ -49,17 +49,19 @@ function BookingHistory() {
   return (
     <>
       <div className="flex-col items-center justify-center h-screen mx-10">
-      <button
-      className="p-2 font-semibold bg-gray-300 border"
+        <button
+          className="p-2 font-semibold bg-gray-300 border"
           onClick={() =>
             setDisplayBookings((prevDisplay) =>
               prevDisplay === "previous" ? "upcoming" : "previous"
             )
           }
         >
-          {displayBookings === "previous" ? "Upcoming Bookings" : "Previous Bookings"}
+          {displayBookings === "previous"
+            ? "Upcoming Bookings"
+            : "Previous Bookings"}
         </button>
-        
+
         <div className="flex">
           {displayBookings === "previous" ? (
             <div className="flex flex-col items-center w-1/2 border">
@@ -150,8 +152,7 @@ function BookingHistory() {
             </div>
           )}
         </div>
-        
-        </div>
+      </div>
     </>
   );
 }

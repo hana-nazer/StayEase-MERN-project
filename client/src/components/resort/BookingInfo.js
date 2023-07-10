@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import { userApi } from "../../api calls/axios";
-import '../../fonts/fonts.css'
+import "../../fonts/fonts.css";
 
 function BookingInfo() {
   const resortData = useSelector((state) => state.verifyResort.resortData);
@@ -42,15 +42,6 @@ function BookingInfo() {
       if (result.error) {
         console.log(result.error);
       } else {
-        // const transactionId = session.id
-        // const bookingData = {
-        //   ...bookingDetails,
-        //   transactionId:transactionId
-        // }
-        // const savedResponse = await postBooking(bookingData,bookingDetails.resortId)
-        // if(savedResponse.success){
-        //   dispatch(setBookingDetails(response.data))
-        // }
       }
     } catch (error) {
       console.log(error.response);
@@ -59,7 +50,9 @@ function BookingInfo() {
   return (
     <>
       <div className="w-full bg-white border rounded-lg lg:w-2/6">
-        <p className="py-4 text-3xl font-bold text-center text-gray-300 font-oswald">Your trip</p>
+        <p className="py-4 text-3xl font-bold text-center text-gray-300 font-oswald">
+          Your trip
+        </p>
         <div className="flex justify-between px-2">
           <div>
             <img
@@ -100,64 +93,10 @@ function BookingInfo() {
           </button>
         </div>
       </div>
-      {/* ---------------------------------------------------------------------- */}
+    
     </>
 
-    // <>
-    //   <div className="w-2/6 mt-4 bg-white border rounded-lg">
-    //     <p className="p-6 text-2xl font-bold text-center">Your trip</p>
-    //     <div className="flex items-center justify-between py-2 mx-6 my-8">
-    //       <p className="text-xl font-semibold">Dates</p>
-    //       <p className="text-md">
-    //         {bookingInfo.dates[0]} to {lastDate}
-    //       </p>
-    //     </div>
-    //     <div>
-    //       <hr className="mx-4 my-8 border-gray-300" />
-    //     </div>
-    //     <div className="flex items-center justify-between py-2 mx-6 my-8 ">
-    //       <p className="text-xl font-semibold">Guests</p>
-    //       <p className="text-md">{bookingInfo.guests}</p>
-    //     </div>
-    //   </div>
-    //   {/* ---------------------------------------------------------------------- */}
-    //   <div className="p-5 mt-4 bg-white border rounded-lg">
-    //     <div className="flex gap-3 ">
-    //       <div>
-    //         <img
-    //           src={resortData.images[0]}
-    //           style={{ width: "150px", height: "100px" }}
-    //           alt="logo"
-    //         />
-    //       </div>
-    //       <div>
-    //         <p>{resortData.name}</p>
-    //         <p>{resortData.location}</p>
-    //       </div>
-    //     </div>
-    //     <div className="">
-    //       <p className="my-3 font-bold underline">Price details</p>
-    //       <div>
-    //         <p className="my-3 font-semibold">
-    //           {resortData.charge_per_night} * {bookingInfo.no_of_days} :{" "}
-    //           {resortData.charge_per_night * bookingInfo.no_of_days}
-    //         </p>
-    //         <p className="my-3 font-semibold">
-    //           No:of guests: {bookingInfo.guests}
-    //         </p>
-    //       </div>
-    //     </div>
-    //     <div className="my-3 font-bold">Total: {totalCharge}</div>
-    //     <div className="text-center">
-    //       <button
-    //         className="w-full px-8 py-3 text-white rounded-lg bg-custom-gray"
-    //         onClick={makePayment}
-    //       >
-    //         Pay now
-    //       </button>
-    //     </div>
-    //   </div>
-    // </>
+  
   );
 }
 export default BookingInfo;

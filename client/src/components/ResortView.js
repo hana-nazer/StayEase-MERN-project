@@ -13,7 +13,6 @@ import BookNow from "./resort/BookNow";
 import RoomServices from "./resort/RoomServices";
 
 function ResortDetailedView(props) {
-  const tawkMessengerRef = useRef();
   const action = props.action;
   const role = props.role;
   const resortData = useSelector((state) => state.verifyResort.resortData);
@@ -22,9 +21,7 @@ function ResortDetailedView(props) {
   useEffect(() => {
     fetchResortDetails();
   }, []);
-  const onLoad = () => {
-    console.log("onLoad works!");
-  };
+  
 
   const fetchResortDetails = async () => {
     try {

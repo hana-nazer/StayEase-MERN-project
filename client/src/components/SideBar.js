@@ -11,6 +11,7 @@ function Sidebar(props) {
     { to: "/admin/requests", label: "Approvals" },
     { to: "/admin/location", label: "Location" },
     { to: "/admin/category", label: "Category" },
+    { to: "/admin/users", label: "Users" },
   ];
 
   const ownerLinks = [
@@ -25,10 +26,10 @@ function Sidebar(props) {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth < 1024); 
+      setIsSmallScreen(window.innerWidth < 1024);
     };
 
-    handleResize(); 
+    handleResize();
 
     window.addEventListener("resize", handleResize);
 

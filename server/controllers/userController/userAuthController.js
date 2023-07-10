@@ -24,11 +24,7 @@ exports.postSignUp = async (req, res) => {
     await newUser.save();
     res.send({ success: true, message: "Created user successfully" });
   } catch (error) {
-    res.send({
-      success: false,
-      message: "An error occured",
-      error: error.message,
-    });
+    res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
 
@@ -68,11 +64,7 @@ exports.postLogin = async (req, res) => {
       data: token,
     });
   } catch (error) {
-    res.send({
-      succes: false,
-      message: "An error occured",
-      error: error.message,
-    });
+    res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
 

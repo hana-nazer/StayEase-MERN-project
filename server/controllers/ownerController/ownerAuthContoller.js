@@ -1,6 +1,7 @@
 const Owner = require("../../models/ownerModel");
 const { createToken } = require("../../middlewares/tokenAuth");
 const bcrypt = require("bcryptjs");
+const nodemailer = require("nodemailer");
 
 // Register owner
 exports.ownerSignUp = async (req, res) => {
@@ -13,6 +14,38 @@ exports.ownerSignUp = async (req, res) => {
         message: "Owner with this email already exists",
       });
     }
+// ------------------------------------------------------------
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD,
+      },
+    });
+    const mailOptions = {
+      from: process.env.EMAIL,
+      to: req.body.email,
+      subject: `Reset password link`,
+      html: `<p>Click on the following link to reset your password:</p>`,
+    };
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        res.status(500).json({
+          success: false,
+          message: "Error sending email",
+          error: error.message,
+        });
+      } else {
+        console.log(info.response);
+        res.status(201).json({
+          success: true,
+          message: "Email sent successfully",
+          response: info.response,
+        });
+      }
+    });
+
+// --------------------------------------//
 
     // hashPassword
     const salt = await bcrypt.genSalt(10);

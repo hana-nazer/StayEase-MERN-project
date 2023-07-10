@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import LoginForm from "../LoginForm";
 import LoginTitle from "../LoginTitle";
 import { LoginUser } from "../../api calls/users";
-import "animate.css";
-import "react-notifications-component/dist/theme.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -15,7 +15,9 @@ function Login() {
         localStorage.setItem("user_token", response.data);
         navigate("/");
       } else {
-        console.log(response.message);
+        toast.error(response.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     } catch (error) {
       console.log(error);
@@ -40,14 +42,9 @@ function Login() {
               </Link>
             </p>
           </div>
-          <div className="mt-2">
-            <p className="text-center">
-              Register as host {" "}
-              <Link className="text-blue-700 underline" to='/owner/signup'>register</Link>
-            </p>
-          </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

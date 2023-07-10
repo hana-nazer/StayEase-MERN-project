@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "../../components/Footer";
-import Navbar from "../../components/Navbar";
 import Home from "../../components/user/Home";
 import Banner from "../../components/user/Banner";
 import { getCurrentUser } from "../../api calls/users";
@@ -13,9 +12,6 @@ function HomePage() {
   const [getCategory, setGetCategory] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.getUser.getUser);
-  const role = user ? user.role : null;
-  const name = user ? user.name : null;
 
   const getCategoryName = (category) => {
     setGetCategory(category);
@@ -33,7 +29,9 @@ function HomePage() {
       } else {
         navigate("/");
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {

@@ -66,7 +66,7 @@ exports.getCurrentAdmin = async (req, res) => {
 exports.usersList = async (req, res) => {
   try {
     const users = await User.find();
-    res.send({ succes: true, data: users });
+    res.send({ success: true, data: users });
   } catch (error) {
     res
       .status(500)
