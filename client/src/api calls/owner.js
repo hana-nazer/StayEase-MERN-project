@@ -84,9 +84,20 @@ export const Bookings = async () => {
   }
 };
 
+// edit resortData
+export const editResort = async (payload,id) => {
+  try {
+    console.log(payload);
+    console.log(id);
+    const response = await ownerApi.put(`/edit/${id}`, payload);
+    return response.data;
+  } catch (error) {
+    return error.response;
+  }
+};
 
 // dashboardInfo
-export const dashboardInfo = async()=>{
-  const response = await ownerApi.get('/dashboard')
-  return response.data
-}
+export const dashboardInfo = async () => {
+  const response = await ownerApi.get("/dashboard");
+  return response.data;
+};

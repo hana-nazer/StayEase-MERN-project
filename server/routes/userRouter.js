@@ -4,7 +4,8 @@ const userAuthController = require("../controllers/userController/userAuthContro
 const userResortController = require("../controllers/userController/userResortController");
 const authMiddleware = require("../middlewares/authMiddleware");
 const bookingController = require("../controllers/userController/BookingController");
-const passwordController = require('../controllers/userController/passwordController')
+const passwordController = require("../controllers/userController/passwordController");
+const userChats = require("../controllers/chatController/chatController");
 
 router.post("/signup", userAuthController.postSignUp);
 router.post("/login", userAuthController.postLogin);
@@ -16,7 +17,6 @@ router.get(
   authMiddleware,
   userAuthController.getCurrentUser
 );
-// router.post("/book/:resortId", authMiddleware, bookingController.postBooking);
 router.get(
   "/resorts/:resortId/disableddates",
   authMiddleware,
@@ -29,8 +29,10 @@ router.post(
   bookingController.makePayment
 );
 
-router.get('/bookings',authMiddleware,bookingController.bookings)
+router.get("/bookings", authMiddleware, bookingController.bookings);
 
-router.post('/forgotPassword',passwordController.forgotPassword)
-router.post('/resetPassword/:id/:token',passwordController.resetPassword)
+router.post("/forgotPassword", passwordController.forgotPassword);
+router.post("/resetPassword/:id/:token", passwordController.resetPassword);
+router.post("/getMessage", authMiddleware, userChats.getMessages);
+router.post("/addMessage", authMiddleware, userChats.addMessage);
 module.exports = router;

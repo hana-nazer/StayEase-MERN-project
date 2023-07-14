@@ -5,11 +5,12 @@ const cors = require("cors");
 const userRouter = require("./routes/userRouter");
 const ownerRouter = require("./routes/ownerRoutes");
 const adminRouter = require("./routes/adminRoutes");
+const http = require("http");
+const httpServer = http.createServer(app);
+const chatConfig = require("./config/configChat");
 
-// Load environment variables from a .env file in the project root directory
 require("dotenv").config();
 
-// Require the dbConfig module to get database configuration information
 const dbConfig = require("./config/dbConfig");
 
 // Enable JSON parsing for incoming requests
@@ -27,6 +28,8 @@ app.use(
 app.use("/", userRouter);
 app.use("/owner", ownerRouter);
 app.use("/admin", adminRouter);
+
+chatConfig(httpServer);
 
 const port = process.env.PORT || 5000;
 

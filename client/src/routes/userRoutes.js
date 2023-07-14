@@ -11,6 +11,8 @@ import Success from "../components/Success";
 import AllBookings from "../pages/user/AllBookings";
 import ResetEmail from "../pages/user/ResetEmail";
 import ResetPassword from "../pages/user/ResetPassword";
+import List from "../pages/chats/List";
+import Message from "../pages/chats/Message";
 const HomePage = lazy(() => import("../pages/user/HomePage"));
 
 function UserRoutes() {
@@ -42,6 +44,15 @@ function UserRoutes() {
           }
         />
         <Route
+          path="/chatlist"
+          element={
+            <ProtectedUser>
+              <List />
+            </ProtectedUser>
+          }
+        />
+
+        <Route
           path="/success"
           element={
             <ProtectedUser>
@@ -57,6 +68,16 @@ function UserRoutes() {
             </ProtectedUser>
           }
         />
+
+        <Route
+          path="/usermessage"
+          element={
+            <ProtectedUser>
+              <Message />
+            </ProtectedUser>
+          }
+        />
+
         <Route path="/reset" element={<ResetEmail />} />
         <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
       </Routes>

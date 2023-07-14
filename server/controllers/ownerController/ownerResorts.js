@@ -39,6 +39,41 @@ exports.registerResort = async (req, res) => {
   }
 };
 
+// edit resort
+exports.editResort = async (req, res) => {
+  try {
+    const updatedData = {
+      name: req.body.name,
+      location: req.body.place,
+      description: req.body.description,
+      address: req.body.address,
+      charge_per_night: req.body.charge,
+      no_of_guest: req.body.guest,
+      amenities: req.body.amenities,
+      owner: req.userId,
+      images: req.body.imgUrls,
+      category: req.body.category,
+    };
+
+    const updatedResort = await Resort.findOneAndUpdate(
+      { _id: req.params.id, owner: req.userId },
+      { $set: updatedData },
+      { new: true }
+    );
+    res.send({
+      success: true,
+      message: "Resort Data updated",
+      data: updatedResort,
+    });
+  } catch (error) {
+    res.send({
+      success: false,
+      message: "An error occured",
+      error: error.message,
+    });
+  }
+};
+
 // resorts list
 exports.getResorts = async (req, res) => {
   try {

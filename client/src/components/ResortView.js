@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getResortData } from "../api calls/resort";
@@ -11,6 +11,8 @@ import Images from "./resort/Images";
 import Action from "./resort/Action";
 import BookNow from "./resort/BookNow";
 import RoomServices from "./resort/RoomServices";
+import UserChatButton from "./chats/UserChatButton";
+import EditButton from "./owner/EditButton";
 
 function ResortDetailedView(props) {
   const action = props.action;
@@ -21,7 +23,6 @@ function ResortDetailedView(props) {
   useEffect(() => {
     fetchResortDetails();
   }, []);
-  
 
   const fetchResortDetails = async () => {
     try {
@@ -41,12 +42,18 @@ function ResortDetailedView(props) {
   }
   return (
     <div className="mx-20 mb-16 ">
-      <div className="grid w-full grid-cols-2 gap-2 mt-20 mb-3">
+      <div className="flex justify-between w-full gap-2 mt-20 mb-3">
         <NameAndLocation />
+
         {!action && (
           <div className="flex items-center justify-end mx-3 ">
             <Action />
           </div>
+        )}
+        {role === "user" ? (
+          <UserChatButton />
+        ) : (
+          <EditButton resortId={resortId} resortData={resortData} />
         )}
       </div>
       <Images />
@@ -54,7 +61,7 @@ function ResortDetailedView(props) {
       <div className="mb-9">
         <About />
       </div>
-      
+
       <div className="flex ">
         <div className="w-1/2 ">
           <RoomServices />

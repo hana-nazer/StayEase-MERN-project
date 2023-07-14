@@ -8,6 +8,9 @@ import ResortList from "../pages/owner/ResortList";
 import ResortInfo from "../pages/owner/ResortInfo";
 import Protected from "../components/protectedRoute/ProtectedOwner";
 import BookingData from "../pages/owner/BookingData";
+import List from "../pages/chats/List";
+import Message from "../pages/chats/Message";
+import EditResortData from "../pages/owner/EditResortData";
 
 function OwnerRoutes() {
   return (
@@ -51,6 +54,32 @@ function OwnerRoutes() {
         element={
           <Protected>
             <BookingData />
+          </Protected>
+        }
+      />
+      <Route
+        path="/chatlist"
+        element={
+          <Protected>
+            <List />
+          </Protected>
+        }
+      />
+
+      <Route
+        path="/edit/:id"
+        element={
+          <Protected>
+            <EditResortData />
+          </Protected>
+        }
+      />
+
+      <Route
+        path="/message"
+        element={
+          <Protected>
+            <Message />
           </Protected>
         }
       />
