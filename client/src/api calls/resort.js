@@ -8,17 +8,17 @@ export const getResortData = async (resortId, role) => {
     if (role === "admin") {
       const response = await adminApi.get(`/view_resort/${resortId}`);
       return response.data;
-    } else if (role === "owner") {
+    }
+    if (role === "owner") {
       const response = await ownerApi.get(`/resortInfo/${resortId}`);
       return response.data;
-    } else if (role === "user") {
+    }
+    if (role === "user") {
       const response = await userApi.get(`/resortInfo/${resortId}`);
       return response.data;
-    } else {
-      throw new Error("Invalid role entry");
     }
   } catch (error) {
-    return { success: false, message: "Failed to retrieve resort details" };
+    throw new Error(error.response.status);
   }
 };
 
@@ -32,10 +32,9 @@ export const getLocation = async (role) => {
     if (role === "admin") {
       const response = await adminApi.get("/fetch-location");
       return response.data;
-    }
-    else{
-      const response = await userApi.get('/fetch-location')
-      return response.data
+    } else {
+      const response = await userApi.get("/fetch-location");
+      return response.data;
     }
   } catch (error) {
     return { success: false, message: "Failed to fetch location" };

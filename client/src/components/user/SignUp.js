@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { RegisterUser } from "../../api calls/users";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Error500 from "../error/userError/Error500";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ function SignUp() {
   const [nameError, setNameError] = useState(null);
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
+  const [hasError, setHasError] = useState(false);
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -63,10 +65,16 @@ function SignUp() {
           });
         }
       } catch (error) {
-        console.log(error.response.data.message);
+        if (error.message === "500") {
+          setHasError(true);
+        }
       }
     }
   };
+
+  if (hasError) {
+    return <Error500 />;
+  }
 
   return (
     <>
@@ -89,6 +97,7 @@ function SignUp() {
               >
                 Sign in
               </Link>
+            
             </div>
           </div>
           <div className="w-full px-12 mt-6 lg:w-96 ">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "lato-font";
 import { setResortData } from "../../redux/ResortCardSlice";
 import { useSelector, useDispatch } from "react-redux";
@@ -31,11 +31,11 @@ function ResortCard({ category }) {
 
       if (response.success) {
         dispatch(setResortData(response.data));
-      } else {
-        console.log(response.data.message);
       }
     } catch (error) {
-      console.log(error);
+      if (error.message === "500") {
+        navigate("/error500");
+      }
     }
   };
 
@@ -46,6 +46,7 @@ function ResortCard({ category }) {
   return (
     <div className="grid grid-cols-1 gap-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
       {resorts.map((resort) => (
+        
         <div
           className="w-full col-span-1 mb-5 overflow-hidden bg-white rounded-md shadow-md cursor-pointer hover:shadow-lg"
           key={resort.id}

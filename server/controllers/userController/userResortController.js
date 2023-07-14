@@ -22,9 +22,7 @@ exports.getResorts = async (req, res) => {
     const resorts = await Resort.find(query);
     res.send({ success: true, data: resorts });
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to retrieve resorts" });
+    res.status(500).json({ message: "Failed to retrieve resorts" });
   }
 };
 
@@ -35,14 +33,12 @@ exports.resortData = async (req, res) => {
     if (!resort) {
       res.send({ success: false, message: "Resort not found" });
     }
-   
+
     const owner = resort.owner;
     const ownerData = await Owner.findById(owner);
     res.send({ success: true, data: resort, owner: ownerData });
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to retrieve resort details" });
+    res.status(500).json({ message: "Failed to retrieve resort details" });
   }
 };
 

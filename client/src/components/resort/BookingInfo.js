@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import { userApi } from "../../api calls/axios";
 import "../../fonts/fonts.css";
+import Error402 from "../error/userError/Error402";
 
 function BookingInfo() {
   const resortData = useSelector((state) => state.verifyResort.resortData);
@@ -40,11 +41,11 @@ function BookingInfo() {
         sessionId: session.id,
       });
       if (result.error) {
-        console.log(result.error);
+        return <Error402 />;
       } else {
       }
     } catch (error) {
-      console.log(error.response);
+      return <Error402 />;
     }
   };
   return (
@@ -93,10 +94,7 @@ function BookingInfo() {
           </button>
         </div>
       </div>
-    
     </>
-
-  
   );
 }
 export default BookingInfo;

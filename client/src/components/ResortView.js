@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getResortData } from "../api calls/resort";
 import { setOwnerData, setResortData } from "../redux/resortSlice";
@@ -15,6 +15,7 @@ import UserChatButton from "./chats/UserChatButton";
 import EditButton from "./owner/EditButton";
 
 function ResortDetailedView(props) {
+  const navigate = useNavigate();
   const action = props.action;
   const role = props.role;
   const resortData = useSelector((state) => state.verifyResort.resortData);
@@ -30,11 +31,19 @@ function ResortDetailedView(props) {
       if (response.success) {
         dispatch(setResortData(response.data));
         dispatch(setOwnerData(response.owner));
-      } else {
-        console.log(response.data.message);
       }
     } catch (error) {
-      console.log(error.response);
+      if (error.message === "500") {
+        if (role === "user") {
+          navigate("/error500");
+        }
+        if (role === "owner") {
+          navigate("/owner/error500");
+        }
+        if (role === "admin") {
+          navigate("/admin/error500");
+        }
+      }
     }
   };
   if (!resortData) {
@@ -52,9 +61,9 @@ function ResortDetailedView(props) {
         )}
         {role === "user" ? (
           <UserChatButton />
-        ) : (
+        ) : role === "owner" ? (
           <EditButton resortId={resortId} resortData={resortData} />
-        )}
+        ) : null}
       </div>
       <Images />
       {role === "user" && <BookNow resortId={resortId} />}

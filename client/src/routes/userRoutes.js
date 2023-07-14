@@ -13,6 +13,8 @@ import ResetEmail from "../pages/user/ResetEmail";
 import ResetPassword from "../pages/user/ResetPassword";
 import List from "../pages/chats/List";
 import Message from "../pages/chats/Message";
+import Error404 from "../components/error/userError/Error404";
+import Error500 from "../components/error/userError/Error500";
 const HomePage = lazy(() => import("../pages/user/HomePage"));
 
 function UserRoutes() {
@@ -20,7 +22,7 @@ function UserRoutes() {
     <>
       <Suspense fallback={<LoadingFallback />}>
         <Routes>
-          <Route path="" element={<HomePage />} />
+          <Route exact path="/" element={<HomePage />} />
         </Routes>
       </Suspense>
       <Routes>
@@ -80,6 +82,9 @@ function UserRoutes() {
 
         <Route path="/reset" element={<ResetEmail />} />
         <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
+
+        <Route path="/error500" element={<Error500 />} />
+        <Route path="/*" element={<Error404 />} />
       </Routes>
     </>
   );

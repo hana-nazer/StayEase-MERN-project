@@ -49,12 +49,9 @@ exports.forgotPassword = async (req, res) => {
         });
       }
     });
-  } catch (error) {}
-  res.send({
-    message: "link is sent to the mail",
-    resetLink: link,
-    success: true,
-  });
+  } catch (error) {
+    res.status(500).json();
+  }
 };
 
 // reset password
@@ -81,6 +78,6 @@ exports.resetPassword = async (req, res) => {
       res.send({ success: false, message: "password not updated" });
     }
   } catch (error) {
-    res.send({ success: false, message: "Error resetting password" });
+    res.status(500).json();
   }
 };

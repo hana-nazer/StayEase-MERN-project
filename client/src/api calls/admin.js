@@ -102,8 +102,6 @@ export const uploadImg = async (image) => {
     const imageURL = response.data.secure_url;
     return imageURL;
   } catch (error) {
-    // Handle any errors that occurred during the upload process
-    console.error("Image upload error:", error);
     throw error;
   }
 };

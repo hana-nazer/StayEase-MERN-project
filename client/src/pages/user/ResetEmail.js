@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { forgotPassword } from "../../api calls/users";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 function ResetEmail() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log("email", email);
       const response = await forgotPassword(email);
 
       if (response.success) {
@@ -22,7 +23,9 @@ function ResetEmail() {
         });
       }
     } catch (error) {
-      console.error(error);
+      if (error.message === "500") {
+        navigate("/error500");
+      }
     }
   };
 

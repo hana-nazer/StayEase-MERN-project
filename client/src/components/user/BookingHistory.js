@@ -3,8 +3,10 @@ import "../../fonts/fonts.css";
 import { Bookings } from "../../api calls/users";
 import { bookingInfo } from "../../redux/userBookingSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function BookingHistory() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const bookingData = useSelector((state) => state.userBookings.bookings);
   const [displayBookings, setDisplayBookings] = useState("upcoming");
@@ -15,7 +17,11 @@ function BookingHistory() {
       if (response.success) {
         dispatch(bookingInfo(response.data));
       }
-    } catch (error) {}
+    } catch (error) {
+      if (error.message === "500") {
+        navigate("/error500");
+      }
+    }
   };
 
   useEffect(() => {

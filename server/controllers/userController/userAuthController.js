@@ -24,7 +24,7 @@ exports.postSignUp = async (req, res) => {
     await newUser.save();
     res.send({ success: true, message: "Created user successfully" });
   } catch (error) {
-    res.status(500).json({ success: false, message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -64,7 +64,7 @@ exports.postLogin = async (req, res) => {
       data: token,
     });
   } catch (error) {
-    res.status(500).json({ success: false, message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -78,8 +78,6 @@ exports.getCurrentUser = async (req, res) => {
       data: user,
     });
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to retrieve user details" });
+    res.status(401).json({ message: "Failed to retrieve user details" });
   }
 };

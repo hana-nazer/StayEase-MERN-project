@@ -4,6 +4,7 @@ import Footer from "../../components/Footer";
 import BookingData from "../../components/resort/BookingData";
 import { useSelector } from "react-redux";
 
+
 function Booking() {
   const user = useSelector((state) => state.getUser.getUser);
   const role = user ? user.role : null;

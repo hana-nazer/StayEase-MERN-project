@@ -7,6 +7,8 @@ import { setBookingData } from "../../redux/BookingSlice";
 import { disabledDateList } from "../../api calls/users";
 import { DatePicker } from "antd";
 import "../../fonts/fonts.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function BookingData() {
   const navigate = useNavigate();
@@ -66,7 +68,9 @@ function BookingData() {
           dispatch(setBookingData(bookingData));
           navigate("/bookingdetails");
         } catch (error) {
-          console.log(error);
+          toast.error("Something went wrong", {
+            position: toast.POSITION.TOP_CENTER,
+          });
         }
       }
     },
@@ -91,10 +95,14 @@ function BookingData() {
       if (response.success) {
         setDisabledDates(response.disabledDates);
       } else {
-        console.log(response.data.message);
+        toast.error(response.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     } catch (error) {
-      console.error(error.response);
+      if(error.message==="500"){
+        navigate('/error500')
+      }
     }
   };
 

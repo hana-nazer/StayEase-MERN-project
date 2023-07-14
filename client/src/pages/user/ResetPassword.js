@@ -16,7 +16,6 @@ function ResetPassword() {
     if (password === "" || confirmPassword === "") {
       setErrorMessage("Please fill in all fields");
     } else if (password === confirmPassword) {
-      console.log("Password:", password);
       // Perform additional actions here, such as submitting the form or making an API call
     } else {
       setErrorMessage("Password and Confirm Password do not match");
@@ -25,7 +24,6 @@ function ResetPassword() {
     try {
       const response = await resetPassword(password, id, token);
       if(response.success){
-        console.log("hello");
         navigate('/login')
       }
     } catch (error) {}

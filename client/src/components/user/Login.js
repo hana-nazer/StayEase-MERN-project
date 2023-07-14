@@ -1,13 +1,15 @@
-import React from "react";
+import React,{useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LoginForm from "../LoginForm";
 import LoginTitle from "../LoginTitle";
 import { LoginUser } from "../../api calls/users";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Error500 from "../error/userError/Error500";
 
 function Login() {
   const navigate = useNavigate();
+  const [hasError, setHasError] = useState(false);
   const handleSubmit = async (formData) => {
     try {
       const response = await LoginUser(formData);
@@ -20,9 +22,14 @@ function Login() {
         });
       }
     } catch (error) {
-      console.log(error);
+      if (error.message === "500") {
+        setHasError(true);
+      }
     }
   };
+  if (hasError) {
+    return <Error500 />;
+  }
   return (
     <>
       <div className="flex items-center justify-center h-screen bg-light-white">

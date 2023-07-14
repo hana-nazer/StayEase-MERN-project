@@ -87,8 +87,6 @@ export const Bookings = async () => {
 // edit resortData
 export const editResort = async (payload,id) => {
   try {
-    console.log(payload);
-    console.log(id);
     const response = await ownerApi.put(`/edit/${id}`, payload);
     return response.data;
   } catch (error) {

@@ -7,9 +7,11 @@ import { getCurrentUser } from "../../api calls/users";
 import CategoryIcons from "../../components/user/CategoryIcons";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../../redux/getUserSlice";
+import Error401 from "../../components/error/userError/Error401";
 
 function HomePage() {
   const [getCategory, setGetCategory] = useState("");
+  const [hasError, setHasError] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -30,10 +32,13 @@ function HomePage() {
         navigate("/");
       }
     } catch (error) {
-      console.log(error);
+      if (error.message === "500") {
+        setHasError(true);
+      }
     }
   };
 
+ 
   useEffect(() => {
     if (localStorage.getItem("user_token")) {
       getUserData();
@@ -41,6 +46,10 @@ function HomePage() {
       navigate("/");
     }
   }, []);
+  
+  if (hasError) {
+    return <Error401/>;
+  }
 
   return (
     <>

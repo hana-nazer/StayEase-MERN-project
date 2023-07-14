@@ -11,7 +11,7 @@ exports.fetchDisabledDates = async (req, res) => {
     const bookedDates = bookings.map((booking) => booking.dates).flat();
     res.send({ success: true, disabledDates: bookedDates });
   } catch (error) {
-    res.status(500).json({ success: false, message: "Unable to get dates" });
+    res.status(500).json({ message: "Unable to get dates" });
   }
 };
 
@@ -116,6 +116,6 @@ exports.bookings = async (req, res) => {
 
     res.send({ success: true, data: bookingData });
   } catch (error) {
-    res.status(500).json({ success: false, message: "Unable to get Bookings" });
+    res.status(500).json({ message: "Unable to get Bookings" });
   }
 };
