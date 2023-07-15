@@ -95,11 +95,11 @@ function EditForm() {
         const response = await editResort(formData, resortData._id);
         if (response.success) {
           navigate(`/owner/resortInfo/${resortData._id}`);
-        } else {
-          console.log(response.message);
         }
       } catch (error) {
-        console.error(error);
+        if (error.message === "500") {
+          navigate("/owner/error500");
+        }
       }
     },
   });

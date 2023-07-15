@@ -54,7 +54,7 @@ exports.dashboardData = async (req, res) => {
     res
       .status(500)
       .json({
-        success: false,
+       
         message: "An error occurred while fetching dashboard data",
       });
   }

@@ -15,11 +15,11 @@ function Approval() {
       const response = await getPendingResorts();
       if (response.success) {
         setResorts(response.data);
-      } else {
-        console.log(response.data.message);
       }
     } catch (error) {
-      console.log(error.response);
+     if(error.message==="500"){
+      navigate('/admin/error500')
+     }
     }
   };
 

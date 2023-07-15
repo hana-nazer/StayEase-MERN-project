@@ -7,7 +7,7 @@ export const adminLogin = async (payload) => {
     const response = await adminApi.post("/login", payload);
     return response.data;
   } catch (error) {
-    return error.response;
+    throw new Error(error.response.status);
   }
 };
 
@@ -17,7 +17,7 @@ export const getPendingResorts = async () => {
     const response = await adminApi.get("/pending");
     return response.data;
   } catch (error) {
-    return error.response;
+    throw new Error(error.response.status);
   }
 };
 
@@ -30,7 +30,7 @@ export const resortStatus = async (resortId, action) => {
     });
     return response.data;
   } catch (error) {
-    return error.response;
+    throw new Error(error.response.status);
   }
 };
 
@@ -40,7 +40,7 @@ export const resortList = async () => {
     const response = await adminApi.get("/resorts");
     return response.data;
   } catch (error) {
-    return error.response;
+    throw new Error(error.response.status);
   }
 };
 
@@ -50,7 +50,7 @@ export const resortInfo = async (resortId) => {
     const response = await adminApi.get(`/resortData/${resortId}`);
     return response.data;
   } catch (error) {
-    return error.response;
+    throw new Error(error.response.status);
   }
 };
 
@@ -60,7 +60,7 @@ export const addLocation = async (payload) => {
     const response = await adminApi.post("/add_location", payload);
     return response.data;
   } catch (error) {
-    return error.response;
+    throw new Error(error.response.status);
   }
 };
 
@@ -70,7 +70,7 @@ export const addCategory = async (payload) => {
     const response = await adminApi.post("/add_category", payload);
     return response.data;
   } catch (error) {
-    return error.response;
+    throw new Error(error.response.status);
   }
 };
 
@@ -80,7 +80,7 @@ export const GetCurrentAdmin = async () => {
     const response = await adminApi.get("/get-current-admin");
     return response.data;
   } catch (error) {
-    return error;
+    throw new Error(error.response.status);
   }
 };
 
@@ -112,13 +112,17 @@ export const Bookings = async () => {
     const response = await adminApi.get("/bookings");
     return response.data;
   } catch (error) {
-    return error;
+    throw new Error(error.response.status);
   }
 };
 
 export const dashboardDetails = async () => {
-  const response = await adminApi.get("/dashboard");
-  return response.data;
+  try {
+    const response = await adminApi.get("/dashboard");
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.status);
+  }
 };
 
 // get users list
@@ -126,5 +130,7 @@ export const usersList = async () => {
   try {
     const response = await adminApi.get("/users");
     return response.data;
-  } catch (error) {}
+  } catch (error) {
+    throw new Error(error.response.status);
+  }
 };

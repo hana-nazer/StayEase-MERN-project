@@ -13,11 +13,11 @@ function Resorts() {
       console.log("response", response);
       if (response.success) {
         setResorts(response.data);
-      } else {
-        console.log(response.data.message);
       }
     } catch (error) {
-      console.log(error.response);
+     if(error.message==="500"){
+      naviagte(('/admin/error500'))
+     }
     }
   };
 

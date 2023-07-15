@@ -2,8 +2,10 @@ import React, { useEffect } from "react";
 import { getCategory } from "../api calls/resort";
 import { useSelector, useDispatch } from "react-redux";
 import { setCategory, chooseCategory } from "../redux/categorySlice";
+import { useNavigate } from "react-router-dom";
 
 function CategoryList() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentAdmin = useSelector((state) => state.getUser.getAdmin);
   const categories = useSelector((state) => state.category.category);
@@ -13,21 +15,21 @@ function CategoryList() {
       const response = await getCategory(role);
       if (response.success) {
         dispatch(setCategory(response.data));
-      } else {
-        console.log(response.data.message);
       }
     } catch (error) {
-      console.log(error.message);
+      if (error.message === "500") {
+        navigate("/admin/error500");
+      }
     }
   };
 
   useEffect(() => {
     fetchCategory();
   }, [categories]);
-  
+
   const handleCategory = (category) => {
     dispatch(chooseCategory(category));
-  }
+  };
 
   // Reverse the order of categories
   const reversedCategories = [...categories].reverse();

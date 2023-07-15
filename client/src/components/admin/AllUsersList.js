@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { usersList } from "../../api calls/admin";
+import { useNavigate } from "react-router-dom";
 
 function AllUsersList() {
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
 
   const fetchUsers = async () => {
@@ -11,7 +13,9 @@ function AllUsersList() {
         setUsers(response.data);
       }
     } catch (error) {
-      console.log(error);
+      if (error.message === "500") {
+        navigate("/admin/error500");
+      }
     }
   };
 

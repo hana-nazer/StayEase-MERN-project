@@ -5,6 +5,7 @@ import Footer from "../../components/Footer";
 import BookingTable from "../../components/BookingTable";
 import { useSelector } from "react-redux";
 import { Bookings } from "../../api calls/owner";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function BookingData() {
   const [details, setDetails] = useState([]);
@@ -20,7 +21,11 @@ function BookingData() {
       if (response.success) {
         setDetails(response.data);
       }
-    } catch (error) {}
+    } catch (error) {
+      if(error.message==="500"){
+        Navigate('/owner/error500')
+      }
+    }
   };
 
   useEffect(() => {

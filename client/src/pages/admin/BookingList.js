@@ -5,8 +5,10 @@ import Footer from "../../components/Footer";
 import BookingTable from "../../components/BookingTable";
 import { Bookings } from "../../api calls/admin";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function BookingList() {
+  const navigate = useNavigate()
   const [details, setDetails] = useState([]);
   const currentAdmin = useSelector((state) => state.getUser.getAdmin);
   const role = currentAdmin.role;
@@ -17,9 +19,12 @@ function BookingList() {
       const response = await Bookings();
       if (response.success) {
         setDetails(response.data);
-        console.log(response);
       }
-    } catch (error) {}
+    } catch (error) {
+      if(error.message==="500"){
+        navigate('/admin/error500')
+      }
+    }
   };
 
   useEffect(() => {

@@ -11,14 +11,16 @@ import Images from "./resort/Images";
 import Action from "./resort/Action";
 import BookNow from "./resort/BookNow";
 import RoomServices from "./resort/RoomServices";
-import UserChatButton from "./chats/UserChatButton";
+import UserChatButton from "./user/UserChatButton";
 import EditButton from "./owner/EditButton";
 
 function ResortDetailedView(props) {
   const navigate = useNavigate();
   const action = props.action;
   const role = props.role;
+
   const resortData = useSelector((state) => state.verifyResort.resortData);
+
   const dispatch = useDispatch();
   const { resortId } = useParams();
   useEffect(() => {

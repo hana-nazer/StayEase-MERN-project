@@ -31,11 +31,7 @@ exports.registerResort = async (req, res) => {
       data: savedResort,
     });
   } catch (error) {
-    res.send({
-      success: false,
-      message: "An error occured",
-      error: error.message,
-    });
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -66,11 +62,7 @@ exports.editResort = async (req, res) => {
       data: updatedResort,
     });
   } catch (error) {
-    res.send({
-      success: false,
-      message: "An error occured",
-      error: error.message,
-    });
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -81,9 +73,7 @@ exports.getResorts = async (req, res) => {
     const resorts = await Resort.find({ owner: ownerId });
     res.send({ success: true, data: resorts });
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to retrieve  resorts" });
+    res.status(500).json({ message: "Failed to retrieve  resorts" });
   }
 };
 
@@ -98,9 +88,7 @@ exports.resortData = async (req, res) => {
     const ownerData = await Owner.findById(owner);
     res.send({ success: true, data: resort, owner: ownerData });
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to retrieve resort details" });
+    res.status(500).json({ message: "Failed to retrieve resort details" });
   }
 };
 
@@ -110,9 +98,7 @@ exports.location = async (req, res) => {
     const location = await Location.find();
     res.send({ success: true, data: location });
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to retrieve location" });
+    res.status(500).json({ message: "Failed to retrieve location" });
   }
 };
 
@@ -122,9 +108,7 @@ exports.category = async (req, res) => {
     const category = await Category.find();
     res.send({ success: true, data: category });
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to retrieve category" });
+    res.status(500).json({ message: "Failed to retrieve category" });
   }
 };
 

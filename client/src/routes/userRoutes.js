@@ -11,8 +11,6 @@ import Success from "../components/Success";
 import AllBookings from "../pages/user/AllBookings";
 import ResetEmail from "../pages/user/ResetEmail";
 import ResetPassword from "../pages/user/ResetPassword";
-import List from "../pages/chats/List";
-import Message from "../pages/chats/Message";
 import Error404 from "../components/error/userError/Error404";
 import Error500 from "../components/error/userError/Error500";
 const HomePage = lazy(() => import("../pages/user/HomePage"));
@@ -45,14 +43,6 @@ function UserRoutes() {
             </ProtectedUser>
           }
         />
-        <Route
-          path="/chatlist"
-          element={
-            <ProtectedUser>
-              <List />
-            </ProtectedUser>
-          }
-        />
 
         <Route
           path="/success"
@@ -67,15 +57,6 @@ function UserRoutes() {
           element={
             <ProtectedUser>
               <AllBookings />
-            </ProtectedUser>
-          }
-        />
-
-        <Route
-          path="/usermessage"
-          element={
-            <ProtectedUser>
-              <Message />
             </ProtectedUser>
           }
         />

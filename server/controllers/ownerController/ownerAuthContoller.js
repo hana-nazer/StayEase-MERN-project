@@ -15,35 +15,35 @@ exports.ownerSignUp = async (req, res) => {
       });
     }
 // ------------------------------------------------------------
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASSWORD,
-      },
-    });
-    const mailOptions = {
-      from: process.env.EMAIL,
-      to: req.body.email,
-      subject: `Reset password link`,
-      html: `<p>Click on the following link to reset your password:</p>`,
-    };
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        res.status(500).json({
-          success: false,
-          message: "Error sending email",
-          error: error.message,
-        });
-      } else {
-        console.log(info.response);
-        res.status(201).json({
-          success: true,
-          message: "Email sent successfully",
-          response: info.response,
-        });
-      }
-    });
+    // const transporter = nodemailer.createTransport({
+    //   service: "gmail",
+    //   auth: {
+    //     user: process.env.EMAIL,
+    //     pass: process.env.PASSWORD,
+    //   },
+    // });
+    // const mailOptions = {
+    //   from: process.env.EMAIL,
+    //   to: req.body.email,
+    //   subject: `Reset password link`,
+    //   html: `<p>Click on the following link to reset your password:</p>`,
+    // };
+    // transporter.sendMail(mailOptions, (error, info) => {
+    //   if (error) {
+    //     res.status(500).json({
+    //       success: false,
+    //       message: "Error sending email",
+    //       error: error.message,
+    //     });
+    //   } else {
+    //     console.log(info.response);
+    //     res.status(201).json({
+    //       success: true,
+    //       message: "Email sent successfully",
+    //       response: info.response,
+    //     });
+    //   }
+    // });
 
 // --------------------------------------//
 
@@ -53,15 +53,11 @@ exports.ownerSignUp = async (req, res) => {
     req.body.password = hashedPassword;
 
     //Save the owner
-    const newOwner = new Owner(req.body);
+    const newOwner = new Owner(req.bod);
     await newOwner.save();
     res.send({ success: true, message: "Created owner account successfully" });
   } catch (error) {
-    res.send({
-      success: false,
-      message: "Unexpected error occured",
-      error: error.message,
-    });
+    res.status(500).json({message:"Error occured"})
   }
 };
 
@@ -101,11 +97,7 @@ exports.ownerLogin = async (req, res) => {
       data: token,
     });
   } catch (error) {
-    res.send({
-      succes: false,
-      message: "an error occured",
-      error: error.message,
-    });
+   res.status(500).json({message:"Internal server error"})
   }
 };
 

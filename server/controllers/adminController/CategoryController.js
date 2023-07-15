@@ -25,9 +25,7 @@ exports.addCategory = async (req, res) => {
     });
   } catch (error) {
     res.status(500).send({
-      success: false,
       message: "An error occurred",
-      error: error.message,
     });
   }
 };
@@ -38,8 +36,6 @@ exports.category = async (req, res) => {
     const category = await Category.find();
     res.send({ success: true, data: category });
   } catch (error) {
-    res
-      .status(500)
-      .json({ succes: false, message: "Failed to retrieve category" });
+    res.status(500).json({ message: "Failed to retrieve category" });
   }
 };

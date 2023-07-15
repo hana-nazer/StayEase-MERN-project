@@ -39,11 +39,8 @@ exports.adminLogin = async (req, res) => {
       data: token,
     });
   } catch (error) {
-    res.send({
-      succes: false,
-      message: "An error occured",
-      error: error.message,
-    });
+    res.status(500).json();
+
   }
 };
 
@@ -58,7 +55,7 @@ exports.getCurrentAdmin = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ success: false, message: "Failed to retrieve admin details" });
+      .json({message: "Failed to retrieve admin details" });
   }
 };
 
@@ -70,6 +67,6 @@ exports.usersList = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ success: false, message: "Failed to retrieve users" });
+      .json({  message: "Failed to retrieve users" });
   }
 };

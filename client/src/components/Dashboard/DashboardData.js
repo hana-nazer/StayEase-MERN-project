@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import Chart from "./Chart";
 import DashboradInfo from "./DashboradInfo";
 import { dashboardDetails } from "../../api calls/admin";
+import { useNavigate } from "react-router-dom";
 
 function DashboardData() {
+  const navigate = useNavigate();
   const [booking, setBooking] = useState("");
   const [resorts, setResorts] = useState("");
   const [users, setUsers] = useState("");
@@ -25,7 +27,9 @@ function DashboardData() {
         setMonthCounts(response.data.months);
       }
     } catch (error) {
-      console.log(error);
+      if (error.message === "500") {
+        navigate("/admin/error500");
+      }
     }
   };
   return (

@@ -10,9 +10,7 @@ exports.getPendingResorts = async (req, res) => {
     const pendingResorts = await Resort.find({ status: "pending" });
     res.send({ success: true, data: pendingResorts });
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to retrieve pending resorts" });
+    res.status(500).json({ message: "Failed to retrieve pending resorts" });
   }
 };
 
@@ -28,9 +26,7 @@ exports.getResortData = async (req, res) => {
     const ownerData = await Owner.findById(resort.owner);
     res.send({ success: true, data: resort, owner: ownerData });
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to retrieve resort details" });
+    res.status(500).json({ message: "Failed to retrieve resort details" });
   }
 };
 
@@ -66,9 +62,7 @@ exports.reviewResort = async (req, res) => {
     }
   } catch (error) {
     res.status(500).send({
-      success: false,
       message: "An error occurred",
-      error: error.message,
     });
   }
 };
@@ -79,9 +73,7 @@ exports.resortList = async (req, res) => {
     const resorts = await Resort.find({ status: "approved" });
     res.send({ success: true, data: resorts });
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to retrieve resorts" });
+    res.status(500).json({ message: "Failed to retrieve resorts" });
   }
 };
 
@@ -96,9 +88,7 @@ exports.resortData = async (req, res) => {
     const ownerData = await Owner.findById(owner);
     res.send({ success: true, data: resort, owner: ownerData });
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to retrieve resort details" });
+    res.status(500).json({ message: "Failed to retrieve resort details" });
   }
 };
 
@@ -127,8 +117,6 @@ exports.bookings = async (req, res) => {
     }));
     res.send({ success: true, data: bookingData });
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to retrieve bookings" });
+    res.status(500).json({ message: "Failed to retrieve bookings" });
   }
 };

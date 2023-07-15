@@ -37,7 +37,7 @@ export const getLocation = async (role) => {
       return response.data;
     }
   } catch (error) {
-    return { success: false, message: "Failed to fetch location" };
+    throw new Error(error.response.status);
   }
 };
 
@@ -55,6 +55,6 @@ export const getCategory = async (role) => {
       return response.data;
     }
   } catch (error) {
-    return { success: false, message: "Failed to fetch category" };
+    throw new Error(error.response.status);
   }
 };

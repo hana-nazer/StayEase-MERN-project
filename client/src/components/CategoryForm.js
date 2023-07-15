@@ -6,8 +6,10 @@ import { addCategory } from "../api calls/admin";
 import { useFormik } from "formik";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 function CategoryForm() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.category.category);
 
@@ -48,7 +50,9 @@ function CategoryForm() {
           resetForm();
         }
       } catch (error) {
-        console.log(error);
+        if (error.message === "500") {
+          navigate("/admin/error500");
+        }
       }
     },
   });

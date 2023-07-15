@@ -50,11 +50,6 @@ exports.ownerDashboard = async (req, res) => {
     };
     res.send({ data: dashboardInfo, success: true });
   } catch (error) {
-    res
-      .status(500)
-      .send({
-        success: false,
-        message: "An error occurred while fetching the bookings.",
-      });
+    res.sendStatus(500);
   }
 };

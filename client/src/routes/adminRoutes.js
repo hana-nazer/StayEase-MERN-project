@@ -11,6 +11,8 @@ import UsersList from "../pages/admin/UsersList";
 import ProtectedAdmin from "../components/protectedRoute/ProtectedAdmin";
 import BookingList from "../pages/admin/BookingList";
 import Category from "../pages/admin/Category";
+import Error500 from "../components/error/adminError/Error500";
+import Error404 from "../components/error/adminError/Error404";
 
 function AdminRoutes() {
   return (
@@ -88,6 +90,8 @@ function AdminRoutes() {
           </ProtectedAdmin>
         }
       />
+      <Route path="/error500" element={<Error500 />} />
+      <Route path="/*" element={<Error404 />} />
     </Routes>
   );
 }

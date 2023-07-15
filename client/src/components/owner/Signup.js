@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { RegisterOwner } from "../../api calls/owner";
 import { useNavigate } from "react-router-dom";
 import styles from "../../stylesheets/owner/auth.module.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Signup() {
   const navigate = useNavigate();
@@ -57,10 +59,14 @@ function Signup() {
       if (response.success) {
         navigate("/owner/");
       } else {
-        console.log(response.data.message);
+        toast.error(response.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     } catch (error) {
-      console.log(error.response);
+      if (error.message === "500") {
+        navigate("/owner/error500");
+      }
     }
   };
 
@@ -148,6 +154,7 @@ function Signup() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

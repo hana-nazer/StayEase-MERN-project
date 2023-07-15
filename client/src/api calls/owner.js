@@ -7,7 +7,7 @@ export const RegisterOwner = async (payload) => {
     const response = await ownerApi.post("/signup", payload);
     return response.data;
   } catch (error) {
-    return error.response;
+    throw new Error(error.response.status);
   }
 };
 
@@ -17,7 +17,7 @@ export const LoginOwner = async (payload) => {
     const response = await ownerApi.post("/login", payload);
     return response.data;
   } catch (error) {
-    return error.response;
+    throw new Error(error.response.status);
   }
 };
 
@@ -37,7 +37,7 @@ export const resortData = async (payload) => {
     const response = await ownerApi.post("/register", payload);
     return response.data;
   } catch (error) {
-    return error.response;
+    throw new Error(error.response.status);
   }
 };
 
@@ -70,7 +70,7 @@ export const getResorts = async () => {
     const response = await ownerApi.get("/resorts");
     return response.data;
   } catch (error) {
-    return error.response;
+    throw new Error(error.response.status);
   }
 };
 
@@ -80,22 +80,26 @@ export const Bookings = async () => {
     const response = await ownerApi.get("/bookings");
     return response.data;
   } catch (error) {
-    return error;
+    throw new Error(error.response.status);
   }
 };
 
 // edit resortData
-export const editResort = async (payload,id) => {
+export const editResort = async (payload, id) => {
   try {
     const response = await ownerApi.put(`/edit/${id}`, payload);
     return response.data;
   } catch (error) {
-    return error.response;
+    throw new Error(error.response.status);
   }
 };
 
 // dashboardInfo
 export const dashboardInfo = async () => {
-  const response = await ownerApi.get("/dashboard");
-  return response.data;
+  try {
+    const response = await ownerApi.get("/dashboard");
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.status);
+  }
 };

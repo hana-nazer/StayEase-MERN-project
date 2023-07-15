@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import LoginForm from "../LoginForm";
 import LoginTitle from "../LoginTitle";
 import { adminLogin } from "../../api calls/admin";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function  Login() {
+function Login() {
   const navigate = useNavigate();
   const handleSubmit = async (formData) => {
     try {
@@ -13,10 +15,14 @@ function  Login() {
         localStorage.setItem("admin_token", response.data);
         navigate("/admin/dashboard");
       } else {
-        console.log(response.data.message);
+        toast.error(response.message, {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     } catch (error) {
-      console.log(error.response);
+      if (error.message === "500") {
+        navigate("/admin/error500");
+      }
     }
   };
 
@@ -24,10 +30,11 @@ function  Login() {
     <>
       <div className="flex items-center justify-center h-screen overflow-hidden">
         <div className="w-4/6 p-10 mx-auto overflow-hidden bg-white border shadow-lg md:w-1/3 rounded-xl">
-            <LoginTitle title="Admin Login" />
-            <LoginForm onSubmit={handleSubmit} role="admin" />
+          <LoginTitle title="Admin Login" />
+          <LoginForm onSubmit={handleSubmit} role="admin" />
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

@@ -19,7 +19,9 @@ function Login() {
         });
       }
     } catch (error) {
-      console.log(error.message);
+      if(error.message==="500"){
+        navigate('/owner/error500')
+      }
     }
   };
 

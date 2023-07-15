@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AddResort from "./AddResort";
-import { getResorts } from "../../api calls/owner";
 import { useNavigate } from "react-router-dom";
-
+import { getResorts } from "../../api calls/owner";
 function Resorts() {
   const navigate = useNavigate();
   const [resorts, setResorts] = useState([]);
@@ -14,11 +13,11 @@ function Resorts() {
       const response = await getResorts();
       if (response.success) {
         setResorts(response.data);
-      } else {
-        console.log(response.message);
       }
     } catch (error) {
-      console.log(error);
+      if (error.message === "500") {
+        navigate("/owner/error500");
+      }
     }
   };
   const onView = (resortId) => {
@@ -26,7 +25,7 @@ function Resorts() {
   };
   return (
     <>
-       <div className="flex justify-end w-full lg:w-3/4 lg:ml-56">
+      <div className="flex justify-end w-full lg:w-3/4 lg:ml-56">
         <AddResort />
       </div>
       {resorts.map((resort) => {
@@ -73,5 +72,3 @@ function Resorts() {
 }
 
 export default Resorts;
-
-
