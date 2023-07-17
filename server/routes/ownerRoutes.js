@@ -22,5 +22,6 @@ router.get("/dashboard", ownerAuth, ownerDashboard.ownerDashboard);
 router.post("/getMessage", ownerAuth, ownerChats.getMessages);
 router.post("/addMessage", ownerAuth, ownerChats.addMessage);
 router.put('/edit/:id',ownerAuth,ownerResorts.editResort)
+router.get('/contacts/:id',ownerAuth,ownerChats.getChatContacts)
 
 module.exports = router;

@@ -35,4 +35,5 @@ router.post("/forgotPassword", passwordController.forgotPassword);
 router.post("/resetPassword/:id/:token", passwordController.resetPassword);
 router.post("/getMessage", authMiddleware, userChats.getMessages);
 router.post("/addMessage", authMiddleware, userChats.addMessage);
+router.get('/contacts/:id',authMiddleware,userChats.getChatContacts)
 module.exports = router;

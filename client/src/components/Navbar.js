@@ -4,6 +4,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { clearUser } from "../redux/getUserSlice";
 import { useDispatch } from "react-redux";
+import { getCurrentUser } from "../api calls/users";
+import { GetCurrentOwner } from "../api calls/owner";
 import {
   faSignOutAlt,
   faSearch,
@@ -15,6 +17,7 @@ function Navbar(props) {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState("");
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -42,11 +45,20 @@ function Navbar(props) {
   const page = props.page;
 
   const chatIconClick = () => {
+    let loggedInUser;
     if (role === "user") {
-      navigate("/chatlist");
+      loggedInUser = async () => {
+        const user = await getCurrentUser();
+        navigate(`/contacts/${user.data._id}`);
+      };
+      loggedInUser();
     }
     if (role === "owner") {
-      navigate("/owner/chatlist");
+      loggedInUser = async () => {
+        const user = await GetCurrentOwner();
+        navigate(`/owner/contacts/${user.data._id}`);
+      };
+      loggedInUser();
     }
   };
 

@@ -13,6 +13,9 @@ import ResetEmail from "../pages/user/ResetEmail";
 import ResetPassword from "../pages/user/ResetPassword";
 import Error404 from "../components/error/userError/Error404";
 import Error500 from "../components/error/userError/Error500";
+import ChatContainer from "../components/chats/ChatContainer";
+import ChatList from "../pages/user/ChatList";
+import ChatPage from "../pages/user/ChatPage";
 const HomePage = lazy(() => import("../pages/user/HomePage"));
 
 function UserRoutes() {
@@ -57,6 +60,24 @@ function UserRoutes() {
           element={
             <ProtectedUser>
               <AllBookings />
+            </ProtectedUser>
+          }
+        />
+
+        <Route
+          path="/contacts/:id"
+          element={
+            <ProtectedUser>
+              <ChatList />
+            </ProtectedUser>
+          }
+        />
+
+        <Route
+          path="/chat/:id"
+          element={
+            <ProtectedUser>
+              <ChatPage />
             </ProtectedUser>
           }
         />

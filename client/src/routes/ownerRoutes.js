@@ -11,6 +11,8 @@ import BookingData from "../pages/owner/BookingData";
 import EditResortData from "../pages/owner/EditResortData";
 import Error500 from "../components/error/ownerError/Error500";
 import Error404 from "../components/error/ownerError/Error404";
+import ChatList from "../pages/owner/ChatList";
+import ChatPage from "../pages/owner/ChatPage";
 
 function OwnerRoutes() {
   return (
@@ -18,7 +20,7 @@ function OwnerRoutes() {
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route
-        path=""
+        path="/"
         element={
           <Protected>
             <HomePage />
@@ -57,7 +59,6 @@ function OwnerRoutes() {
           </Protected>
         }
       />
-
       <Route
         path="/edit/:id"
         element={
@@ -67,6 +68,16 @@ function OwnerRoutes() {
         }
       />
 
+      <Route
+        path="/chat/:id"
+        element={
+          <Protected>
+            <ChatPage />
+          </Protected>
+        }
+      />
+
+      <Route path="/contacts/:id" element={<ChatList />} />
       <Route path="/error500" element={<Error500 />} />
       <Route path="/*" element={<Error404 />} />
     </Routes>
