@@ -1,15 +1,16 @@
 import axios from "axios";
+const API = process.env.REACT_APP_HOST;
 
 export const userApi = axios.create({
-  baseURL: "https://stayease-z802.onrender.com",
+  baseURL: `${API}`,
 });
 
 export const adminApi = axios.create({
-  baseURL: "https://stayease-z802.onrender.com/admin",
+  baseURL: `${API}/admin`,
 });
 
 export const ownerApi = axios.create({
-  baseURL: "https://stayease-z802.onrender.com/owner",
+  baseURL: `${API}/owner`,
 });
 
 userApi.interceptors.request.use((req) => {
