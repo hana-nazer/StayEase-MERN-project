@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UserRoutes from "./routes/userRoutes";
 import AdminRoutes from "./routes/adminRoutes";
 import OwnerRoutes from "./routes/ownerRoutes";

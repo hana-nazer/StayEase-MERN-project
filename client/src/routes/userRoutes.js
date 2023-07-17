@@ -17,7 +17,6 @@ import ChatList from "../pages/user/ChatList";
 import ChatPage from "../pages/user/ChatPage";
 const HomePage = lazy(() => import("../pages/user/HomePage"));
 
-
 function UserRoutes() {
   return (
     <Suspense fallback={<LoadingFallback />}>
