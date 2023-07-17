@@ -7,6 +7,9 @@ function UserChatButton({ owner }) {
 
   const navigate = useNavigate();
   const chatClick = () => {
+    if (!localStorage.getItem("user_token")) {
+      navigate("/login");
+    }
     navigate(`/chat/${user._id}`, { state: owner });
   };
   return (
