@@ -5,7 +5,6 @@ const userModel = require("../../models/userModel");
 // fetch messages
 module.exports.getMessages = async (req, res, next) => {
   try {
-    console.log("hello");
     const { from, to } = req.body;
     const messages = await messageModel
       .find({
@@ -46,6 +45,7 @@ module.exports.addMessage = async (req, res, next) => {
   }
 };
 
+// get contacts
 module.exports.getChatContacts = async (req, res, next) => {
   try {
     const contacts = await messageModel.find({ users: req.userId });
@@ -71,7 +71,6 @@ module.exports.getChatContacts = async (req, res, next) => {
 
     res.status(200).json({ data: contactsDetails });
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: "Server error" });
   }
 };

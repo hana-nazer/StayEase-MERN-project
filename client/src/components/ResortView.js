@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getResortData } from "../api calls/resort";
@@ -15,6 +15,7 @@ import UserChatButton from "./user/UserChatButton";
 import EditButton from "./owner/EditButton";
 
 function ResortDetailedView(props) {
+  const [owner, setOwner] = useState("");
   const navigate = useNavigate();
   const action = props.action;
   const role = props.role;
@@ -33,6 +34,7 @@ function ResortDetailedView(props) {
       if (response.success) {
         dispatch(setResortData(response.data));
         dispatch(setOwnerData(response.owner));
+        setOwner(response.owner);
       }
     } catch (error) {
       if (error.message === "500") {
@@ -62,7 +64,7 @@ function ResortDetailedView(props) {
           </div>
         )}
         {role === "user" ? (
-          <UserChatButton />
+          <UserChatButton resortData={resortData} owner={owner} />
         ) : role === "owner" ? (
           <EditButton resortId={resortId} resortData={resortData} />
         ) : null}

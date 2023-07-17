@@ -35,7 +35,7 @@ exports.resortData = async (req, res) => {
     }
 
     const owner = resort.owner;
-    const ownerData = await Owner.findById(owner);
+    const ownerData = await Owner.findById(owner).select("-password");
     res.send({ success: true, data: resort, owner: ownerData });
   } catch (error) {
     res.status(500).json({ message: "Failed to retrieve resort details" });

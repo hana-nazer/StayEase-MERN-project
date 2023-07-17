@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect, useRef }  from "react";
 import ChatContainer from "../../components/chats/ChatContainer";
 import { useSelector } from "react-redux";
+import { io } from "socket.io-client";
 
 function ChatPage() {
-    const owner = useSelector((state)=>state.getUser.getOwner)
+    const user = useSelector((state)=>state.getUser.getOwner)
+    const socket = useRef();
+    useEffect(() => {
+      if (user) {
+        socket.current = io("http://localhost:5000");
+        socket.current.emit("add-user", user._id);
+      }
+    }, [user]);
+  
   return (
     <>
-      <ChatContainer  role="owner" user={owner}/>
+      <ChatContainer  role="owner" user={user} socket={socket}/>
     </>
   );
 }

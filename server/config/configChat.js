@@ -11,17 +11,14 @@ module.exports = function chatConfig(httpServer) {
   const onlineUsers = new Map();
 
   io.on("connection", (socket) => {
-    console.log("connected");
     socket.on("add-user", (userId) => {
       onlineUsers.set(userId, socket.id);
-      console.log("added");
     });
 
     socket.on("send-message", (data) => {
       const sendUserSocket = onlineUsers.get(data.to);
       if (sendUserSocket) {
         socket.to(sendUserSocket).emit("msg-recieve", data.msg);
-        console.log("message sent");
       }
     });
   });

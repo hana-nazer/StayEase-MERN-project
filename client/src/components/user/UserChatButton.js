@@ -1,9 +1,23 @@
-import React from 'react'
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-function UserChatButton() {
+function UserChatButton({ owner }) {
+  const user = useSelector((state) => state.getUser.getUser);
+
+  const navigate = useNavigate();
+  const chatClick = () => {
+    navigate(`/chat/${user._id}`, { state: owner });
+  };
   return (
-    <div>UserChatButton</div>
-  )
+    <button
+      className="px-4 font-semibold bg-gray-300"
+      style={{ height: "40px" }}
+      onClick={chatClick}
+    >
+      Chat with the owner
+    </button>
+  );
 }
 
-export default UserChatButton
+export default UserChatButton;

@@ -17,7 +17,6 @@ function Navbar(props) {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
-  const [currentUser, setCurrentUser] = useState("");
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
