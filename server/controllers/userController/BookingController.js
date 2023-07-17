@@ -36,8 +36,8 @@ exports.makePayment = async (req, res) => {
         },
       ],
       mode: "payment",
-      success_url: "http://localhost:3000/success",
-      cancel_url: "http://localhost:3000/cancel",
+      success_url: "https://stay-ease.vercel.app/success",
+      cancel_url: "https://stay-ease.vercel.app/cancel",
     });
 
     // saving the booking data

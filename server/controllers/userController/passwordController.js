@@ -19,7 +19,7 @@ exports.forgotPassword = async (req, res) => {
     role: "user",
   };
   const token = createToken(payload, secret, "10m");
-  const link = `http://localhost:3000/reset-password/${user.id}/${token}`;
+  const link = `https://stay-ease.vercel.app/reset-password/${user.id}/${token}`;
   try {
     const transporter = nodemailer.createTransport({
       service: "gmail",

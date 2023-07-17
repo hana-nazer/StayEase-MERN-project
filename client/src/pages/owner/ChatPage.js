@@ -8,7 +8,7 @@ function ChatPage() {
     const socket = useRef();
     useEffect(() => {
       if (user) {
-        socket.current = io("http://localhost:5000");
+        socket.current = io("https://stayease-z802.onrender.com");
         socket.current.emit("add-user", user._id);
       }
     }, [user]);
