@@ -131,49 +131,51 @@ function Navbar(props) {
             </div>
           )}
 
-          <div className="flex items-center ml-8">
-            {!role ? (
-              <Link to="/login" className="text-white">
-                Login/Signup
-              </Link>
-            ) : (
-              <>
-                {role !== "admin" && (
-                  <FontAwesomeIcon
-                    icon={faComment}
-                    size="lg"
-                    className="mx-6 text-white"
-                    style={{ cursor: "pointer", marginTop: "0.3rem" }}
-                    onClick={chatIconClick}
-                  />
-                )}
-                <div className="relative inline-block" ref={dropdownRef}>
-                  <span
-                    className="mr-2 text-white cursor-pointer"
-                    onClick={toggleDropdown}
-                  >
-                    {name}
-                  </span>
-                  {showDropdown && (
-                    <div className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-md shadow-lg">
-                      <Link
-                        to="/allBookings"
-                        className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                      >
-                        Bookings
-                      </Link>
-                    </div>
+          {!props.page && (
+            <div className="flex items-center ml-8">
+              {!role ? (
+                <Link to="/login" className="text-white">
+                  Login/Signup
+                </Link>
+              ) : (
+                <>
+                  {role !== "admin" && (
+                    <FontAwesomeIcon
+                      icon={faComment}
+                      size="lg"
+                      className="mx-6 text-white"
+                      style={{ cursor: "pointer", marginTop: "0.3rem" }}
+                      onClick={chatIconClick}
+                    />
                   )}
-                </div>
-                <FontAwesomeIcon
-                  onClick={() => logoutHandler(role)}
-                  icon={faSignOutAlt}
-                  className="w-5 h-5 text-white fill-current"
-                  style={{ cursor: "pointer", marginRight: "10px" }}
-                />
-              </>
-            )}
-          </div>
+                  <div className="relative inline-block" ref={dropdownRef}>
+                    <span
+                      className="mr-2 text-white cursor-pointer"
+                      onClick={toggleDropdown}
+                    >
+                      {name}
+                    </span>
+                    {showDropdown && (
+                      <div className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-md shadow-lg">
+                        <Link
+                          to="/allBookings"
+                          className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                        >
+                          Bookings
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                  <FontAwesomeIcon
+                    onClick={() => logoutHandler(role)}
+                    icon={faSignOutAlt}
+                    className="w-5 h-5 text-white fill-current"
+                    style={{ cursor: "pointer", marginRight: "10px" }}
+                  />
+                </>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </nav>
