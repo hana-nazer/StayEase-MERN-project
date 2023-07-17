@@ -1,15 +1,15 @@
 import axios from "axios";
 
 export const userApi = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://stayease-z802.onrender.com",
 });
 
 export const adminApi = axios.create({
-  baseURL: "http://localhost:5000/admin",
+  baseURL: "https://stayease-z802.onrender.com/admin",
 });
 
 export const ownerApi = axios.create({
-  baseURL: "http://localhost:5000/owner",
+  baseURL: "https://stayease-z802.onrender.com/owner",
 });
 
 userApi.interceptors.request.use((req) => {
