@@ -11,6 +11,10 @@ function BookingHistory() {
   const bookingData = useSelector((state) => state.userBookings.bookings);
   const [displayBookings, setDisplayBookings] = useState("upcoming");
 
+  const onViewClick = (id) => {
+    navigate(`/resortInfo/${id}`);
+  };
+
   const fetchBookings = async () => {
     try {
       const response = await Bookings();
@@ -70,13 +74,13 @@ function BookingHistory() {
 
         <div className="flex">
           {displayBookings === "previous" ? (
-            <div className="flex flex-col items-center w-1/2 border">
+            <div className="flex flex-col items-center w-full border">
               <p className="my-5 text-3xl text-center text-gray-300 font-oswald">
                 Previous Bookings
               </p>
               {pastBookings.map((booking) => (
                 <div
-                  className="grid w-full grid-cols-3 mb-4 border rounded-md shadow-md auto lg:w-4/6"
+                  className="grid w-full grid-cols-3 p-3 mb-4 border rounded-md shadow-md auto lg:w-4/6"
                   key={booking.booking._id}
                 >
                   <div className="grid grid-cols-2 col-span-2">
@@ -105,7 +109,10 @@ function BookingHistory() {
                     </div>
                   </div>
                   <div className="flex justify-center p-4 mt-5">
-                    <button className="w-full h-12 font-semibold bg-gray-200 rounded-md shadow lg:w-2/4">
+                    <button
+                      className="w-full h-12 font-semibold bg-gray-200 rounded-md shadow lg:w-2/4"
+                      onClick={onViewClick(booking.booking._id)}
+                    >
                       View
                     </button>
                   </div>
@@ -149,7 +156,10 @@ function BookingHistory() {
                     </div>
                   </div>
                   <div className="flex justify-center p-4 mt-5">
-                    <button className="w-full h-12 font-semibold bg-gray-200 rounded-md shadow lg:w-2/4">
+                    <button
+                      className="w-full h-12 font-semibold bg-gray-200 rounded-md shadow lg:w-2/4"
+                      onClick={onViewClick(booking.booking._id)}
+                    >
                       View
                     </button>
                   </div>
