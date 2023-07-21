@@ -11,10 +11,6 @@ function BookingHistory() {
   const bookingData = useSelector((state) => state.userBookings.bookings);
   const [displayBookings, setDisplayBookings] = useState("upcoming");
 
-  const onViewClick = (id) => {
-    navigate(`/resortInfo/${id}`);
-  };
-
   const fetchBookings = async () => {
     try {
       const response = await Bookings();
@@ -59,8 +55,9 @@ function BookingHistory() {
   return (
     <>
       <div className="flex-col items-center justify-center h-screen mx-10">
+        <div className="flex justify-end ">
         <button
-          className="p-2 font-semibold bg-gray-300 border"
+          className="p-2 font-semibold bg-gray-300 border "
           onClick={() =>
             setDisplayBookings((prevDisplay) =>
               prevDisplay === "previous" ? "upcoming" : "previous"
@@ -71,27 +68,29 @@ function BookingHistory() {
             ? "Upcoming Bookings"
             : "Previous Bookings"}
         </button>
+        </div>
 
         <div className="flex">
+        
           {displayBookings === "previous" ? (
-            <div className="flex flex-col items-center w-full border">
+            <div className="flex flex-col items-center w-full ">
               <p className="my-5 text-3xl text-center text-gray-300 font-oswald">
                 Previous Bookings
               </p>
               {pastBookings.map((booking) => (
                 <div
-                  className="grid w-full grid-cols-3 p-3 mb-4 border rounded-md shadow-md auto lg:w-4/6"
+                  className="grid w-full grid-cols-3 mb-4 border rounded-md shadow-md lg:p-3 auto lg:w-4/6"
                   key={booking.booking._id}
                 >
                   <div className="grid grid-cols-2 col-span-2">
-                    <div className="flex items-center justify-center py-14 lg:py-0">
+                    <div className="flex items-center justify-center lg:py-0">
                       <img
                         src={booking.resortData.imageUrl}
-                        className="w-24 h-24 lg:h-36 lg:w-60"
+                        className="md:h-30 md:w-50 lg:h-36 lg:w-60"
                         alt="not found"
                       />
                     </div>
-                    <div className="p-4 mt-5">
+                    <div className="p-2 mt-2 lg:mt-5 lg:p-4" >
                       <p className="font-medium lg:font-bold">
                         {booking.resortData.name}
                       </p>
@@ -108,32 +107,25 @@ function BookingHistory() {
                       </p>
                     </div>
                   </div>
-                  <div className="flex justify-center p-4 mt-5">
-                    <button
-                      className="w-full h-12 font-semibold bg-gray-200 rounded-md shadow lg:w-2/4"
-                      onClick={onViewClick(booking.booking._id)}
-                    >
-                      View
-                    </button>
-                  </div>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center w-1/2 border">
+            <div className="flex flex-col items-center justify-center w-full ">
+             
               <p className="my-5 text-3xl text-center text-gray-300 font-oswald">
                 Upcoming Bookings
               </p>
               {upcomingBookings.map((booking) => (
                 <div
-                  className="grid w-full grid-cols-3 mb-4 border rounded-md shadow-md auto lg:w-4/6"
+                  className="grid w-full grid-cols-3 p-3 mb-4 border rounded-md shadow-md auto lg:w-4/6"
                   key={booking.booking._id}
                 >
                   <div className="grid grid-cols-2 col-span-2">
-                    <div className="flex items-center justify-center py-14 lg:py-0">
+                    <div className="flex items-center justify-center lg:py-0">
                       <img
                         src={booking.resortData.imageUrl}
-                        className="w-24 h-24 lg:h-36 lg:w-60"
+                        className="md:h-30 md:w-50 lg:h-36 lg:w-60"
                         alt="not found"
                       />
                     </div>
@@ -154,14 +146,6 @@ function BookingHistory() {
                         }
                       </p>
                     </div>
-                  </div>
-                  <div className="flex justify-center p-4 mt-5">
-                    <button
-                      className="w-full h-12 font-semibold bg-gray-200 rounded-md shadow lg:w-2/4"
-                      onClick={onViewClick(booking.booking._id)}
-                    >
-                      View
-                    </button>
                   </div>
                 </div>
               ))}
